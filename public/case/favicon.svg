@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>HOVER</title>
+  <rect width="64" height="64" fill="#101010"/>
+  <path fill="#F4F4F0" d="M20 14h7v14h10V14h7v36h-7V35H27v15h-7z"/>
+</svg>
