@@ -1,0 +1,25 @@
+Independent read-only review — 2026-10-20
+
+Result: PASS, no static adaptation blockers found.
+
+Reviewed the actual final build, HTTP smoke, dependency audit and migration
+evidence without repeating the historical Sites source audit or 180 tests.
+
+- build.log confirms native Next 16.3.8 compilation, TypeScript and 28 generated
+  pages. The 28 generation count is not a browser route-coverage count.
+- http-smoke.json contains 22 route GET responses, all 200, 35 SSR-discovered
+  image URLs successfully fetched by HTTP, and 12 additional GET fixtures.
+- The actual Host www redirect returns 308 preserving the path/query.
+- Production audit has 0 dependency groups. The full audit retains 9 tool/dev
+  groups: 8 high and 1 low. Both scopes are disclosed.
+- Migration manifest counts 251 unchanged source files, 8 adapted files,
+  15 omitted inactive platform files and 3 added runtime configuration files.
+- Unchanged-file hash comparison found 0 mismatches. HERO, corrected CSS,
+  public assets and contact API/client/schema/delivery retain their bytes.
+- Production 404 response header behavior differs from the original Worker
+  and is explicitly documented: native Next noindex HTML metadata remains.
+- HTTP evidence is GET-only; it does not verify form POST, delivery, a Vercel
+  deployment or a full native Next browser regression.
+
+The separate limited browser smoke, when present, has its own scope and
+evidence in browser-smoke.json. This independent review did not drive a browser.

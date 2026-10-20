@@ -1,0 +1,710 @@
+{
+  "date": "2026-10-20",
+  "runtime": "Native Next.js 16.3.8 production (next build + next start)",
+  "baseUrl": "http://127.0.0.1:4185",
+  "status": "PASS",
+  "routes": [
+    {
+      "path": "/ua",
+      "url": "http://127.0.0.1:4185/ua",
+      "status": 200,
+      "title": "HOVER.STUDIO — Дизайн, що реагує",
+      "h1": 1,
+      "lang": "uk",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 78405,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/ua/services/landing-pages",
+      "url": "http://127.0.0.1:4185/ua/services/landing-pages",
+      "status": 200,
+      "title": "ЛЕНДИНГ — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "uk",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 38779,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/ua/services/business-websites",
+      "url": "http://127.0.0.1:4185/ua/services/business-websites",
+      "status": 200,
+      "title": "БІЗНЕС-САЙТ — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "uk",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 38505,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/ua/services/corporate-websites",
+      "url": "http://127.0.0.1:4185/ua/services/corporate-websites",
+      "status": 200,
+      "title": "КОРПОРАТИВНИЙ САЙТ — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "uk",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 40518,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/ua/services/digital-experience",
+      "url": "http://127.0.0.1:4185/ua/services/digital-experience",
+      "status": 200,
+      "title": "DIGITAL EXPERIENCE — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "uk",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 40546,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/ua/services/website-care",
+      "url": "http://127.0.0.1:4185/ua/services/website-care",
+      "status": 200,
+      "title": "ПІДТРИМКА САЙТУ — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "uk",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 34716,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/ua/work/solarcity",
+      "url": "http://127.0.0.1:4185/ua/work/solarcity",
+      "status": 200,
+      "title": "SOLARCITY — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "uk",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 92908,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/ua/work/solarfamily",
+      "url": "http://127.0.0.1:4185/ua/work/solarfamily",
+      "status": 200,
+      "title": "SOLARFAMILY — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "uk",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 76868,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/ua/work/yevai",
+      "url": "http://127.0.0.1:4185/ua/work/yevai",
+      "status": 200,
+      "title": "YEVAI.DEV — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "uk",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 78464,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/ua/work/ai-commercial-blueprint",
+      "url": "http://127.0.0.1:4185/ua/work/ai-commercial-blueprint",
+      "status": 200,
+      "title": "AI COMMERCIAL BLUEPRINT — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "uk",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 92432,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/ua/privacy",
+      "url": "http://127.0.0.1:4185/ua/privacy",
+      "status": 200,
+      "title": "Політика конфіденційності — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "uk",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 59931,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/en",
+      "url": "http://127.0.0.1:4185/en",
+      "status": 200,
+      "title": "HOVER.STUDIO — Design that responds",
+      "h1": 1,
+      "lang": "en",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 72719,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/en/services/landing-pages",
+      "url": "http://127.0.0.1:4185/en/services/landing-pages",
+      "status": 200,
+      "title": "LANDING PAGE — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "en",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 34541,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/en/services/business-websites",
+      "url": "http://127.0.0.1:4185/en/services/business-websites",
+      "status": 200,
+      "title": "BUSINESS WEBSITE — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "en",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 34367,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/en/services/corporate-websites",
+      "url": "http://127.0.0.1:4185/en/services/corporate-websites",
+      "status": 200,
+      "title": "CORPORATE WEBSITE — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "en",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 36149,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/en/services/digital-experience",
+      "url": "http://127.0.0.1:4185/en/services/digital-experience",
+      "status": 200,
+      "title": "DIGITAL EXPERIENCE — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "en",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 36309,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/en/services/website-care",
+      "url": "http://127.0.0.1:4185/en/services/website-care",
+      "status": 200,
+      "title": "WEBSITE CARE — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "en",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 31234,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/en/work/solarcity",
+      "url": "http://127.0.0.1:4185/en/work/solarcity",
+      "status": 200,
+      "title": "SOLARCITY — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "en",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 77388,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/en/work/solarfamily",
+      "url": "http://127.0.0.1:4185/en/work/solarfamily",
+      "status": 200,
+      "title": "SOLARFAMILY — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "en",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 64383,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/en/work/yevai",
+      "url": "http://127.0.0.1:4185/en/work/yevai",
+      "status": 200,
+      "title": "YEVAI.DEV — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "en",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 69414,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/en/work/ai-commercial-blueprint",
+      "url": "http://127.0.0.1:4185/en/work/ai-commercial-blueprint",
+      "status": 200,
+      "title": "AI COMMERCIAL BLUEPRINT — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "en",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 78364,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    },
+    {
+      "path": "/en/privacy",
+      "url": "http://127.0.0.1:4185/en/privacy",
+      "status": 200,
+      "title": "Privacy Policy — HOVER.STUDIO",
+      "h1": 1,
+      "lang": "en",
+      "robotsMetadata": "noindex, nofollow",
+      "bytes": 45649,
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex, nofollow",
+        "content-security-policy": null
+      }
+    }
+  ],
+  "routeCount": 22,
+  "uniqueLoadedImages": [
+    {
+      "path": "/previews/solarcity-corporate.png",
+      "status": 200,
+      "bytes": 4071123,
+      "type": "image/png"
+    },
+    {
+      "path": "/previews/solarfamily-published.webp",
+      "status": 200,
+      "bytes": 265796,
+      "type": "image/webp"
+    },
+    {
+      "path": "/previews/yevai-home.png",
+      "status": 200,
+      "bytes": 2689205,
+      "type": "image/png"
+    },
+    {
+      "path": "/previews/ai-commercial-blueprint-cover.png",
+      "status": 200,
+      "bytes": 953101,
+      "type": "image/png"
+    },
+    {
+      "path": "/case/solarcity/energy-scenarios.png",
+      "status": 200,
+      "bytes": 1240130,
+      "type": "image/png"
+    },
+    {
+      "path": "/images/yevheniy-polosenko.webp",
+      "status": 200,
+      "bytes": 75246,
+      "type": "image/webp"
+    },
+    {
+      "path": "/previews/yevai-real.jpg",
+      "status": 200,
+      "bytes": 338905,
+      "type": "image/jpeg"
+    },
+    {
+      "path": "/case/solarcity/hybrid-complex.webp",
+      "status": 200,
+      "bytes": 726092,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/solarcity/energy-campus.webp",
+      "status": 200,
+      "bytes": 569378,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/solarcity/responsive-mobile.png",
+      "status": 200,
+      "bytes": 270641,
+      "type": "image/png"
+    },
+    {
+      "path": "/case/solarcity/selected-development.png",
+      "status": 200,
+      "bytes": 1236067,
+      "type": "image/png"
+    },
+    {
+      "path": "/case/solarfamily/hero.webp",
+      "status": 200,
+      "bytes": 331648,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/solarfamily/cleaning.webp",
+      "status": 200,
+      "bytes": 1467260,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/solarfamily/navigation-menu.webp",
+      "status": 200,
+      "bytes": 821758,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/solarfamily/phone.webp",
+      "status": 200,
+      "bytes": 180790,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/solarfamily/tablet.webp",
+      "status": 200,
+      "bytes": 325514,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/solarfamily/projects-hero.webp",
+      "status": 200,
+      "bytes": 1227298,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/solarfamily/bess-calculation.webp",
+      "status": 200,
+      "bytes": 166138,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/yevai/hero-clean.webp",
+      "status": 200,
+      "bytes": 63200,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/yevai/mira-clean.webp",
+      "status": 200,
+      "bytes": 49498,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/yevai/hero-detail-clean.webp",
+      "status": 200,
+      "bytes": 30766,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/yevai/services-rest.webp",
+      "status": 200,
+      "bytes": 28758,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/yevai/services-hover-final.webp",
+      "status": 200,
+      "bytes": 28652,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/yevai/selected-work-clean.webp",
+      "status": 200,
+      "bytes": 35196,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/yevai/mobile-home-clean.webp",
+      "status": 200,
+      "bytes": 61138,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/yevai/mobile-menu-clean.webp",
+      "status": 200,
+      "bytes": 16044,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/yevai/selected-vezebus.png",
+      "status": 200,
+      "bytes": 1767199,
+      "type": "image/png"
+    },
+    {
+      "path": "/case/yevai/selected-service.png",
+      "status": 200,
+      "bytes": 2240867,
+      "type": "image/png"
+    },
+    {
+      "path": "/case/yevai/selected-about.png",
+      "status": 200,
+      "bytes": 1013481,
+      "type": "image/png"
+    },
+    {
+      "path": "/case/blueprint/ai-commercial-blueprint-hero-stack.webp",
+      "status": 200,
+      "bytes": 117288,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/blueprint/ai-commercial-blueprint-cover-master.png",
+      "status": 200,
+      "bytes": 220051,
+      "type": "image/png"
+    },
+    {
+      "path": "/case/blueprint/tissot-product-fidelity-preview-1200.webp",
+      "status": 200,
+      "bytes": 100438,
+      "type": "image/webp"
+    },
+    {
+      "path": "/case/blueprint/commercial-pipeline-master.png",
+      "status": 200,
+      "bytes": 348879,
+      "type": "image/png"
+    },
+    {
+      "path": "/case/blueprint/responsive-tablet-checklist.jpg",
+      "status": 200,
+      "bytes": 78893,
+      "type": "image/jpeg"
+    },
+    {
+      "path": "/case/blueprint/responsive-phone-menu.png",
+      "status": 200,
+      "bytes": 278234,
+      "type": "image/png"
+    }
+  ],
+  "extras": [
+    {
+      "path": "/",
+      "requestHost": "127.0.0.1:4185",
+      "status": 307,
+      "location": "/ua",
+      "method": "GET",
+      "responseCode": null,
+      "title": "HOVER.STUDIO",
+      "xRobotsTag": "noindex, nofollow",
+      "sitemapUrlCount": null
+    },
+    {
+      "path": "/",
+      "requestHost": "127.0.0.1:4185",
+      "status": 307,
+      "location": "/en",
+      "method": "GET",
+      "responseCode": null,
+      "title": "HOVER.STUDIO",
+      "xRobotsTag": "noindex, nofollow",
+      "sitemapUrlCount": null
+    },
+    {
+      "path": "/ua",
+      "requestHost": "127.0.0.1:4185",
+      "status": 200,
+      "location": null,
+      "method": "GET",
+      "responseCode": null,
+      "title": "HOVER.STUDIO — Дизайн, що реагує",
+      "xRobotsTag": "noindex, nofollow",
+      "sitemapUrlCount": null
+    },
+    {
+      "path": "/api/contact",
+      "requestHost": "127.0.0.1:4185",
+      "status": 405,
+      "location": null,
+      "method": "GET",
+      "responseCode": "METHOD_NOT_ALLOWED",
+      "title": null,
+      "xRobotsTag": "noindex, nofollow",
+      "sitemapUrlCount": null
+    },
+    {
+      "path": "/ua/not-a-real-page",
+      "requestHost": "127.0.0.1:4185",
+      "status": 404,
+      "location": null,
+      "method": "GET",
+      "responseCode": null,
+      "title": "404 — HOVER.STUDIO",
+      "xRobotsTag": "noindex, nofollow",
+      "sitemapUrlCount": null
+    },
+    {
+      "path": "/en/not-a-real-page",
+      "requestHost": "127.0.0.1:4185",
+      "status": 404,
+      "location": null,
+      "method": "GET",
+      "responseCode": null,
+      "title": "404 — HOVER.STUDIO",
+      "xRobotsTag": "noindex, nofollow",
+      "sitemapUrlCount": null
+    },
+    {
+      "path": "/robots.txt",
+      "requestHost": "127.0.0.1:4185",
+      "status": 200,
+      "location": null,
+      "method": "GET",
+      "responseCode": null,
+      "title": null,
+      "xRobotsTag": "noindex, nofollow",
+      "sitemapUrlCount": null
+    },
+    {
+      "path": "/sitemap.xml",
+      "requestHost": "127.0.0.1:4185",
+      "status": 200,
+      "location": null,
+      "method": "GET",
+      "responseCode": null,
+      "title": null,
+      "xRobotsTag": "noindex, nofollow",
+      "sitemapUrlCount": 20
+    },
+    {
+      "path": "/robots.txt",
+      "requestHost": "byhover.studio",
+      "status": 200,
+      "location": null,
+      "method": "GET",
+      "responseCode": null,
+      "title": null,
+      "xRobotsTag": null,
+      "sitemapUrlCount": null
+    },
+    {
+      "path": "/ua/not-a-real-page",
+      "requestHost": "byhover.studio",
+      "status": 404,
+      "location": null,
+      "method": "GET",
+      "responseCode": null,
+      "title": "404 — HOVER.STUDIO",
+      "xRobotsTag": null,
+      "sitemapUrlCount": null
+    },
+    {
+      "path": "/missing-image-smoke.png",
+      "requestHost": "byhover.studio",
+      "status": 404,
+      "location": null,
+      "method": "GET",
+      "responseCode": null,
+      "title": "404 — HOVER.STUDIO",
+      "xRobotsTag": null,
+      "sitemapUrlCount": null
+    },
+    {
+      "path": "/ua?source=smoke",
+      "requestHost": "www.byhover.studio",
+      "status": 308,
+      "location": "https://byhover.studio/ua?source=smoke",
+      "method": "GET",
+      "responseCode": null,
+      "title": null,
+      "xRobotsTag": null,
+      "sitemapUrlCount": null
+    }
+  ],
+  "browserTested": false,
+  "formPostCount": 0,
+  "note": "GET-only local production HTTP smoke. No form submission/provider request or external deployment. CSP was absent in the supplied source, and remains unset. Production404 uses native Next noindex metadata, whereas the source Worker also applied a404 X-Robots-Tag header."
+}

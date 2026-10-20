@@ -1,0 +1,276 @@
+{
+  "runtime": "Next.js16.3.8 production server on127.0.0.1:4185",
+  "date": "2026-10-20",
+  "browser": "ChatGPT in-app browser",
+  "method": "CSS viewport emulation; targeted smoke, not physical devices",
+  "baseSitesVersion": 135,
+  "baseSitesCommit": "c366727263702d9bcc9e01c30b976f7abfd0f34f",
+  "records": [
+    {
+      "client": 305,
+      "focus": "",
+      "font": "35.0309px",
+      "fonts": "loaded",
+      "lang": "uk",
+      "overflow": 0,
+      "rect": {
+        "bottom": 379.8125114440918,
+        "height": 59.54166793823242,
+        "left": 17.59375,
+        "right": 287.07293701171875,
+        "top": 320.2708435058594,
+        "width": 269.47918701171875,
+        "x": 17.59375,
+        "y": 320.2708435058594
+      },
+      "scroll": 269,
+      "text": "КОРПОРАТИВНИЙ САЙТ",
+      "url": "http://127.0.0.1:4185/ua/services/corporate-websites",
+      "viewport": {
+        "height": 900,
+        "width": 320
+      },
+      "width": 269,
+      "screenshot": "browser-evidence/vercel-next-ua-corporate-320.jpg",
+      "imageDimensions": {
+        "height": 858,
+        "width": 305
+      }
+    },
+    {
+      "client": 305,
+      "focus": "",
+      "font": "43.115px",
+      "fonts": "loaded",
+      "lang": "en",
+      "overflow": 0,
+      "rect": {
+        "bottom": 227.2291717529297,
+        "height": 112.5,
+        "left": 17.59375,
+        "right": 287.07293701171875,
+        "top": 114.72917175292967,
+        "width": 269.47918701171875,
+        "x": 17.59375,
+        "y": 114.72917175292967
+      },
+      "scroll": 269,
+      "text": "LESS LAYERS.MORE INVOLVEMENT.",
+      "url": "http://127.0.0.1:4185/en#about",
+      "viewport": {
+        "height": 900,
+        "width": 320
+      },
+      "width": 269,
+      "screenshot": "browser-evidence/vercel-next-en-about-320.jpg",
+      "imageDimensions": {
+        "height": 858,
+        "width": 305
+      }
+    },
+    {
+      "client": 305,
+      "focus": "Play: FROM EDITOR TO WEBSITE",
+      "font": "16px",
+      "fonts": "loaded",
+      "lang": "en",
+      "overflow": 0,
+      "rect": {
+        "bottom": 188.61458587646484,
+        "height": 73.78125,
+        "left": 17.59375,
+        "right": 287.07293701171875,
+        "top": 114.83333587646484,
+        "width": 269.47918701171875,
+        "x": 17.59375,
+        "y": 114.83333587646484
+      },
+      "scroll": 269,
+      "text": "03DEVELOPMENT",
+      "url": "http://127.0.0.1:4185/en#about",
+      "viewport": {
+        "height": 900,
+        "width": 320
+      },
+      "width": 269,
+      "screenshot": "browser-evidence/vercel-next-en-development-320.jpg",
+      "imageDimensions": {
+        "height": 858,
+        "width": 305
+      }
+    },
+    {
+      "client": 305,
+      "focus": "",
+      "font": "16px",
+      "fonts": "loaded",
+      "lang": "uk",
+      "overflow": 0,
+      "rect": {
+        "bottom": 501.6041717529297,
+        "height": 386.65625,
+        "left": 17.59375,
+        "right": 287.07293701171875,
+        "top": 114.94792175292967,
+        "width": 269.47918701171875,
+        "x": 17.59375,
+        "y": 114.94792175292967
+      },
+      "scroll": 269,
+      "text": "01UA + ENДВОМОВНИЙ САЙТ023ОСНОВНІ НАПРЯМИ ПОСЛУГ03ПОРТФОЛІОПОДАЧА ЧЕРЕЗ ПРОЄКТИ04LIVEОПУБЛІКОВАНИЙ САЙТ",
+      "url": "http://127.0.0.1:4185/ua/work/yevai",
+      "viewport": {
+        "height": 900,
+        "width": 320
+      },
+      "width": 269,
+      "screenshot": "browser-evidence/vercel-next-ua-yevai-result-320.jpg",
+      "imageDimensions": {
+        "height": 858,
+        "width": 305
+      }
+    },
+    {
+      "client": 805,
+      "focus": "",
+      "font": "16px",
+      "fonts": "loaded",
+      "lang": "uk",
+      "overflow": 0,
+      "rect": {
+        "bottom": 423.9896087646485,
+        "height": 309.16668701171875,
+        "left": 24,
+        "right": 780.6666870117188,
+        "top": 114.82292175292967,
+        "width": 756.6666870117188,
+        "x": 24,
+        "y": 114.82292175292967
+      },
+      "scroll": 757,
+      "text": "01КЛІЄНТYevAI.dev02СФЕРАШІ / креативне виробництво03ТИП САЙТУСайт-портфоліо04ПОСЛУГИСтратегія / артдирекшн / UX/UI / розробка / контент05МОВИ САЙТУUA / EN06РІК2026",
+      "url": "http://127.0.0.1:4185/ua/work/yevai",
+      "viewport": {
+        "height": 1180,
+        "width": 820
+      },
+      "width": 757,
+      "screenshot": "browser-evidence/vercel-next-ua-yevai-facts-820.jpg",
+      "imageDimensions": {
+        "height": 1158,
+        "width": 805
+      }
+    },
+    {
+      "client": 805,
+      "focus": "",
+      "font": "70.035px",
+      "fonts": "loaded",
+      "lang": "en",
+      "overflow": 0,
+      "rect": {
+        "bottom": 208.31250762939453,
+        "height": 114.83333587646484,
+        "left": 24,
+        "right": 780.6666870117188,
+        "top": 93.47917175292967,
+        "width": 756.6666870117188,
+        "x": 24,
+        "y": 93.47917175292967
+      },
+      "scroll": 757,
+      "text": "LESS LAYERS.MORE INVOLVEMENT.",
+      "url": "http://127.0.0.1:4185/en",
+      "viewport": {
+        "height": 1180,
+        "width": 820
+      },
+      "width": 757,
+      "screenshot": "browser-evidence/vercel-next-en-about-820.jpg",
+      "imageDimensions": {
+        "height": 1158,
+        "width": 805
+      }
+    },
+    {
+      "client": 1425,
+      "focus": "",
+      "font": "16px",
+      "fonts": "loaded",
+      "lang": "uk",
+      "overflow": 0,
+      "rect": {
+        "bottom": 1000,
+        "height": 1000,
+        "left": 0,
+        "right": 1424.666748046875,
+        "top": 0,
+        "width": 1424.666748046875,
+        "x": 0,
+        "y": 0
+      },
+      "scroll": 1425,
+      "text": "НЕЗАЛЕЖНА DIGITAL-СТУДІЯКИЇВ / ПРАЦЮЄМО ПО ВСЬОМУ СВІТУDESIGN,ЩОРЕАГУЄ.HTMLCSSReactTypeScriptJavaScriptSVGGridFlexboxAPIUIUXSEOMotionFormsNext.jsViteTailwind CSSResponsiveComponent",
+      "url": "http://127.0.0.1:4185/ua",
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "width": 1425,
+      "screenshot": "browser-evidence/vercel-next-ua-hero-1440.jpg",
+      "imageDimensions": {
+        "height": 990,
+        "width": 1425
+      }
+    }
+  ],
+  "pause": {
+    "margin": "3.2px",
+    "panelScrollLeft": 0,
+    "pressed": "true"
+  },
+  "menu": {
+    "viewport": {
+      "width": 820,
+      "height": 1180
+    },
+    "opened": {
+      "bodyOverflow": "hidden",
+      "expanded": "true",
+      "focus": ""
+    },
+    "closed": {
+      "bodyOverflow": "clip visible",
+      "expanded": "false",
+      "focus": "Open menu"
+    }
+  },
+  "language": {
+    "lang": "uk",
+    "overflow": 0,
+    "url": "http://127.0.0.1:4185/ua"
+  },
+  "skipLink": {
+    "first": {
+      "href": "#main",
+      "tag": "A",
+      "text": "До основного вмісту"
+    },
+    "after": {
+      "id": "main",
+      "tag": "MAIN"
+    }
+  },
+  "console": [],
+  "formsSubmitted": false,
+  "scope": "Seven targeted frames at320/820/1440; representative menuEscape,language,Pause andskiplink. This doesnot repeat98-frame/six-route×nine-widthVinextQA.",
+  "notTested": [
+    "Physicaldevices",
+    "Otherbrowserengines",
+    "Actual200%zoom",
+    "Full22routes×9widths Nextbrowserregression",
+    "RealVerceldeployment",
+    "Formprovideractivationanddelivery",
+    "DomainDNS/MX"
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "candidate": "HOVER-RC-2026-10-19",
+  "date": "2026-10-19",
+  "liveOrigin": "https://hover-studio.pipistrello-26.chatgpt.site",
+  "candidateCanonicalOrigin": "https://byhover.studio",
+  "routes": [
+    {
+      "path": "/ua",
+      "locale": "ua",
+      "type": "home",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/ua/services/landing-pages",
+      "locale": "ua",
+      "type": "service",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/ua/services/business-websites",
+      "locale": "ua",
+      "type": "service",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/ua/services/corporate-websites",
+      "locale": "ua",
+      "type": "service",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/ua/services/digital-experience",
+      "locale": "ua",
+      "type": "service",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/ua/services/website-care",
+      "locale": "ua",
+      "type": "service",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/ua/work/solarcity",
+      "locale": "ua",
+      "type": "case",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/ua/work/solarfamily",
+      "locale": "ua",
+      "type": "case",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/ua/work/yevai",
+      "locale": "ua",
+      "type": "case",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/ua/work/ai-commercial-blueprint",
+      "locale": "ua",
+      "type": "case",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/ua/privacy",
+      "locale": "ua",
+      "type": "privacy",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/en",
+      "locale": "en",
+      "type": "home",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/en/services/landing-pages",
+      "locale": "en",
+      "type": "service",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/en/services/business-websites",
+      "locale": "en",
+      "type": "service",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/en/services/corporate-websites",
+      "locale": "en",
+      "type": "service",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/en/services/digital-experience",
+      "locale": "en",
+      "type": "service",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/en/services/website-care",
+      "locale": "en",
+      "type": "service",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/en/work/solarcity",
+      "locale": "en",
+      "type": "case",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/en/work/solarfamily",
+      "locale": "en",
+      "type": "case",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/en/work/yevai",
+      "locale": "en",
+      "type": "case",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/en/work/ai-commercial-blueprint",
+      "locale": "en",
+      "type": "case",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    },
+    {
+      "path": "/en/privacy",
+      "locale": "en",
+      "type": "privacy",
+      "publishedBaseline": "Sites v133",
+      "liveHttpStatus": 200,
+      "candidateWorkerStatus": 200,
+      "content": "present; one H1 in candidate SSR",
+      "result": "PASS",
+      "method": "live HTTP GET + compiled Worker request fixture; not browser inspection"
+    }
+  ]
+}

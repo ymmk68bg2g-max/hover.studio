@@ -1,0 +1,1398 @@
+{
+  "originalBaseCommit": "8c7774c61603f62598d6ac6afa2ed68cd380f138",
+  "correctedSitesBaseCommit": "c366727263702d9bcc9e01c30b976f7abfd0f34f",
+  "correctedCssSha256": "012a458c68c89c047d64d253dab8175c99764055d5bae3be19d446bfd845efd1",
+  "sitesSavedVersion": "appgprj_6a9f3b20900481919f2db0621bd6a4f7~appgver_2e9581d767508191b15e862e6877ecbc",
+  "sitesBaseIntegrity": {
+    "filesVerified": 274,
+    "modifiedByVercelPreparation": 0
+  },
+  "counts": {
+    "sourceFilesUnchanged": 251,
+    "sourceFilesAdapted": 8,
+    "sourceFilesOmitted": 15,
+    "newRuntimeConfigurationFiles": 3
+  },
+  "changed": [
+    {
+      "path": ".gitignore",
+      "sha256": "d665e418540f5d01864bb9862ebba565661fb990183bb8d3ff79ca2c2b240bb0",
+      "vercelSha256": "dc63b58c67f289eead9b946022f478f12fedcba0524004a3ba6a62b71b131df0"
+    },
+    {
+      "path": ".npmrc",
+      "sha256": "494e64a8818b6158e89321250500ad5ad018e33ad5cfea06a1cacd2cf4da75fa",
+      "vercelSha256": "a3909ac0447c469fda12c57374993be70f47ce73e49fd3124678c7c047f2214d"
+    },
+    {
+      "path": "app/privacy-page.tsx",
+      "sha256": "ee46f343171427e392fc74124bf9f5db3b00d708c782ab46d5e89c43e43d0298",
+      "vercelSha256": "fce8af2e9784e64fff4e475e97992ada30d71a68d87f6e0e5f6b5a3226909a66"
+    },
+    {
+      "path": "app/request-locale.ts",
+      "sha256": "a067632542a1c140d78a8502c83f5f39b5cd4c715d9cc3d620c08d9458ae455b",
+      "vercelSha256": "ce674df978c0fa02cd0787ae719d2923df999f162ad7b24137c3769b5a3eead2"
+    },
+    {
+      "path": "next.config.ts",
+      "sha256": "614bce25b089c3f19b1e17a6346c74b858034040154c6621e7d35303004767cc",
+      "vercelSha256": "30325a8ce0d0b9ed1d4a287cd259b4468609ef96223791e5121e668b7ec90d39"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "920d21ca287ce8911f9fb9089c2a388d0fcd45ca6a397af13f33787d5c6800a5",
+      "vercelSha256": "ef799ac77338c7b7e10b5dfbd604f512f33f99bce051986f85f750a5bd1c8249"
+    },
+    {
+      "path": "package.json",
+      "sha256": "a40d92ccb4cfbe9e74755b4f6e95b842e7f5771aceab722739b6b9dcf4d5d929",
+      "vercelSha256": "3343c21bca46044f951dd47963abf1fb7fe1526dbafe6bb16818134a994dc6c4"
+    },
+    {
+      "path": "README.md",
+      "sha256": "fe1e08abc1cbac9edeb32ee0bc408e6fd2838a4994ba381d77b281c99e662000",
+      "vercelSha256": "04446c6e842f0d7da7c851bab24a0cde1a5346971f14909d71dbffe2bffc7208"
+    }
+  ],
+  "unchanged": [
+    {
+      "path": "app/api/contact/route.ts",
+      "sha256": "c5d9107a6b382f37273cd1a29d7fe5ddbd4d46e8e29f7acd7d2de8332b7e4bdd",
+      "vercelSha256": "c5d9107a6b382f37273cd1a29d7fe5ddbd4d46e8e29f7acd7d2de8332b7e4bdd"
+    },
+    {
+      "path": "app/blueprint-case-copy.ts",
+      "sha256": "faf3be4ed20cfe92a5cf2ba5cc0a95421ac5617bdba7b523b8f536aea296e945",
+      "vercelSha256": "faf3be4ed20cfe92a5cf2ba5cc0a95421ac5617bdba7b523b8f536aea296e945"
+    },
+    {
+      "path": "app/blueprint-case.css",
+      "sha256": "f9291921820caaade96641fbce37f4912aa872f557b231cb17f2fecf8cde7904",
+      "vercelSha256": "f9291921820caaade96641fbce37f4912aa872f557b231cb17f2fecf8cde7904"
+    },
+    {
+      "path": "app/blueprint-case.tsx",
+      "sha256": "58989ff504a9e545b2bead06e77d420749e907c224aba219e24c9247d8e45328",
+      "vercelSha256": "58989ff504a9e545b2bead06e77d420749e907c224aba219e24c9247d8e45328"
+    },
+    {
+      "path": "app/blueprint-preview.css",
+      "sha256": "91fc14f11f59eab51be2be15b157e1e5114f4af43573a16032ecda688d13c615",
+      "vercelSha256": "91fc14f11f59eab51be2be15b157e1e5114f4af43573a16032ecda688d13c615"
+    },
+    {
+      "path": "app/blueprint-preview.tsx",
+      "sha256": "ed27fbea0263375fdec9d5f3cb993a6e0b53ad4a50626d643b8a445e30e2747f",
+      "vercelSha256": "ed27fbea0263375fdec9d5f3cb993a6e0b53ad4a50626d643b8a445e30e2747f"
+    },
+    {
+      "path": "app/capability-demo-arrow.tsx",
+      "sha256": "dfe668a57bf3e06d0c43cbd01895af70f47911184cd796d9414312cadf129023",
+      "vercelSha256": "dfe668a57bf3e06d0c43cbd01895af70f47911184cd796d9414312cadf129023"
+    },
+    {
+      "path": "app/capability-demo-frame.tsx",
+      "sha256": "a4dbb98a7e1459dc17bc6884e7744616fbf573eb0b822bdfc2d17899fedfa2c6",
+      "vercelSha256": "a4dbb98a7e1459dc17bc6884e7744616fbf573eb0b822bdfc2d17899fedfa2c6"
+    },
+    {
+      "path": "app/capability-design-demo.css",
+      "sha256": "1d74a542a35ac29a374a798aab7fa119de3180d4670af1c0568d9bf3e73d2fd0",
+      "vercelSha256": "1d74a542a35ac29a374a798aab7fa119de3180d4670af1c0568d9bf3e73d2fd0"
+    },
+    {
+      "path": "app/capability-design-demo.tsx",
+      "sha256": "635b8fff06b23c6c8d035dd9557ca594968f652f24c15abd5f23b73a974d6c9e",
+      "vercelSha256": "635b8fff06b23c6c8d035dd9557ca594968f652f24c15abd5f23b73a974d6c9e"
+    },
+    {
+      "path": "app/capability-development-demo.css",
+      "sha256": "936427d805ca7e68f53277c90593c6e16be0d5c6d1cfed960c4e2dbe12bef170",
+      "vercelSha256": "936427d805ca7e68f53277c90593c6e16be0d5c6d1cfed960c4e2dbe12bef170"
+    },
+    {
+      "path": "app/capability-development-demo.tsx",
+      "sha256": "fde9c23ed71ae32e321aee95b6681c1c8e169a5dd1f76ddc57760bb4111d9f05",
+      "vercelSha256": "fde9c23ed71ae32e321aee95b6681c1c8e169a5dd1f76ddc57760bb4111d9f05"
+    },
+    {
+      "path": "app/capability-motion-demo.css",
+      "sha256": "0b65966d1573688e90cf8bd1c335468e5b53d27892bbca576c1746f13ed1bc69",
+      "vercelSha256": "0b65966d1573688e90cf8bd1c335468e5b53d27892bbca576c1746f13ed1bc69"
+    },
+    {
+      "path": "app/capability-motion-demo.tsx",
+      "sha256": "5d044e29471a2a5cee6efabb71b7473ab39df14f85783c4219360f4aaf681657",
+      "vercelSha256": "5d044e29471a2a5cee6efabb71b7473ab39df14f85783c4219360f4aaf681657"
+    },
+    {
+      "path": "app/capability-strategy-demo.css",
+      "sha256": "4c28c2ef045c627553c67311a5c86c55cf283f372ad7834daaa67a85b5b171fb",
+      "vercelSha256": "4c28c2ef045c627553c67311a5c86c55cf283f372ad7834daaa67a85b5b171fb"
+    },
+    {
+      "path": "app/capability-strategy-demo.tsx",
+      "sha256": "a7c7fe1a520f9d8fe5c674909b085c7f92a4f9223ffb7f888587317be76419ed",
+      "vercelSha256": "a7c7fe1a520f9d8fe5c674909b085c7f92a4f9223ffb7f888587317be76419ed"
+    },
+    {
+      "path": "app/case-study.tsx",
+      "sha256": "23f00188cac430a892431513a2a3f26bdd1bbd01f01387424afd9ab95163cb3f",
+      "vercelSha256": "23f00188cac430a892431513a2a3f26bdd1bbd01f01387424afd9ab95163cb3f"
+    },
+    {
+      "path": "app/case-task-motion.css",
+      "sha256": "999db704045f8643bbf0e09b8e72daaebbe6f2dbb3dbd2ff51a5eed94148e6fa",
+      "vercelSha256": "999db704045f8643bbf0e09b8e72daaebbe6f2dbb3dbd2ff51a5eed94148e6fa"
+    },
+    {
+      "path": "app/case-task-motion.tsx",
+      "sha256": "69ba78350df4d96ef73fe17b4e36ad46b599bf2235aaa0020a177a1f8fa275d8",
+      "vercelSha256": "69ba78350df4d96ef73fe17b4e36ad46b599bf2235aaa0020a177a1f8fa275d8"
+    },
+    {
+      "path": "app/chatgpt-auth.ts",
+      "sha256": "17a965f8948b21510cdf8ecbd70c5fdf58100e10970463f6a8fd2cc4795f8044",
+      "vercelSha256": "17a965f8948b21510cdf8ecbd70c5fdf58100e10970463f6a8fd2cc4795f8044"
+    },
+    {
+      "path": "app/client-experience-config.ts",
+      "sha256": "9c149fa2b7dd531f95cde421fdac6f4e9e2063fa472911d61fca2211b150df65",
+      "vercelSha256": "9c149fa2b7dd531f95cde421fdac6f4e9e2063fa472911d61fca2211b150df65"
+    },
+    {
+      "path": "app/contact-delivery.ts",
+      "sha256": "85ca46c3e143a963751b1ffb08f2d3b6157912ea90c5a460b67ec1c544a25799",
+      "vercelSha256": "85ca46c3e143a963751b1ffb08f2d3b6157912ea90c5a460b67ec1c544a25799"
+    },
+    {
+      "path": "app/contact-form.tsx",
+      "sha256": "ec5540689cd9b659614fb12c8c7a2724252b67e76b8428f0861245b5650636be",
+      "vercelSha256": "ec5540689cd9b659614fb12c8c7a2724252b67e76b8428f0861245b5650636be"
+    },
+    {
+      "path": "app/contact-request.ts",
+      "sha256": "b8b40de49262953e2c43b7ed6c5fe476c0eba0751cce1ee35c184e29ee2fe410",
+      "vercelSha256": "b8b40de49262953e2c43b7ed6c5fe476c0eba0751cce1ee35c184e29ee2fe410"
+    },
+    {
+      "path": "app/contact-schema.ts",
+      "sha256": "8785a94eb0cb713c04dbea2ecc0a541b9da133245a739524e36fa6ba0923b79e",
+      "vercelSha256": "8785a94eb0cb713c04dbea2ecc0a541b9da133245a739524e36fa6ba0923b79e"
+    },
+    {
+      "path": "app/contact-settings.ts",
+      "sha256": "617ec5ef3c6fd953c390cb75617cb6d5bc95a651973169a0eaeb8fdd529b5908",
+      "vercelSha256": "617ec5ef3c6fd953c390cb75617cb6d5bc95a651973169a0eaeb8fdd529b5908"
+    },
+    {
+      "path": "app/faq.tsx",
+      "sha256": "901b24716e95a927bd41752b84a77a6ba39957acd5d9bc9d62ac6521802aacad",
+      "vercelSha256": "901b24716e95a927bd41752b84a77a6ba39957acd5d9bc9d62ac6521802aacad"
+    },
+    {
+      "path": "app/featured-device-motion.css",
+      "sha256": "f9c1cb14caea0227ea4c1a95cf7cb7ca059dc81e86fe8f86cba0a9ab37935334",
+      "vercelSha256": "f9c1cb14caea0227ea4c1a95cf7cb7ca059dc81e86fe8f86cba0a9ab37935334"
+    },
+    {
+      "path": "app/featured-solarcity.tsx",
+      "sha256": "ba74c48e12c383df22ff52e9e3e3347d6e06b0e76a57613412ee8c26cde9985c",
+      "vercelSha256": "ba74c48e12c383df22ff52e9e3e3347d6e06b0e76a57613412ee8c26cde9985c"
+    },
+    {
+      "path": "app/globals.css",
+      "sha256": "012a458c68c89c047d64d253dab8175c99764055d5bae3be19d446bfd845efd1",
+      "vercelSha256": "012a458c68c89c047d64d253dab8175c99764055d5bae3be19d446bfd845efd1"
+    },
+    {
+      "path": "app/hero-technology-field.tsx",
+      "sha256": "9030285e1e249c7ad7e969ab2d14144e0b4332a7aa2d08782323077efc827c39",
+      "vercelSha256": "9030285e1e249c7ad7e969ab2d14144e0b4332a7aa2d08782323077efc827c39"
+    },
+    {
+      "path": "app/hero-technology-layout.ts",
+      "sha256": "83435e757a4882837bca1ca7a520968040b197d89fc4c0d0a5a9f0e3f0ebfda8",
+      "vercelSha256": "83435e757a4882837bca1ca7a520968040b197d89fc4c0d0a5a9f0e3f0ebfda8"
+    },
+    {
+      "path": "app/layout.tsx",
+      "sha256": "33bed9b7f27d66da7a22fdb1612526ec2625211f3ca605211868fde69a7a0e41",
+      "vercelSha256": "33bed9b7f27d66da7a22fdb1612526ec2625211f3ca605211868fde69a7a0e41"
+    },
+    {
+      "path": "app/locale-sync.tsx",
+      "sha256": "abae264f303c9b0adc7a708eb16cb82b39ba023d86a5dcf7f186cf55274febe8",
+      "vercelSha256": "abae264f303c9b0adc7a708eb16cb82b39ba023d86a5dcf7f186cf55274febe8"
+    },
+    {
+      "path": "app/not-found-view.tsx",
+      "sha256": "d12cbfb47cae8349832222e5a8e84ae85d6e61d7e71269d6b59b486192c791be",
+      "vercelSha256": "d12cbfb47cae8349832222e5a8e84ae85d6e61d7e71269d6b59b486192c791be"
+    },
+    {
+      "path": "app/not-found.tsx",
+      "sha256": "584efc207cd1797887b4fe776dc6046eba069583fac880ce7ea16f4b212dd5d1",
+      "vercelSha256": "584efc207cd1797887b4fe776dc6046eba069583fac880ce7ea16f4b212dd5d1"
+    },
+    {
+      "path": "app/page.tsx",
+      "sha256": "78668e3ae91e589a3f329d2392aad8585c64e34d4b07c39f1bc30d2fb66ccd56",
+      "vercelSha256": "78668e3ae91e589a3f329d2392aad8585c64e34d4b07c39f1bc30d2fb66ccd56"
+    },
+    {
+      "path": "app/price-text.tsx",
+      "sha256": "9e90260c5fc43273aef73b850ef386508314a0f177bab5a10d07a21b31fbf6da",
+      "vercelSha256": "9e90260c5fc43273aef73b850ef386508314a0f177bab5a10d07a21b31fbf6da"
+    },
+    {
+      "path": "app/projects.ts",
+      "sha256": "15b88b9ac820b07869b09633b3e9ae0181650167e966d9413add6be7b2b88e89",
+      "vercelSha256": "15b88b9ac820b07869b09633b3e9ae0181650167e966d9413add6be7b2b88e89"
+    },
+    {
+      "path": "app/robots.ts",
+      "sha256": "11fcb67ec0cd8b85ab6bac3b28533b38a02988116d9b02d88d7165eacfed6541",
+      "vercelSha256": "11fcb67ec0cd8b85ab6bac3b28533b38a02988116d9b02d88d7165eacfed6541"
+    },
+    {
+      "path": "app/scroll-restoration.tsx",
+      "sha256": "fdd1141f45a552069145576772831c67bd86c043f8380759250c301822e9f6cb",
+      "vercelSha256": "fdd1141f45a552069145576772831c67bd86c043f8380759250c301822e9f6cb"
+    },
+    {
+      "path": "app/service-page.tsx",
+      "sha256": "d3aa617213d26c14ff0572b85c52efaae81ad9e983a5ac73f14c57b1862f846c",
+      "vercelSha256": "d3aa617213d26c14ff0572b85c52efaae81ad9e983a5ac73f14c57b1862f846c"
+    },
+    {
+      "path": "app/services.ts",
+      "sha256": "acf86ee6bccb6f2a31b9601503a8262f6d69c67d6ebc1b097267e9c8479495e5",
+      "vercelSha256": "acf86ee6bccb6f2a31b9601503a8262f6d69c67d6ebc1b097267e9c8479495e5"
+    },
+    {
+      "path": "app/site-chrome.tsx",
+      "sha256": "30468292440d84cd61837edadc359bd10ba09916de21ff2aa42b5c1e3b2d01e3",
+      "vercelSha256": "30468292440d84cd61837edadc359bd10ba09916de21ff2aa42b5c1e3b2d01e3"
+    },
+    {
+      "path": "app/site-client.tsx",
+      "sha256": "4a3e6f4746419b24134b5a7f40086b9783bcf4ce3ae8f31a17c12811f3412a87",
+      "vercelSha256": "4a3e6f4746419b24134b5a7f40086b9783bcf4ce3ae8f31a17c12811f3412a87"
+    },
+    {
+      "path": "app/site-config.ts",
+      "sha256": "bfd5a275f4254e3c015e79a8b0cf0c5ef8ab745cc02c8879e6e3bed4ddd7f79b",
+      "vercelSha256": "bfd5a275f4254e3c015e79a8b0cf0c5ef8ab745cc02c8879e6e3bed4ddd7f79b"
+    },
+    {
+      "path": "app/site-page-end.tsx",
+      "sha256": "e30a21f5bacc124c6412900f729be100c43a37b3da7aacfaf09ee9af3c7f3650",
+      "vercelSha256": "e30a21f5bacc124c6412900f729be100c43a37b3da7aacfaf09ee9af3c7f3650"
+    },
+    {
+      "path": "app/sitemap.ts",
+      "sha256": "54f6a12c1728225c2e1aa9a124234acd1ab869cac2209730115c9cd95b764b80",
+      "vercelSha256": "54f6a12c1728225c2e1aa9a124234acd1ab869cac2209730115c9cd95b764b80"
+    },
+    {
+      "path": "app/solarcity-case-copy.ts",
+      "sha256": "abb2bd5a2d6495d48f2424b5c9fa9c51e78be22f54d66d4d2021c423a0601f2f",
+      "vercelSha256": "abb2bd5a2d6495d48f2424b5c9fa9c51e78be22f54d66d4d2021c423a0601f2f"
+    },
+    {
+      "path": "app/solarcity-case.css",
+      "sha256": "7c31c4db44122c6f5b94da1ed59073a7ad898f61018a4cb4fa5506d1456060c1",
+      "vercelSha256": "7c31c4db44122c6f5b94da1ed59073a7ad898f61018a4cb4fa5506d1456060c1"
+    },
+    {
+      "path": "app/solarcity-case.tsx",
+      "sha256": "4026499983871e89d700dc62ae33e235492748250f1e83b5d3118ce3e3808d0a",
+      "vercelSha256": "4026499983871e89d700dc62ae33e235492748250f1e83b5d3118ce3e3808d0a"
+    },
+    {
+      "path": "app/solarcity-context.css",
+      "sha256": "b605b67dd0d9567ab170730ed1d1252e2c7fd507501afd53698ef71e12e00960",
+      "vercelSha256": "b605b67dd0d9567ab170730ed1d1252e2c7fd507501afd53698ef71e12e00960"
+    },
+    {
+      "path": "app/solarcity-context.tsx",
+      "sha256": "3b26ae21f6696f11ea07870f6e5021239859551dedeb1fa715f987bec2ba1ade",
+      "vercelSha256": "3b26ae21f6696f11ea07870f6e5021239859551dedeb1fa715f987bec2ba1ade"
+    },
+    {
+      "path": "app/solarcity-hero-showcase.css",
+      "sha256": "4aa706c0497fcfe044682b3cb7c4441faf65d61c30dfdb4beb6fa96149f49e4b",
+      "vercelSha256": "4aa706c0497fcfe044682b3cb7c4441faf65d61c30dfdb4beb6fa96149f49e4b"
+    },
+    {
+      "path": "app/solarcity-hero-showcase.tsx",
+      "sha256": "afa35de7483c7e89e5ec4bbfee26dade45cd779cbd32c550074d32c9afb10d29",
+      "vercelSha256": "afa35de7483c7e89e5ec4bbfee26dade45cd779cbd32c550074d32c9afb10d29"
+    },
+    {
+      "path": "app/solarcity-media-credit.css",
+      "sha256": "18fee428e93d2a02a77cc7dd6c6fdbf43cd538cbb3f506bdaf3c37246aeee51e",
+      "vercelSha256": "18fee428e93d2a02a77cc7dd6c6fdbf43cd538cbb3f506bdaf3c37246aeee51e"
+    },
+    {
+      "path": "app/solarcity-motion.css",
+      "sha256": "0063f2e08280eaa0aeac10a617c770aff66745a0c0bab92932b41d560bb58ce1",
+      "vercelSha256": "0063f2e08280eaa0aeac10a617c770aff66745a0c0bab92932b41d560bb58ce1"
+    },
+    {
+      "path": "app/solarcity-motion.tsx",
+      "sha256": "4d06fd1dbbddc3fcebed0c855d1bf83c4d0f453fc7638563c0de7069b7c563ba",
+      "vercelSha256": "4d06fd1dbbddc3fcebed0c855d1bf83c4d0f453fc7638563c0de7069b7c563ba"
+    },
+    {
+      "path": "app/solarcity-responsive.css",
+      "sha256": "4844b9f3fabefb7234683e772fb7386c9da932f18ad96a3d31f57492acbaa1b1",
+      "vercelSha256": "4844b9f3fabefb7234683e772fb7386c9da932f18ad96a3d31f57492acbaa1b1"
+    },
+    {
+      "path": "app/solarcity-screen-gallery.css",
+      "sha256": "d7f318bc59d52a17f6ca0db6d7d910fa7b90ae02853b12e76c16155d878db25d",
+      "vercelSha256": "d7f318bc59d52a17f6ca0db6d7d910fa7b90ae02853b12e76c16155d878db25d"
+    },
+    {
+      "path": "app/solarcity-screen-gallery.tsx",
+      "sha256": "7131361c32d98066acbdb3a9128ed58368cfe1c2a4dc08b6db377db58778728a",
+      "vercelSha256": "7131361c32d98066acbdb3a9128ed58368cfe1c2a4dc08b6db377db58778728a"
+    },
+    {
+      "path": "app/solarcity-screen-language.tsx",
+      "sha256": "5a7354e0bcc79b0d0c0dec202eaa94188d93b2f98245ab04bbf2718c085976f0",
+      "vercelSha256": "5a7354e0bcc79b0d0c0dec202eaa94188d93b2f98245ab04bbf2718c085976f0"
+    },
+    {
+      "path": "app/solarfamily-case.tsx",
+      "sha256": "dd5bb4c4a3cdb3f512f671968eda6803ac70db71e1f7555e63cab960443cd76a",
+      "vercelSha256": "dd5bb4c4a3cdb3f512f671968eda6803ac70db71e1f7555e63cab960443cd76a"
+    },
+    {
+      "path": "app/solarfamily-energy-flow-controls.css",
+      "sha256": "6f25ed477b05a756355b2d94fe909053f44112823c61a62e143e19f6472c3ec9",
+      "vercelSha256": "6f25ed477b05a756355b2d94fe909053f44112823c61a62e143e19f6472c3ec9"
+    },
+    {
+      "path": "app/solarfamily-energy-flow.tsx",
+      "sha256": "66dc013127aaf90ccd9d1a30edcef35c00910b121ac3122e9f322afa5ed6f330",
+      "vercelSha256": "66dc013127aaf90ccd9d1a30edcef35c00910b121ac3122e9f322afa5ed6f330"
+    },
+    {
+      "path": "app/testimonial-data.ts",
+      "sha256": "e6d76abed31ce8148b624b5ae8ba4f28d47c5c646fac96083de6659753b5d818",
+      "vercelSha256": "e6d76abed31ce8148b624b5ae8ba4f28d47c5c646fac96083de6659753b5d818"
+    },
+    {
+      "path": "app/testimonials.tsx",
+      "sha256": "67adceee266460a4130d6711617edb1f43221ca5a50121ec7abac819bf09b904",
+      "vercelSha256": "67adceee266460a4130d6711617edb1f43221ca5a50121ec7abac819bf09b904"
+    },
+    {
+      "path": "app/wordmark.tsx",
+      "sha256": "c421c2560ccdf80eea11288d44c2ad826bde79f342ad0758dc0f2e02d51bdf8b",
+      "vercelSha256": "c421c2560ccdf80eea11288d44c2ad826bde79f342ad0758dc0f2e02d51bdf8b"
+    },
+    {
+      "path": "app/yevai-button-state.tsx",
+      "sha256": "b40a67a3e4e3fc142922dcbc287f5536065782a99673241bee1462fd13057724",
+      "vercelSha256": "b40a67a3e4e3fc142922dcbc287f5536065782a99673241bee1462fd13057724"
+    },
+    {
+      "path": "app/yevai-case.css",
+      "sha256": "73c40fe8e0304dbb5304520f935958ce0c24bdc61d8c2a49fbf2602e06013420",
+      "vercelSha256": "73c40fe8e0304dbb5304520f935958ce0c24bdc61d8c2a49fbf2602e06013420"
+    },
+    {
+      "path": "app/[locale]/page.tsx",
+      "sha256": "79fceecd00cada9ed75f462ce9ba15028f1f3433f9b82a21252f7ffc98c96d01",
+      "vercelSha256": "79fceecd00cada9ed75f462ce9ba15028f1f3433f9b82a21252f7ffc98c96d01"
+    },
+    {
+      "path": "app/[locale]/privacy/page.tsx",
+      "sha256": "c646ae4a3bb90f789dae5b38a00800ee06c59404a3f88fd66fc3b42106060455",
+      "vercelSha256": "c646ae4a3bb90f789dae5b38a00800ee06c59404a3f88fd66fc3b42106060455"
+    },
+    {
+      "path": "app/[locale]/services/[slug]/page.tsx",
+      "sha256": "31b27f505abffcf37184fad66292b43bb91545e59e7a4d1cb769c2f013aa140e",
+      "vercelSha256": "31b27f505abffcf37184fad66292b43bb91545e59e7a4d1cb769c2f013aa140e"
+    },
+    {
+      "path": "app/[locale]/work/[slug]/page.tsx",
+      "sha256": "324b71acdb6a45640bdb14df5aaad66573572611f73d238c1fc82d50b0afd471",
+      "vercelSha256": "324b71acdb6a45640bdb14df5aaad66573572611f73d238c1fc82d50b0afd471"
+    },
+    {
+      "path": "app/[locale]/[...unmatched]/page.tsx",
+      "sha256": "28a1795b98350aaf84dc813a2e788ab120d21e9ba2e20c032652818bf8a56c5a",
+      "vercelSha256": "28a1795b98350aaf84dc813a2e788ab120d21e9ba2e20c032652818bf8a56c5a"
+    },
+    {
+      "path": "components/ui/accordion.tsx",
+      "sha256": "a4f153089ba886dfcf73fac26b5c01ca933fa12fbe88df6fb723912bfffdfbb0",
+      "vercelSha256": "a4f153089ba886dfcf73fac26b5c01ca933fa12fbe88df6fb723912bfffdfbb0"
+    },
+    {
+      "path": "components/ui/alert-dialog.tsx",
+      "sha256": "9a8d950f2b9b4352d5ebb762fb44d5c28c2d353aa29712071973656a8736e311",
+      "vercelSha256": "9a8d950f2b9b4352d5ebb762fb44d5c28c2d353aa29712071973656a8736e311"
+    },
+    {
+      "path": "components/ui/alert.tsx",
+      "sha256": "2cc59b5f7bda91c1670884b1bf46bfc8a2a6f226cef184f5762acc037188885b",
+      "vercelSha256": "2cc59b5f7bda91c1670884b1bf46bfc8a2a6f226cef184f5762acc037188885b"
+    },
+    {
+      "path": "components/ui/aspect-ratio.tsx",
+      "sha256": "b1c157886236782cb92d8fbcd4749532aaf6d8aabefd6e157ca40358f902f407",
+      "vercelSha256": "b1c157886236782cb92d8fbcd4749532aaf6d8aabefd6e157ca40358f902f407"
+    },
+    {
+      "path": "components/ui/attachment.tsx",
+      "sha256": "ae8a25dd1a896d3964e3ef54d97e51221b418cde287dfd794428b89951c5c790",
+      "vercelSha256": "ae8a25dd1a896d3964e3ef54d97e51221b418cde287dfd794428b89951c5c790"
+    },
+    {
+      "path": "components/ui/avatar.tsx",
+      "sha256": "58a846bf1617b94b9681921db9b8461d0145f311424663d11678a06b6153cb34",
+      "vercelSha256": "58a846bf1617b94b9681921db9b8461d0145f311424663d11678a06b6153cb34"
+    },
+    {
+      "path": "components/ui/badge.tsx",
+      "sha256": "46a0de5224f6a5d5d63d45246534288518dce888f031064bff925bbc7fe6ad97",
+      "vercelSha256": "46a0de5224f6a5d5d63d45246534288518dce888f031064bff925bbc7fe6ad97"
+    },
+    {
+      "path": "components/ui/breadcrumb.tsx",
+      "sha256": "d4c0831bba2212e778248f54a6ace6ef378df8bba4616d1abf27787a31eabae5",
+      "vercelSha256": "d4c0831bba2212e778248f54a6ace6ef378df8bba4616d1abf27787a31eabae5"
+    },
+    {
+      "path": "components/ui/bubble.tsx",
+      "sha256": "870cc0c5cfc8a515053f7e41e706a6bd017a909b45f1305fd3b164a52cc4483b",
+      "vercelSha256": "870cc0c5cfc8a515053f7e41e706a6bd017a909b45f1305fd3b164a52cc4483b"
+    },
+    {
+      "path": "components/ui/button-group.tsx",
+      "sha256": "784c89d8ee683e1bc972ae69e6ea8225a7f63abe22aa1b5fc3423ae8a2a399c0",
+      "vercelSha256": "784c89d8ee683e1bc972ae69e6ea8225a7f63abe22aa1b5fc3423ae8a2a399c0"
+    },
+    {
+      "path": "components/ui/button.tsx",
+      "sha256": "cc36af0f8b5019c33cc039fbf03bb952a513072b15b55b53c592b78af3e5f4c4",
+      "vercelSha256": "cc36af0f8b5019c33cc039fbf03bb952a513072b15b55b53c592b78af3e5f4c4"
+    },
+    {
+      "path": "components/ui/calendar.tsx",
+      "sha256": "3855fbe0d3f8ad3a4b93071f98b76a9f6782d46ec8b05f5d2ddbee1e4e39bc84",
+      "vercelSha256": "3855fbe0d3f8ad3a4b93071f98b76a9f6782d46ec8b05f5d2ddbee1e4e39bc84"
+    },
+    {
+      "path": "components/ui/card.tsx",
+      "sha256": "c48dd3b96be90a7066f1aebf294f0af9d00ebcdc367d5d4aca55429ade570c1c",
+      "vercelSha256": "c48dd3b96be90a7066f1aebf294f0af9d00ebcdc367d5d4aca55429ade570c1c"
+    },
+    {
+      "path": "components/ui/carousel.tsx",
+      "sha256": "b7ea0dda3903d972c186f739e23da61f547bc83b5a0bf13b16856577846d5fc3",
+      "vercelSha256": "b7ea0dda3903d972c186f739e23da61f547bc83b5a0bf13b16856577846d5fc3"
+    },
+    {
+      "path": "components/ui/chart.tsx",
+      "sha256": "45aa5ea4a386f4fb5b8869ff4bab3a08cf89255190ee322043baf84c3e950b6a",
+      "vercelSha256": "45aa5ea4a386f4fb5b8869ff4bab3a08cf89255190ee322043baf84c3e950b6a"
+    },
+    {
+      "path": "components/ui/checkbox.tsx",
+      "sha256": "b23ab9d4deeedf2ac8f512c368361ede681aa383437ef48563a6f9b7dbe95f27",
+      "vercelSha256": "b23ab9d4deeedf2ac8f512c368361ede681aa383437ef48563a6f9b7dbe95f27"
+    },
+    {
+      "path": "components/ui/collapsible.tsx",
+      "sha256": "c6598e5584f4258b5d9fefadbc5ad6a66888ad58729f4b634a0bb2d9c513188b",
+      "vercelSha256": "c6598e5584f4258b5d9fefadbc5ad6a66888ad58729f4b634a0bb2d9c513188b"
+    },
+    {
+      "path": "components/ui/combobox.tsx",
+      "sha256": "2d68e78b2dc7e38a085f222dede60a80b4f8229a6e91732c484605e204d46735",
+      "vercelSha256": "2d68e78b2dc7e38a085f222dede60a80b4f8229a6e91732c484605e204d46735"
+    },
+    {
+      "path": "components/ui/command.tsx",
+      "sha256": "361193df1e3d64a9e9b5048f045264782fcb387aab3f00f2b805fdcbf538b16a",
+      "vercelSha256": "361193df1e3d64a9e9b5048f045264782fcb387aab3f00f2b805fdcbf538b16a"
+    },
+    {
+      "path": "components/ui/context-menu.tsx",
+      "sha256": "2cf1fcf59df0649a3e2a126d1df2f639145f6b6bf5689ee54af1f40ab1245017",
+      "vercelSha256": "2cf1fcf59df0649a3e2a126d1df2f639145f6b6bf5689ee54af1f40ab1245017"
+    },
+    {
+      "path": "components/ui/dialog.tsx",
+      "sha256": "dce39c6adc47d997bd2567f8b7a72f466b0134715105cd42f9194007b8ecdb14",
+      "vercelSha256": "dce39c6adc47d997bd2567f8b7a72f466b0134715105cd42f9194007b8ecdb14"
+    },
+    {
+      "path": "components/ui/direction.tsx",
+      "sha256": "84ae2ad658207f0e0f367978e5508cd8027cd00c29c41d3d13db21a708c3d1e6",
+      "vercelSha256": "84ae2ad658207f0e0f367978e5508cd8027cd00c29c41d3d13db21a708c3d1e6"
+    },
+    {
+      "path": "components/ui/drawer.tsx",
+      "sha256": "cb6eaf58eb0757ca91af284e5d925b89a42ad7eb19cb3f44c575a3487aa9350f",
+      "vercelSha256": "cb6eaf58eb0757ca91af284e5d925b89a42ad7eb19cb3f44c575a3487aa9350f"
+    },
+    {
+      "path": "components/ui/dropdown-menu.tsx",
+      "sha256": "98f0dcdae38225b73734aceeb9213dd751fea2c72ea520df31003cd133deac8a",
+      "vercelSha256": "98f0dcdae38225b73734aceeb9213dd751fea2c72ea520df31003cd133deac8a"
+    },
+    {
+      "path": "components/ui/empty.tsx",
+      "sha256": "ae95bdcf367a076ae02e7925f14522a148798f72d9651749c6d55497dba584c0",
+      "vercelSha256": "ae95bdcf367a076ae02e7925f14522a148798f72d9651749c6d55497dba584c0"
+    },
+    {
+      "path": "components/ui/field.tsx",
+      "sha256": "ba67d76f017ac059fc86cf8c344e0b2991c4322d3619e125498c19b87f6eefbd",
+      "vercelSha256": "ba67d76f017ac059fc86cf8c344e0b2991c4322d3619e125498c19b87f6eefbd"
+    },
+    {
+      "path": "components/ui/form.tsx",
+      "sha256": "315b46bb75ab7d1c6061b5d750aa4bedf6e7a455e15e2d7f9182f053d5972b1e",
+      "vercelSha256": "315b46bb75ab7d1c6061b5d750aa4bedf6e7a455e15e2d7f9182f053d5972b1e"
+    },
+    {
+      "path": "components/ui/hover-card.tsx",
+      "sha256": "f5d8df42c59370ec14d61bcc54f7d68e9bb7dfa0d6a872b2f7cffc2aafbf23b8",
+      "vercelSha256": "f5d8df42c59370ec14d61bcc54f7d68e9bb7dfa0d6a872b2f7cffc2aafbf23b8"
+    },
+    {
+      "path": "components/ui/input-group.tsx",
+      "sha256": "6afbd58fea4c438e6252dc4568bddc122e84ababead4ad5cee50ace01100c9a0",
+      "vercelSha256": "6afbd58fea4c438e6252dc4568bddc122e84ababead4ad5cee50ace01100c9a0"
+    },
+    {
+      "path": "components/ui/input-otp.tsx",
+      "sha256": "161946daa89f0eda2575b9271c0494e35807c4ffb55598a49f67160c17fec299",
+      "vercelSha256": "161946daa89f0eda2575b9271c0494e35807c4ffb55598a49f67160c17fec299"
+    },
+    {
+      "path": "components/ui/input.tsx",
+      "sha256": "8c4612a7c41319ac5049daa3b34b080f9784b6245c17780eb87c127e58e473db",
+      "vercelSha256": "8c4612a7c41319ac5049daa3b34b080f9784b6245c17780eb87c127e58e473db"
+    },
+    {
+      "path": "components/ui/item.tsx",
+      "sha256": "6e2144d6d87142dbbe56d568810bf546318c8aa661447ebb0d76ebbf382cb45f",
+      "vercelSha256": "6e2144d6d87142dbbe56d568810bf546318c8aa661447ebb0d76ebbf382cb45f"
+    },
+    {
+      "path": "components/ui/kbd.tsx",
+      "sha256": "6088c3a5432338b1719c17e9b5d0e1fa74fd1f66060f248fc88909d33a82cd13",
+      "vercelSha256": "6088c3a5432338b1719c17e9b5d0e1fa74fd1f66060f248fc88909d33a82cd13"
+    },
+    {
+      "path": "components/ui/label.tsx",
+      "sha256": "a476e41f08b9de5bd447de66a33d8bc2ad18f2fa6b96c064778bab4b6f439f4c",
+      "vercelSha256": "a476e41f08b9de5bd447de66a33d8bc2ad18f2fa6b96c064778bab4b6f439f4c"
+    },
+    {
+      "path": "components/ui/marker.tsx",
+      "sha256": "3d798763f094b2bb5e7ade2d5cd1b9bab498bc8ca7fd4cfaf4e5835bdedc34a0",
+      "vercelSha256": "3d798763f094b2bb5e7ade2d5cd1b9bab498bc8ca7fd4cfaf4e5835bdedc34a0"
+    },
+    {
+      "path": "components/ui/menubar.tsx",
+      "sha256": "9243af8afcea03703398ccd1c2a8c0a87ad6cbaf2bd272fb609f5b79fe46aebb",
+      "vercelSha256": "9243af8afcea03703398ccd1c2a8c0a87ad6cbaf2bd272fb609f5b79fe46aebb"
+    },
+    {
+      "path": "components/ui/message-scroller.tsx",
+      "sha256": "bb7660a248e4e9589c3816c7c1c199ea1381a70d2c8476ae895b567a7a4d86cf",
+      "vercelSha256": "bb7660a248e4e9589c3816c7c1c199ea1381a70d2c8476ae895b567a7a4d86cf"
+    },
+    {
+      "path": "components/ui/message.tsx",
+      "sha256": "9d2952bf3b641081f09aa2739535e6bbd1be0a4946789752a2c20d8aaef43185",
+      "vercelSha256": "9d2952bf3b641081f09aa2739535e6bbd1be0a4946789752a2c20d8aaef43185"
+    },
+    {
+      "path": "components/ui/native-select.tsx",
+      "sha256": "007516b111fca8c98a6c40c94ab91bb68cc5b52afce1ed1f5e510c3d86e7347c",
+      "vercelSha256": "007516b111fca8c98a6c40c94ab91bb68cc5b52afce1ed1f5e510c3d86e7347c"
+    },
+    {
+      "path": "components/ui/navigation-menu.tsx",
+      "sha256": "889d358a77de88e9cb6f39ea4895ea4c76eaf01d731b74e44f1c41e97a78a044",
+      "vercelSha256": "889d358a77de88e9cb6f39ea4895ea4c76eaf01d731b74e44f1c41e97a78a044"
+    },
+    {
+      "path": "components/ui/pagination.tsx",
+      "sha256": "374ad135c3d4ff3ec080a0009cd9745cdd0e12faa89d2b0e86074f11e5127fd1",
+      "vercelSha256": "374ad135c3d4ff3ec080a0009cd9745cdd0e12faa89d2b0e86074f11e5127fd1"
+    },
+    {
+      "path": "components/ui/popover.tsx",
+      "sha256": "31c350309ff5d3034e6ecf1b0eda75ba8855bdbf987fc7ad6d71f0ef07c5a447",
+      "vercelSha256": "31c350309ff5d3034e6ecf1b0eda75ba8855bdbf987fc7ad6d71f0ef07c5a447"
+    },
+    {
+      "path": "components/ui/progress.tsx",
+      "sha256": "c8c26e8f5f041c3cdf4915347dc1d9c022f9448f149990fadcaf303e952fa57d",
+      "vercelSha256": "c8c26e8f5f041c3cdf4915347dc1d9c022f9448f149990fadcaf303e952fa57d"
+    },
+    {
+      "path": "components/ui/radio-group.tsx",
+      "sha256": "fe5ce39636d0818c2bf9c4eebddff893d1225fa2c81b5fa4bb8cbb39a8c913ce",
+      "vercelSha256": "fe5ce39636d0818c2bf9c4eebddff893d1225fa2c81b5fa4bb8cbb39a8c913ce"
+    },
+    {
+      "path": "components/ui/resizable.tsx",
+      "sha256": "bc63958467aa00557c551bb0d96a5ae4c965c1e1ba2380e595949d933b132f7c",
+      "vercelSha256": "bc63958467aa00557c551bb0d96a5ae4c965c1e1ba2380e595949d933b132f7c"
+    },
+    {
+      "path": "components/ui/scroll-area.tsx",
+      "sha256": "8bd9d986b2844c9a87de825c6de4787b6739b36c3dc9a05ccf3eb107160e4043",
+      "vercelSha256": "8bd9d986b2844c9a87de825c6de4787b6739b36c3dc9a05ccf3eb107160e4043"
+    },
+    {
+      "path": "components/ui/select.tsx",
+      "sha256": "0b796a108a4eb5ba52d9ad938b7aea36dc56ae66c703a6d0a23dbc24f96daff3",
+      "vercelSha256": "0b796a108a4eb5ba52d9ad938b7aea36dc56ae66c703a6d0a23dbc24f96daff3"
+    },
+    {
+      "path": "components/ui/separator.tsx",
+      "sha256": "6da346505c8629a4668420d2a5ca48891383bbe0b0ceb14163537c671879427e",
+      "vercelSha256": "6da346505c8629a4668420d2a5ca48891383bbe0b0ceb14163537c671879427e"
+    },
+    {
+      "path": "components/ui/sheet.tsx",
+      "sha256": "63863cf2df8f8973e52b3459ac9bdbf81be1262dbc70eb53d5271ffb03488e16",
+      "vercelSha256": "63863cf2df8f8973e52b3459ac9bdbf81be1262dbc70eb53d5271ffb03488e16"
+    },
+    {
+      "path": "components/ui/sidebar.tsx",
+      "sha256": "4a8d73e7730a2b1fcecfca31299ed26db65c2307b84197a59c6ec7c01c7ad28e",
+      "vercelSha256": "4a8d73e7730a2b1fcecfca31299ed26db65c2307b84197a59c6ec7c01c7ad28e"
+    },
+    {
+      "path": "components/ui/skeleton.tsx",
+      "sha256": "ba48dd5be5a6a1378bd4e011028654b5bf419f1e7d20ee4b9f8330c1264e7239",
+      "vercelSha256": "ba48dd5be5a6a1378bd4e011028654b5bf419f1e7d20ee4b9f8330c1264e7239"
+    },
+    {
+      "path": "components/ui/slider.tsx",
+      "sha256": "0e37484f4b416e79ac18c655cac961aefacf6e67085cfc2b320ea8af545635a3",
+      "vercelSha256": "0e37484f4b416e79ac18c655cac961aefacf6e67085cfc2b320ea8af545635a3"
+    },
+    {
+      "path": "components/ui/sonner.tsx",
+      "sha256": "13ccc9b0fe4248e622f83a1d3b2f0566b72b5e04162d7d0c8db8945ecc71b55f",
+      "vercelSha256": "13ccc9b0fe4248e622f83a1d3b2f0566b72b5e04162d7d0c8db8945ecc71b55f"
+    },
+    {
+      "path": "components/ui/spinner.tsx",
+      "sha256": "3e6e6e8d37fb4069f8e43e55318f8db06fbc36e6c8be0096da3c9337c1c798b9",
+      "vercelSha256": "3e6e6e8d37fb4069f8e43e55318f8db06fbc36e6c8be0096da3c9337c1c798b9"
+    },
+    {
+      "path": "components/ui/switch.tsx",
+      "sha256": "386d4d4deb39f34126f9700fe9bf5393d238485dd94018bba9d154dda84c62ae",
+      "vercelSha256": "386d4d4deb39f34126f9700fe9bf5393d238485dd94018bba9d154dda84c62ae"
+    },
+    {
+      "path": "components/ui/table.tsx",
+      "sha256": "20e5a7f224959c6b75802995706a97e9da171f693d4b6b1b436388fcd9df96f3",
+      "vercelSha256": "20e5a7f224959c6b75802995706a97e9da171f693d4b6b1b436388fcd9df96f3"
+    },
+    {
+      "path": "components/ui/tabs.tsx",
+      "sha256": "865d0194331b9b2be36723fa79d3575dc83078b4cb941cafee87cb72fc2cff46",
+      "vercelSha256": "865d0194331b9b2be36723fa79d3575dc83078b4cb941cafee87cb72fc2cff46"
+    },
+    {
+      "path": "components/ui/textarea.tsx",
+      "sha256": "253cdeb487c73beaaccdf47fc163e36e7d5b7ae6ddf09a4f64998a109a112979",
+      "vercelSha256": "253cdeb487c73beaaccdf47fc163e36e7d5b7ae6ddf09a4f64998a109a112979"
+    },
+    {
+      "path": "components/ui/toggle-group.tsx",
+      "sha256": "69f643e889e933f05c1439084480d8646f66a161c7d1cf0730ee926382ade35e",
+      "vercelSha256": "69f643e889e933f05c1439084480d8646f66a161c7d1cf0730ee926382ade35e"
+    },
+    {
+      "path": "components/ui/toggle.tsx",
+      "sha256": "ba4d0b0a2b2fee75dc36dfc19e32082e721024b919050c97fd5dc70faa924e16",
+      "vercelSha256": "ba4d0b0a2b2fee75dc36dfc19e32082e721024b919050c97fd5dc70faa924e16"
+    },
+    {
+      "path": "components/ui/tooltip.tsx",
+      "sha256": "a0784eb77831a799fad7991df4f1b666f876201565a80175e1aa68733574a2e4",
+      "vercelSha256": "a0784eb77831a799fad7991df4f1b666f876201565a80175e1aa68733574a2e4"
+    },
+    {
+      "path": "components.json",
+      "sha256": "31f4ca67a4a62572571003d3d5aac85ee6fbfca67a192924bac6b168d95e98fd",
+      "vercelSha256": "31f4ca67a4a62572571003d3d5aac85ee6fbfca67a192924bac6b168d95e98fd"
+    },
+    {
+      "path": "docs/contact-form-delivery.md",
+      "sha256": "41332edadb9d35d7c6f8f03a6b7066879068ce58a6fb179564e3fa29381adfe0",
+      "vercelSha256": "41332edadb9d35d7c6f8f03a6b7066879068ce58a6fb179564e3fa29381adfe0"
+    },
+    {
+      "path": "docs/privacy-technical-review-2026-09-14.md",
+      "sha256": "8183ce562ca9e91cbc32d94bf4140f1e9a745277320600d2c084b574bdec5d53",
+      "vercelSha256": "8183ce562ca9e91cbc32d94bf4140f1e9a745277320600d2c084b574bdec5d53"
+    },
+    {
+      "path": "docs/release-audit-2026-10-19.md",
+      "sha256": "8b7197070fde735e1b7f4ff01a9e1c97572f4e8e358eb3e2d96323fd63b79024",
+      "vercelSha256": "8b7197070fde735e1b7f4ff01a9e1c97572f4e8e358eb3e2d96323fd63b79024"
+    },
+    {
+      "path": "docs/release-route-matrix-2026-10-19.json",
+      "sha256": "def0d5e25780b4177a6035696eea73c2d66ba69721d7d60a2f505eeb07bd7f2d",
+      "vercelSha256": "def0d5e25780b4177a6035696eea73c2d66ba69721d7d60a2f505eeb07bd7f2d"
+    },
+    {
+      "path": "docs/typography-refinement-2026-10-04.md",
+      "sha256": "366930b464d6c84e485427244cc90c9ced50805785d74de9fccc8c681457eb2d",
+      "vercelSha256": "366930b464d6c84e485427244cc90c9ced50805785d74de9fccc8c681457eb2d"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "sha256": "f22a254df7d934bbf9be499d3c969a13abb7f7f64c03f5967d0095cad81dfe06",
+      "vercelSha256": "f22a254df7d934bbf9be499d3c969a13abb7f7f64c03f5967d0095cad81dfe06"
+    },
+    {
+      "path": "hooks/use-mobile.ts",
+      "sha256": "ad0936f84f1df79d3697bfbff9c18f8ad58431c1cbaf2359c6a853b0fcc9f28b",
+      "vercelSha256": "ad0936f84f1df79d3697bfbff9c18f8ad58431c1cbaf2359c6a853b0fcc9f28b"
+    },
+    {
+      "path": "lib/utils.ts",
+      "sha256": "53f3d3d070f0a9082934da25b875f9499855c2b0693868dd28be8c23d8730f68",
+      "vercelSha256": "53f3d3d070f0a9082934da25b875f9499855c2b0693868dd28be8c23d8730f68"
+    },
+    {
+      "path": "postcss.config.mjs",
+      "sha256": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde",
+      "vercelSha256": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde"
+    },
+    {
+      "path": "public/case/blueprint/ai-commercial-blueprint-cover-master.png",
+      "sha256": "8727904477f1813989fe5293c7597be3d053a3943deff68461878e2ead4f4367",
+      "vercelSha256": "8727904477f1813989fe5293c7597be3d053a3943deff68461878e2ead4f4367"
+    },
+    {
+      "path": "public/case/blueprint/ai-commercial-blueprint-hero-stack.webp",
+      "sha256": "da4d084b7657ed7281a0c6e71c6343e7d6bad4835c4c2c9c03b334322839da0f",
+      "vercelSha256": "da4d084b7657ed7281a0c6e71c6343e7d6bad4835c4c2c9c03b334322839da0f"
+    },
+    {
+      "path": "public/case/blueprint/commercial-pipeline-master.png",
+      "sha256": "e88699b51659d9a1871230dc6f0f64fd0f876eb0c0e43a0ceb7aeda3ae85151d",
+      "vercelSha256": "e88699b51659d9a1871230dc6f0f64fd0f876eb0c0e43a0ceb7aeda3ae85151d"
+    },
+    {
+      "path": "public/case/blueprint/fonts/display-cyrillic.woff2",
+      "sha256": "40540598b4c9eb2cd2562f1017e71f2697adb43e76f49079030dfd7f00b4b786",
+      "vercelSha256": "40540598b4c9eb2cd2562f1017e71f2697adb43e76f49079030dfd7f00b4b786"
+    },
+    {
+      "path": "public/case/blueprint/fonts/display.woff2",
+      "sha256": "4768878c107d92c528a65bba206a87cdcf2c694514e75907fb91772cf8a388a5",
+      "vercelSha256": "4768878c107d92c528a65bba206a87cdcf2c694514e75907fb91772cf8a388a5"
+    },
+    {
+      "path": "public/case/blueprint/fonts/sans-cyrillic.woff2",
+      "sha256": "69afad88a0740b6e5647f1104c9176a261f1ad9d60202f605456a983799752e9",
+      "vercelSha256": "69afad88a0740b6e5647f1104c9176a261f1ad9d60202f605456a983799752e9"
+    },
+    {
+      "path": "public/case/blueprint/fonts/sans.woff2",
+      "sha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "vercelSha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e"
+    },
+    {
+      "path": "public/case/blueprint/fonts/serif-cyrillic.woff2",
+      "sha256": "4899e71407c11bcafe49dfa3573415740a5b47a87028917eedd39731237369c0",
+      "vercelSha256": "4899e71407c11bcafe49dfa3573415740a5b47a87028917eedd39731237369c0"
+    },
+    {
+      "path": "public/case/blueprint/fonts/serif.woff2",
+      "sha256": "02194deb92d3975dd30e11a3824a1f1db32b48c93654e60560cb81ce8e7b5f95",
+      "vercelSha256": "02194deb92d3975dd30e11a3824a1f1db32b48c93654e60560cb81ce8e7b5f95"
+    },
+    {
+      "path": "public/case/blueprint/mira-keyframe-breakdown-master.png",
+      "sha256": "419801dcc3b1bc356f612971b0d63b12fc97aad6521390502c12ea3b36d5e290",
+      "vercelSha256": "419801dcc3b1bc356f612971b0d63b12fc97aad6521390502c12ea3b36d5e290"
+    },
+    {
+      "path": "public/case/blueprint/mira-keyframe-breakdown-preview-1200.webp",
+      "sha256": "658afc12d761ee3f8a682bbccb9206fa405c59a57a61ddae437e3ce80324c609",
+      "vercelSha256": "658afc12d761ee3f8a682bbccb9206fa405c59a57a61ddae437e3ce80324c609"
+    },
+    {
+      "path": "public/case/blueprint/responsive-phone-menu.png",
+      "sha256": "233fc9ca7de121a458f9cf3079f60982278781dc5d69c985d4833ac4f9addf6a",
+      "vercelSha256": "233fc9ca7de121a458f9cf3079f60982278781dc5d69c985d4833ac4f9addf6a"
+    },
+    {
+      "path": "public/case/blueprint/responsive-tablet-checklist.jpg",
+      "sha256": "0ff19297a407cd3b3f62a3e9c2242b137671b7e77b211dd7a98622c63c98aab1",
+      "vercelSha256": "0ff19297a407cd3b3f62a3e9c2242b137671b7e77b211dd7a98622c63c98aab1"
+    },
+    {
+      "path": "public/case/blueprint/tissot-product-fidelity-master.png",
+      "sha256": "c1144a9b679d6206984f49a1eef29e5515957550abc8e4995b070530a2ff56dc",
+      "vercelSha256": "c1144a9b679d6206984f49a1eef29e5515957550abc8e4995b070530a2ff56dc"
+    },
+    {
+      "path": "public/case/blueprint/tissot-product-fidelity-preview-1200.webp",
+      "sha256": "1ca0658bb78297ba4cff1b3e7c11e249735f0015ab62743b5e754bdab72fef78",
+      "vercelSha256": "1ca0658bb78297ba4cff1b3e7c11e249735f0015ab62743b5e754bdab72fef78"
+    },
+    {
+      "path": "public/case/solarcity/energy-campus.webp",
+      "sha256": "11d94a81fab0e0eb823a5f5e3da73bde61a50cce30babaf5b8c005d8e1aee5a0",
+      "vercelSha256": "11d94a81fab0e0eb823a5f5e3da73bde61a50cce30babaf5b8c005d8e1aee5a0"
+    },
+    {
+      "path": "public/case/solarcity/energy-scenarios.png",
+      "sha256": "8f6f3d6ef1c95cb365e73c3295d04c4e772085e494fd742a22e1bf39ac496f2a",
+      "vercelSha256": "8f6f3d6ef1c95cb365e73c3295d04c4e772085e494fd742a22e1bf39ac496f2a"
+    },
+    {
+      "path": "public/case/solarcity/featured-desktop.png",
+      "sha256": "ba2c75a80583e3a9f503db6e27cb6e440b58d31a231b48352c2ff3a8b366cce0",
+      "vercelSha256": "ba2c75a80583e3a9f503db6e27cb6e440b58d31a231b48352c2ff3a8b366cce0"
+    },
+    {
+      "path": "public/case/solarcity/featured-mobile-scale.png",
+      "sha256": "bd3272cdf5e4334cd818b28a8384e2ca1bf011d0df540b8baac61a09db45d5a8",
+      "vercelSha256": "bd3272cdf5e4334cd818b28a8384e2ca1bf011d0df540b8baac61a09db45d5a8"
+    },
+    {
+      "path": "public/case/solarcity/featured-mobile.png",
+      "sha256": "2a644544c74184804470672647b2f0350e7e91a051dcae62bbadce131914d182",
+      "vercelSha256": "2a644544c74184804470672647b2f0350e7e91a051dcae62bbadce131914d182"
+    },
+    {
+      "path": "public/case/solarcity/featured-tablet-hybrid.jpg",
+      "sha256": "d9e901f0405e2c13ab76e7a3f05baf79fab46390d152bafccffd199f572ef533",
+      "vercelSha256": "d9e901f0405e2c13ab76e7a3f05baf79fab46390d152bafccffd199f572ef533"
+    },
+    {
+      "path": "public/case/solarcity/featured-tablet.png",
+      "sha256": "3a9c433c005fdf79d7c76f337540320ed448b19050287009176168b672c818b3",
+      "vercelSha256": "3a9c433c005fdf79d7c76f337540320ed448b19050287009176168b672c818b3"
+    },
+    {
+      "path": "public/case/solarcity/hybrid-complex.webp",
+      "sha256": "7fa5b79a6855b8c7590dc89c523f27a13adc3a466417570970455d8578b9a9f7",
+      "vercelSha256": "7fa5b79a6855b8c7590dc89c523f27a13adc3a466417570970455d8578b9a9f7"
+    },
+    {
+      "path": "public/case/solarcity/responsive-mobile.png",
+      "sha256": "aaaa9ac55282438e20b1da0965ce068ba2ccebf127387ff59b94026fc37a9698",
+      "vercelSha256": "aaaa9ac55282438e20b1da0965ce068ba2ccebf127387ff59b94026fc37a9698"
+    },
+    {
+      "path": "public/case/solarcity/selected-development.png",
+      "sha256": "389b25ae3bb037710fd6676097d76d2dabfb035da83b6b92ab3ee69c053c2972",
+      "vercelSha256": "389b25ae3bb037710fd6676097d76d2dabfb035da83b6b92ab3ee69c053c2972"
+    },
+    {
+      "path": "public/case/solarcity/selected-scale.png",
+      "sha256": "1a85230997050e9aa2922f0254707e5ea4d2a7747ec7c3f31f0394b650195f80",
+      "vercelSha256": "1a85230997050e9aa2922f0254707e5ea4d2a7747ec7c3f31f0394b650195f80"
+    },
+    {
+      "path": "public/case/solarfamily/bess-calculation.webp",
+      "sha256": "d68ae046f824946932d28221a31886dde4e7266b704a5bfaff9dd33ef15ea11b",
+      "vercelSha256": "d68ae046f824946932d28221a31886dde4e7266b704a5bfaff9dd33ef15ea11b"
+    },
+    {
+      "path": "public/case/solarfamily/bess.webp",
+      "sha256": "d5cf6e57375cfe4db45156ef494f2461daaffc1d3a703e8567e989c5b3e426e6",
+      "vercelSha256": "d5cf6e57375cfe4db45156ef494f2461daaffc1d3a703e8567e989c5b3e426e6"
+    },
+    {
+      "path": "public/case/solarfamily/cleaning.webp",
+      "sha256": "4101114154cd2e4608d3f8c83486d750fdcf7a18d7cd10138b82c752722a94c7",
+      "vercelSha256": "4101114154cd2e4608d3f8c83486d750fdcf7a18d7cd10138b82c752722a94c7"
+    },
+    {
+      "path": "public/case/solarfamily/company.webp",
+      "sha256": "687d46752098ee02cdae73b18faa3a71429d50df3462d5499ffaf6db0464da11",
+      "vercelSha256": "687d46752098ee02cdae73b18faa3a71429d50df3462d5499ffaf6db0464da11"
+    },
+    {
+      "path": "public/case/solarfamily/hero.webp",
+      "sha256": "e76662516a7911929ab7a23f3ecb9227a48bbb2a36677b341b881c29bdbf6e3d",
+      "vercelSha256": "e76662516a7911929ab7a23f3ecb9227a48bbb2a36677b341b881c29bdbf6e3d"
+    },
+    {
+      "path": "public/case/solarfamily/interaction.webp",
+      "sha256": "8ba630d7c3457ceb17bda4f8160adcf9a866c74e621ad180279a8f509a0cc1e1",
+      "vercelSha256": "8ba630d7c3457ceb17bda4f8160adcf9a866c74e621ad180279a8f509a0cc1e1"
+    },
+    {
+      "path": "public/case/solarfamily/navigation-menu.webp",
+      "sha256": "0fb9134a815a4fbf31f6506d0bef79ebb63882db586e18914bdeaa712adaa1b2",
+      "vercelSha256": "0fb9134a815a4fbf31f6506d0bef79ebb63882db586e18914bdeaa712adaa1b2"
+    },
+    {
+      "path": "public/case/solarfamily/phone.webp",
+      "sha256": "437c23f17b338d43903bab206c2b69a68b54c4454cdc07c88f1d870f0bf20506",
+      "vercelSha256": "437c23f17b338d43903bab206c2b69a68b54c4454cdc07c88f1d870f0bf20506"
+    },
+    {
+      "path": "public/case/solarfamily/projects-hero.webp",
+      "sha256": "693671c540f0271486e385fc741a79de6c603658ac2003cf1dc93b6bc670b1ee",
+      "vercelSha256": "693671c540f0271486e385fc741a79de6c603658ac2003cf1dc93b6bc670b1ee"
+    },
+    {
+      "path": "public/case/solarfamily/projects.webp",
+      "sha256": "d5fb948a031421337ebb4705475d37839750e4e120327e7a2cb154f7217c78cb",
+      "vercelSha256": "d5fb948a031421337ebb4705475d37839750e4e120327e7a2cb154f7217c78cb"
+    },
+    {
+      "path": "public/case/solarfamily/tablet.webp",
+      "sha256": "8fcd496188f3774ee8e152665e6e759003ef71a601e038122937045d9e9b004d",
+      "vercelSha256": "8fcd496188f3774ee8e152665e6e759003ef71a601e038122937045d9e9b004d"
+    },
+    {
+      "path": "public/case/yevai/about-clean.webp",
+      "sha256": "7cdd92c76718db21f225474e8e5dbd686b15d0aedb103ab92604987e600a887d",
+      "vercelSha256": "7cdd92c76718db21f225474e8e5dbd686b15d0aedb103ab92604987e600a887d"
+    },
+    {
+      "path": "public/case/yevai/about.jpg",
+      "sha256": "59908f7c2593ba93355ffc93b86cea8f84924501ae1ee06f2b676b04cbe08d0c",
+      "vercelSha256": "59908f7c2593ba93355ffc93b86cea8f84924501ae1ee06f2b676b04cbe08d0c"
+    },
+    {
+      "path": "public/case/yevai/case-detail.jpg",
+      "sha256": "2f045846dfd481e0b665e6f5e6bec1b8a24bb41e2e3bbc1b8c98feea78d2373e",
+      "vercelSha256": "2f045846dfd481e0b665e6f5e6bec1b8a24bb41e2e3bbc1b8c98feea78d2373e"
+    },
+    {
+      "path": "public/case/yevai/contact-clean.webp",
+      "sha256": "18445f6152b030ea5d18c19b5ad1f4c19c93d40fd1544b7e1eb1250c66563a50",
+      "vercelSha256": "18445f6152b030ea5d18c19b5ad1f4c19c93d40fd1544b7e1eb1250c66563a50"
+    },
+    {
+      "path": "public/case/yevai/contact.jpg",
+      "sha256": "8f873e319296e7a1f53259d8d6a4405b66beb70ea77920548bdb9874fe184683",
+      "vercelSha256": "8f873e319296e7a1f53259d8d6a4405b66beb70ea77920548bdb9874fe184683"
+    },
+    {
+      "path": "public/case/yevai/hero-clean.webp",
+      "sha256": "436df11df14e1480ab854938056bf938cd99c3094899c15cf43eeca7b5e70eba",
+      "vercelSha256": "436df11df14e1480ab854938056bf938cd99c3094899c15cf43eeca7b5e70eba"
+    },
+    {
+      "path": "public/case/yevai/hero-detail-clean.webp",
+      "sha256": "735629b4ffcce17de1272c4af795ab3844dbc7ea75fdd385e3583719748f9965",
+      "vercelSha256": "735629b4ffcce17de1272c4af795ab3844dbc7ea75fdd385e3583719748f9965"
+    },
+    {
+      "path": "public/case/yevai/hero.jpg",
+      "sha256": "ae5f4ee79aff07bf6b7191d43887127507d3e7075ff35b72b0bcef5871b24b31",
+      "vercelSha256": "ae5f4ee79aff07bf6b7191d43887127507d3e7075ff35b72b0bcef5871b24b31"
+    },
+    {
+      "path": "public/case/yevai/mira-clean.webp",
+      "sha256": "540c46e5549e7a4a5951113096f07b203ebf2651bf30b0a331c9351c5bbbfba6",
+      "vercelSha256": "540c46e5549e7a4a5951113096f07b203ebf2651bf30b0a331c9351c5bbbfba6"
+    },
+    {
+      "path": "public/case/yevai/mobile-cover-clean.webp",
+      "sha256": "61690ded8f4a6eeb87537e08c39f26b8dfdb42344843fc86498cebe849a676a8",
+      "vercelSha256": "61690ded8f4a6eeb87537e08c39f26b8dfdb42344843fc86498cebe849a676a8"
+    },
+    {
+      "path": "public/case/yevai/mobile-home-clean.webp",
+      "sha256": "d2906ca9c1691a1f237c08681d55377c7257031779bfd7a39ce1a586d1a5034c",
+      "vercelSha256": "d2906ca9c1691a1f237c08681d55377c7257031779bfd7a39ce1a586d1a5034c"
+    },
+    {
+      "path": "public/case/yevai/mobile-home.jpg",
+      "sha256": "7530a06c281b768a232a0d78621994c866b15d05530c69c206e2aa51bf0fd7e0",
+      "vercelSha256": "7530a06c281b768a232a0d78621994c866b15d05530c69c206e2aa51bf0fd7e0"
+    },
+    {
+      "path": "public/case/yevai/mobile-menu-clean.webp",
+      "sha256": "46333c7def5ea699a377a28e41ba020164f072d08be1f3c49966dcf37b10595e",
+      "vercelSha256": "46333c7def5ea699a377a28e41ba020164f072d08be1f3c49966dcf37b10595e"
+    },
+    {
+      "path": "public/case/yevai/mobile-menu.jpg",
+      "sha256": "9e4f9b2dbc5445dc356d35a43b8303235c3a850b4278c956cf06fede69715a66",
+      "vercelSha256": "9e4f9b2dbc5445dc356d35a43b8303235c3a850b4278c956cf06fede69715a66"
+    },
+    {
+      "path": "public/case/yevai/project-hover.jpg",
+      "sha256": "03ba2e5a15fdec95b31eb1c0796fa42b31af95dc63c9f3eae1fb1de965b4ce04",
+      "vercelSha256": "03ba2e5a15fdec95b31eb1c0796fa42b31af95dc63c9f3eae1fb1de965b4ce04"
+    },
+    {
+      "path": "public/case/yevai/project-rest.jpg",
+      "sha256": "a2df0a1999792875b9fe554f1cb2cd6f8c49683778029acc587799095235a231",
+      "vercelSha256": "a2df0a1999792875b9fe554f1cb2cd6f8c49683778029acc587799095235a231"
+    },
+    {
+      "path": "public/case/yevai/selected-about.png",
+      "sha256": "bc88d0c717000fda8e17110c2177d8c680f7b2c335a522358960b53d12fd1f96",
+      "vercelSha256": "bc88d0c717000fda8e17110c2177d8c680f7b2c335a522358960b53d12fd1f96"
+    },
+    {
+      "path": "public/case/yevai/selected-service.png",
+      "sha256": "23aa5f94546825b9612b0a8ba3a5f5980b52b38f6974de4b5766bb4ae5a3052c",
+      "vercelSha256": "23aa5f94546825b9612b0a8ba3a5f5980b52b38f6974de4b5766bb4ae5a3052c"
+    },
+    {
+      "path": "public/case/yevai/selected-vezebus.png",
+      "sha256": "6462eeadc5d9841dbd8c0c0a01369ff6e510f29c31350cf8fd64fdc48f340e1a",
+      "vercelSha256": "6462eeadc5d9841dbd8c0c0a01369ff6e510f29c31350cf8fd64fdc48f340e1a"
+    },
+    {
+      "path": "public/case/yevai/selected-work-clean.webp",
+      "sha256": "9c24fced2a56d9d9b71aab46636fa74727f59eff8e76970647eaa19ef14167cd",
+      "vercelSha256": "9c24fced2a56d9d9b71aab46636fa74727f59eff8e76970647eaa19ef14167cd"
+    },
+    {
+      "path": "public/case/yevai/selected-work.jpg",
+      "sha256": "a0848673033df8549bf9f53f67d8e76328eda82f972fc83c395699464d404362",
+      "vercelSha256": "a0848673033df8549bf9f53f67d8e76328eda82f972fc83c395699464d404362"
+    },
+    {
+      "path": "public/case/yevai/service-detail-full.png",
+      "sha256": "bbc19cc13d5a7e9c0548785a0634cc6a92130a20c54a8b54f378b3ace04e7a6c",
+      "vercelSha256": "bbc19cc13d5a7e9c0548785a0634cc6a92130a20c54a8b54f378b3ace04e7a6c"
+    },
+    {
+      "path": "public/case/yevai/service-detail-full.webp",
+      "sha256": "c8b10bdb3e08009a473c8c63ed9d0c670813dc31e9c56814145a7a32490e6722",
+      "vercelSha256": "c8b10bdb3e08009a473c8c63ed9d0c670813dc31e9c56814145a7a32490e6722"
+    },
+    {
+      "path": "public/case/yevai/service-detail.jpg",
+      "sha256": "8e7507659c9462691725a6737202668a76680e943e84e7f21e1cf13cb3dc8186",
+      "vercelSha256": "8e7507659c9462691725a6737202668a76680e943e84e7f21e1cf13cb3dc8186"
+    },
+    {
+      "path": "public/case/yevai/services-active.png",
+      "sha256": "59ec00199e7c4f0d6dc75cb6fe2a9f999af7a47e538ef1f71c40239ce69634f2",
+      "vercelSha256": "59ec00199e7c4f0d6dc75cb6fe2a9f999af7a47e538ef1f71c40239ce69634f2"
+    },
+    {
+      "path": "public/case/yevai/services-hover-final.webp",
+      "sha256": "9f97ad3496255f33920dfd9ba7795bea6bc2125c70724659381854516c0d6ecc",
+      "vercelSha256": "9f97ad3496255f33920dfd9ba7795bea6bc2125c70724659381854516c0d6ecc"
+    },
+    {
+      "path": "public/case/yevai/services-hover.jpg",
+      "sha256": "d0a270cd64ff39de17768105dee4d044ce92c35632f59c04cc6de8f72ad29d6c",
+      "vercelSha256": "d0a270cd64ff39de17768105dee4d044ce92c35632f59c04cc6de8f72ad29d6c"
+    },
+    {
+      "path": "public/case/yevai/services-rest.webp",
+      "sha256": "dce92881fa37e7a537f6d1ca01bc149d5668705e08a790e9dd19fd22875a503f",
+      "vercelSha256": "dce92881fa37e7a537f6d1ca01bc149d5668705e08a790e9dd19fd22875a503f"
+    },
+    {
+      "path": "public/case/yevai/services.jpg",
+      "sha256": "7d9f1cf607da5295da6720f97bee39595725a15b5082adcf64b4b2645577786c",
+      "vercelSha256": "7d9f1cf607da5295da6720f97bee39595725a15b5082adcf64b4b2645577786c"
+    },
+    {
+      "path": "public/case/yevai/vezebus-clean.webp",
+      "sha256": "40786d82dabc70c12ee7369ebff1fb7f98f4f4984cf8881edd0e688b63283013",
+      "vercelSha256": "40786d82dabc70c12ee7369ebff1fb7f98f4f4984cf8881edd0e688b63283013"
+    },
+    {
+      "path": "public/case/yevai/vezebus-detail.jpg",
+      "sha256": "0665f3084108ed14d3d7b935c4c8fb4d53ce833e9f5f7aa3a0609f9f411c6431",
+      "vercelSha256": "0665f3084108ed14d3d7b935c4c8fb4d53ce833e9f5f7aa3a0609f9f411c6431"
+    },
+    {
+      "path": "public/favicon.svg",
+      "sha256": "2dbcbb7109993d01c13c668271187dbec85699d8bdfa7ec96f41a3c9597893a3",
+      "vercelSha256": "2dbcbb7109993d01c13c668271187dbec85699d8bdfa7ec96f41a3c9597893a3"
+    },
+    {
+      "path": "public/file.svg",
+      "sha256": "1e0ae4d1a1ddfa36752988647b731e4abf150c414d069ec83c96fb0aaeff0307",
+      "vercelSha256": "1e0ae4d1a1ddfa36752988647b731e4abf150c414d069ec83c96fb0aaeff0307"
+    },
+    {
+      "path": "public/globe.svg",
+      "sha256": "d051a8c47936990a9085693d307bb7cea1bc1b6d7ed956bcbaacf674f4ec96b9",
+      "vercelSha256": "d051a8c47936990a9085693d307bb7cea1bc1b6d7ed956bcbaacf674f4ec96b9"
+    },
+    {
+      "path": "public/images/yevheniy-polosenko.webp",
+      "sha256": "2b2cc8d331e07c98cec9b6190ca6475854e9bf11962105a73fb042119625503e",
+      "vercelSha256": "2b2cc8d331e07c98cec9b6190ca6475854e9bf11962105a73fb042119625503e"
+    },
+    {
+      "path": "public/previews/ai-commercial-blueprint-cover.png",
+      "sha256": "716cd70c8fdcc488500af1631880a968cfc9bceaf51d4b0df81258e7b13eca64",
+      "vercelSha256": "716cd70c8fdcc488500af1631880a968cfc9bceaf51d4b0df81258e7b13eca64"
+    },
+    {
+      "path": "public/previews/ai-commercial-blueprint-mobile.jpg",
+      "sha256": "6e6b4a846f12f854e7561808783bbe14e215dd42edd22f9931736c392d65c5f8",
+      "vercelSha256": "6e6b4a846f12f854e7561808783bbe14e215dd42edd22f9931736c392d65c5f8"
+    },
+    {
+      "path": "public/previews/ai-commercial-blueprint-real.jpg",
+      "sha256": "1f1388319f3ff91ddee5e3d74cf6dec0eb65acf5cd957fcb9f9073ba7d997eaf",
+      "vercelSha256": "1f1388319f3ff91ddee5e3d74cf6dec0eb65acf5cd957fcb9f9073ba7d997eaf"
+    },
+    {
+      "path": "public/previews/ai-commercial-blueprint-real.webp",
+      "sha256": "d301dd279325c2fe804c4c9572c5fbfb15f7281b3ae3b1b2da0af0e5692bf75b",
+      "vercelSha256": "d301dd279325c2fe804c4c9572c5fbfb15f7281b3ae3b1b2da0af0e5692bf75b"
+    },
+    {
+      "path": "public/previews/solarcity-corporate.png",
+      "sha256": "c5b2e9afe237f6a7a91d0de4d6bc6bda747cbf384463c92684d4c3263b436d66",
+      "vercelSha256": "c5b2e9afe237f6a7a91d0de4d6bc6bda747cbf384463c92684d4c3263b436d66"
+    },
+    {
+      "path": "public/previews/solarcity-energy-city.webp",
+      "sha256": "f8bc7eb3a48b0bdecc85b105f5f2a0fb463d3da1d68ef11de79f2e86570b5257",
+      "vercelSha256": "f8bc7eb3a48b0bdecc85b105f5f2a0fb463d3da1d68ef11de79f2e86570b5257"
+    },
+    {
+      "path": "public/previews/solarfamily-published.webp",
+      "sha256": "cc44c2e817f27d56ed4875843e2a2dae520fd2b81510079628394790d614ec15",
+      "vercelSha256": "cc44c2e817f27d56ed4875843e2a2dae520fd2b81510079628394790d614ec15"
+    },
+    {
+      "path": "public/previews/solarfamily-real.webp",
+      "sha256": "937bd32b13c89ca01f7ab35f874086a8790fef0fef7979ab13aec47905ebc3f3",
+      "vercelSha256": "937bd32b13c89ca01f7ab35f874086a8790fef0fef7979ab13aec47905ebc3f3"
+    },
+    {
+      "path": "public/previews/yevai-home.png",
+      "sha256": "0153342bd2d62f1e89876b343b6bb0c65b1111020b5ec9089713a7b92676b910",
+      "vercelSha256": "0153342bd2d62f1e89876b343b6bb0c65b1111020b5ec9089713a7b92676b910"
+    },
+    {
+      "path": "public/previews/yevai-mobile.jpg",
+      "sha256": "558a435a9f74ac2079d34a4eb42e89ba23cc82e3532af96594d4ef632b2460a8",
+      "vercelSha256": "558a435a9f74ac2079d34a4eb42e89ba23cc82e3532af96594d4ef632b2460a8"
+    },
+    {
+      "path": "public/previews/yevai-real.jpg",
+      "sha256": "7e42d64446e074ea87e83349703f4a8bfeaa342f0952d725e559f663b8a3e3ea",
+      "vercelSha256": "7e42d64446e074ea87e83349703f4a8bfeaa342f0952d725e559f663b8a3e3ea"
+    },
+    {
+      "path": "public/testimonials/demo-profile-01.webp",
+      "sha256": "d11d6df03551a26632187c85a2acbf2b249c8dbd479a931513a6cc5c8461c6ac",
+      "vercelSha256": "d11d6df03551a26632187c85a2acbf2b249c8dbd479a931513a6cc5c8461c6ac"
+    },
+    {
+      "path": "public/testimonials/demo-profile-02.webp",
+      "sha256": "e44690837e1a3b44615a137bc0304ebcd9843fb9f2b0f017b26498779c39c593",
+      "vercelSha256": "e44690837e1a3b44615a137bc0304ebcd9843fb9f2b0f017b26498779c39c593"
+    },
+    {
+      "path": "public/testimonials/ivan-tokmachov.jpg",
+      "sha256": "4d3ed8baf5451c695646717dd7c7c8026bfd303864e56a108f10383e64092758",
+      "vercelSha256": "4d3ed8baf5451c695646717dd7c7c8026bfd303864e56a108f10383e64092758"
+    },
+    {
+      "path": "public/testimonials/oleksandr-kastronov.jpg",
+      "sha256": "e0d051d3edfdb1d599684db1c3d960bc006e7e81729837eab63a2c568deee680",
+      "vercelSha256": "e0d051d3edfdb1d599684db1c3d960bc006e7e81729837eab63a2c568deee680"
+    },
+    {
+      "path": "public/window.svg",
+      "sha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66",
+      "vercelSha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66"
+    },
+    {
+      "path": "tests/blueprint-preview.test.mjs",
+      "sha256": "a917ab0f060106e45f90e950eb081f248557caaea54c00a05f0997a1b6c31826",
+      "vercelSha256": "a917ab0f060106e45f90e950eb081f248557caaea54c00a05f0997a1b6c31826"
+    },
+    {
+      "path": "tests/capability-motion.test.mjs",
+      "sha256": "018c1f53b702e156470471ad4d3634b12ca1c6e2d9ec447aaa39215106d5be0c",
+      "vercelSha256": "018c1f53b702e156470471ad4d3634b12ca1c6e2d9ec447aaa39215106d5be0c"
+    },
+    {
+      "path": "tests/contact-delivery.test.mjs",
+      "sha256": "14d0abe73776caba533311b29906184f6f98c45d61a3cc73cd55c92a17c7e643",
+      "vercelSha256": "14d0abe73776caba533311b29906184f6f98c45d61a3cc73cd55c92a17c7e643"
+    },
+    {
+      "path": "tests/contact-request.test.mjs",
+      "sha256": "27522c0ccf99a2259e282a35f9b7ccb29b55c9eca9dccebe4e5273c3436f2c69",
+      "vercelSha256": "27522c0ccf99a2259e282a35f9b7ccb29b55c9eca9dccebe4e5273c3436f2c69"
+    },
+    {
+      "path": "tests/hero-technology-layout.test.mjs",
+      "sha256": "96816d3ffdc5da8ff9fbd50dbcd18da43101495b783e17a306bbfca2efa5491d",
+      "vercelSha256": "96816d3ffdc5da8ff9fbd50dbcd18da43101495b783e17a306bbfca2efa5491d"
+    },
+    {
+      "path": "tests/language-controls.test.mjs",
+      "sha256": "df08052dfff524dda031ec1346373457e43b6ff39ce0aee87fef91cb01b95e63",
+      "vercelSha256": "df08052dfff524dda031ec1346373457e43b6ff39ce0aee87fef91cb01b95e63"
+    },
+    {
+      "path": "tests/mobile-menu-layout.test.mjs",
+      "sha256": "ab02286c60d15513960e4e8134f1d2f8b3729292faae092ae83a51fe54931390",
+      "vercelSha256": "ab02286c60d15513960e4e8134f1d2f8b3729292faae092ae83a51fe54931390"
+    },
+    {
+      "path": "tests/project-interaction-states.test.mjs",
+      "sha256": "56e76e45222514b83b88e03152baee16caf61bf2c851a3d909e73efd74f99cd1",
+      "vercelSha256": "56e76e45222514b83b88e03152baee16caf61bf2c851a3d909e73efd74f99cd1"
+    },
+    {
+      "path": "tests/release-readiness.test.mjs",
+      "sha256": "d8b943574bd14860db62cefcc9c4a8192d88c5d0a20aeffb0390ca15f4beba92",
+      "vercelSha256": "d8b943574bd14860db62cefcc9c4a8192d88c5d0a20aeffb0390ca15f4beba92"
+    },
+    {
+      "path": "tests/rendered-html.test.mjs",
+      "sha256": "23977bb0faf61a306553f310e7cd19ee0b3fcb4d63df36ead4c9956bf9098355",
+      "vercelSha256": "23977bb0faf61a306553f310e7cd19ee0b3fcb4d63df36ead4c9956bf9098355"
+    },
+    {
+      "path": "tests/scroll-restoration.test.mjs",
+      "sha256": "27c8be348d9d6c2b3a14ba98a3cfd13cefef476fb798abd0219562115414d533",
+      "vercelSha256": "27c8be348d9d6c2b3a14ba98a3cfd13cefef476fb798abd0219562115414d533"
+    },
+    {
+      "path": "tests/solarcity-motion.test.mjs",
+      "sha256": "7e967b5f90ffa9f9eb19de0c0c9e2dc6e6b7ea4576d461a5b673bdb40d01cc55",
+      "vercelSha256": "7e967b5f90ffa9f9eb19de0c0c9e2dc6e6b7ea4576d461a5b673bdb40d01cc55"
+    },
+    {
+      "path": "tests/ui-components.test.mjs",
+      "sha256": "702b7f12bc07c25eb755321d509c249fc33703f44641036b022167291dd64a54",
+      "vercelSha256": "702b7f12bc07c25eb755321d509c249fc33703f44641036b022167291dd64a54"
+    },
+    {
+      "path": "tests/yevai-mobile-media.test.mjs",
+      "sha256": "42fe32ccf6939a496f737a780b93fc01b5ff4f88f86d226336c79cb18caaaf9b",
+      "vercelSha256": "42fe32ccf6939a496f737a780b93fc01b5ff4f88f86d226336c79cb18caaaf9b"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3",
+      "vercelSha256": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3"
+    },
+    {
+      "path": "vendor/shadcn-tailwind-4.13.0.css",
+      "sha256": "bc7d83425702955b4cb67cb14ede9d603f9d912376d57a2d81d661094d2a782a",
+      "vercelSha256": "bc7d83425702955b4cb67cb14ede9d603f9d912376d57a2d81d661094d2a782a"
+    },
+    {
+      "path": "vendor/shadcn-tailwind-4.13.0.LICENSE.md",
+      "sha256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f",
+      "vercelSha256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f"
+    }
+  ],
+  "omitted": [
+    {
+      "path": ".openai/hosting.json",
+      "sha256": "f42d33c4aa1fcb7976399abe8cab3fea3b183ec8f0506d459519e3fc2be43dcf"
+    },
+    {
+      "path": "build/sites-vite-plugin.ts",
+      "sha256": "81b7cbfaeb970611572256aba0e313425beb3809f6426f63750696c15d9c756b"
+    },
+    {
+      "path": "db/index.ts",
+      "sha256": "dc7610b00b918e0ffff1360a63626f16655ced3064b2eaf96095a4101fb14bcd"
+    },
+    {
+      "path": "db/schema.ts",
+      "sha256": "13ddacbf0be50e054d450a6c642b7fdc1aa943fd6b99084711e07e58b600390d"
+    },
+    {
+      "path": "drizzle/meta/_journal.json",
+      "sha256": "90cb374e093894d0efce6f1830d873a42aadd8ba49d2f024495e5cb2e1c8c303"
+    },
+    {
+      "path": "drizzle.config.ts",
+      "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b"
+    },
+    {
+      "path": "examples/d1/app/api/notes/route.ts",
+      "sha256": "a3d4a74fd53b7bf53e2df41f169d9d9d44a8b22aeb6d92f4e754956079af8909"
+    },
+    {
+      "path": "examples/d1/db/schema.ts",
+      "sha256": "d89eabd95716ce404f5f7ca2a254220435be8ddce7c899d7ef461ff22ec80454"
+    },
+    {
+      "path": "scripts/build-verified.sh",
+      "sha256": "2ae5329ac860076070c9217a43106a15cb5ecf907a0f7baeb9ef903f76b53c68"
+    },
+    {
+      "path": "scripts/install-ci.sh",
+      "sha256": "658c0aefc1d907dafde98ebc288b623ab9d2824a7bb1db055370a339a794a10d"
+    },
+    {
+      "path": "scripts/sites-env.sh",
+      "sha256": "df86ebfc27d2f00860036658e933ac0ddd7b5f6879aa5d51218f0863c7e1fb60"
+    },
+    {
+      "path": "types/cloudflare-env.d.ts",
+      "sha256": "1b0ea311785d9c2acaa3fcbc165c99eaa8669becf665329df00af779577a7ed0"
+    },
+    {
+      "path": "types/cloudflare-runtime.d.ts",
+      "sha256": "8da638be703660014d134b11fa12f81f27e1a86560142e188d2d6578b21be180"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "43e5f02f727ca043f08ebf34789f330580a7a0cb90f426c92f4a454d066988fc"
+    },
+    {
+      "path": "worker/index.ts",
+      "sha256": "0ed2a27d02af6f1d9af0609e12c9fab4f87513d1147c81aa9c09a87f74e0a5a8"
+    }
+  ],
+  "added": [
+    {
+      "path": ".env.example",
+      "sha256": "e6764c2a26ae182d8746a61a72cfb5737d8404c8e1fb808643100ae99c7214e5"
+    },
+    {
+      "path": "proxy.ts",
+      "sha256": "1cc5df8f76fb038741aaeb9881c39eb9f1507d11c4a54060ef2c1b1e8ecf6a28"
+    },
+    {
+      "path": "vercel.json",
+      "sha256": "9fd4ea9e9bbb01391e7e946e1b2d3e2af2dd003b27067dadcdcaf4f20b799fb1"
+    }
+  ],
+  "integrity": {
+    "HERO": "BYTE_IDENTICAL",
+    "publicAssets": "ALL_BYTE_IDENTICAL",
+    "globalsCss": "BYTE_IDENTICAL_TO_CORRECTED_SITES_BASE",
+    "contactApiClientSchemaDelivery": "ALL_BYTE_IDENTICAL",
+    "privacy": "OnlyUA/ENhostingFirstSentencesChanged"
+  }
+}

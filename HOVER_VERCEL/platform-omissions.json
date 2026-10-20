@@ -1,0 +1,67 @@
+{
+  "baseCommit": "8c7774c61603f62598d6ac6afa2ed68cd380f138",
+  "localCorrectedCssSha256": "012a458c68c89c047d64d253dab8175c99764055d5bae3be19d446bfd845efd1",
+  "reason": "Inactive Cloudflare/Sites platform plumbing excluded from native Next.js deployment; active app does not import DB or OAI authentication helpers",
+  "files": [
+    {
+      "path": ".openai/hosting.json",
+      "sha256": "f42d33c4aa1fcb7976399abe8cab3fea3b183ec8f0506d459519e3fc2be43dcf"
+    },
+    {
+      "path": "build/sites-vite-plugin.ts",
+      "sha256": "81b7cbfaeb970611572256aba0e313425beb3809f6426f63750696c15d9c756b"
+    },
+    {
+      "path": "db/index.ts",
+      "sha256": "dc7610b00b918e0ffff1360a63626f16655ced3064b2eaf96095a4101fb14bcd"
+    },
+    {
+      "path": "db/schema.ts",
+      "sha256": "13ddacbf0be50e054d450a6c642b7fdc1aa943fd6b99084711e07e58b600390d"
+    },
+    {
+      "path": "drizzle/meta/_journal.json",
+      "sha256": "90cb374e093894d0efce6f1830d873a42aadd8ba49d2f024495e5cb2e1c8c303"
+    },
+    {
+      "path": "drizzle.config.ts",
+      "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b"
+    },
+    {
+      "path": "examples/d1/app/api/notes/route.ts",
+      "sha256": "a3d4a74fd53b7bf53e2df41f169d9d9d44a8b22aeb6d92f4e754956079af8909"
+    },
+    {
+      "path": "examples/d1/db/schema.ts",
+      "sha256": "d89eabd95716ce404f5f7ca2a254220435be8ddce7c899d7ef461ff22ec80454"
+    },
+    {
+      "path": "scripts/build-verified.sh",
+      "sha256": "2ae5329ac860076070c9217a43106a15cb5ecf907a0f7baeb9ef903f76b53c68"
+    },
+    {
+      "path": "scripts/install-ci.sh",
+      "sha256": "658c0aefc1d907dafde98ebc288b623ab9d2824a7bb1db055370a339a794a10d"
+    },
+    {
+      "path": "scripts/sites-env.sh",
+      "sha256": "df86ebfc27d2f00860036658e933ac0ddd7b5f6879aa5d51218f0863c7e1fb60"
+    },
+    {
+      "path": "types/cloudflare-env.d.ts",
+      "sha256": "1b0ea311785d9c2acaa3fcbc165c99eaa8669becf665329df00af779577a7ed0"
+    },
+    {
+      "path": "types/cloudflare-runtime.d.ts",
+      "sha256": "8da638be703660014d134b11fa12f81f27e1a86560142e188d2d6578b21be180"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "43e5f02f727ca043f08ebf34789f330580a7a0cb90f426c92f4a454d066988fc"
+    },
+    {
+      "path": "worker/index.ts",
+      "sha256": "0ed2a27d02af6f1d9af0609e12c9fab4f87513d1147c81aa9c09a87f74e0a5a8"
+    }
+  ]
+}

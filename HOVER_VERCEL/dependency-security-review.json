@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-20",
+  "scope": "Separate native Next/Vercel copy only; no force, audit fix or major-version downgrade. Clean npm ci followed by actual next build/start.",
+  "versions": {
+    "next": "16.3.8",
+    "eslint-config-next": "16.3.8",
+    "sharp": "0.35.5",
+    "postcss": "8.5.23",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "baseline-browser-mapping": "2.11.30",
+    "nanoid": "3.3.20",
+    "source-map-js": "1.2.2"
+  },
+  "beforeProductionCounts": {
+    "info": 0,
+    "low": 0,
+    "moderate": 1,
+    "high": 4,
+    "critical": 1,
+    "total": 6
+  },
+  "finalProductionCounts": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "finalAllDependencyCounts": {
+    "info": 0,
+    "low": 1,
+    "moderate": 0,
+    "high": 8,
+    "critical": 0,
+    "total": 9
+  },
+  "remainingDevGroups": [
+    {
+      "name": "@babel/core",
+      "severity": "low",
+      "nodes": [
+        "node_modules/@babel/core"
+      ],
+      "advisories": [
+        "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8"
+      ]
+    },
+    {
+      "name": "@next/eslint-plugin-next",
+      "severity": "high",
+      "nodes": [
+        "node_modules/@next/eslint-plugin-next"
+      ],
+      "advisories": []
+    },
+    {
+      "name": "brace-expansion",
+      "severity": "high",
+      "nodes": [
+        "node_modules/@typescript-eslint/typescript-estree/node_modules/brace-expansion",
+        "node_modules/brace-expansion"
+      ],
+      "advisories": [
+        "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
+        "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
+        "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
+        "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
+        "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
+        "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
+        "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
+        "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
+        "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
+        "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
+        "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
+        "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p"
+      ]
+    },
+    {
+      "name": "braces",
+      "severity": "high",
+      "nodes": [
+        "node_modules/braces"
+      ],
+      "advisories": [
+        "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm"
+      ]
+    },
+    {
+      "name": "browserslist",
+      "severity": "high",
+      "nodes": [
+        "node_modules/browserslist"
+      ],
+      "advisories": [
+        "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
+        "https://github.com/advisories/GHSA-73wf-gq98-2v4g"
+      ]
+    },
+    {
+      "name": "eslint-config-next",
+      "severity": "high",
+      "nodes": [
+        "node_modules/eslint-config-next"
+      ],
+      "advisories": []
+    },
+    {
+      "name": "fast-glob",
+      "severity": "high",
+      "nodes": [
+        "node_modules/fast-glob"
+      ],
+      "advisories": []
+    },
+    {
+      "name": "js-yaml",
+      "severity": "high",
+      "nodes": [
+        "node_modules/js-yaml"
+      ],
+      "advisories": [
+        "https://github.com/advisories/GHSA-h67p-54hq-rp68",
+        "https://github.com/advisories/GHSA-52cp-r559-cp3m",
+        "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
+        "https://github.com/advisories/GHSA-2883-xcg3-v3hh"
+      ]
+    },
+    {
+      "name": "micromatch",
+      "severity": "high",
+      "nodes": [
+        "node_modules/micromatch"
+      ],
+      "advisories": []
+    }
+  ],
+  "remainingAssessment": "Nine audit dependency groups remain in build/lint tools (eight high, one low), rather than the deployed production graph. This is not an all-dependencies-clean claim. No untrusted source/CSS/YAML/glob patterns are fed to those local tools during this package preparation. npm proposes an incompatible eslint-config-next 14 downgrade for the braces chain; it was not applied.",
+  "applicability": [
+    {
+      "advisory": "GHSA-p293-qw3h-jr36",
+      "url": "https://github.com/vercel/next.js/security/advisories/GHSA-p293-qw3h-jr36",
+      "patchedFrom": "16.3.3",
+      "assessment": "Windows-hosted Next filesystem routing could expose the local native Windows preview; final 16.3.8 is outside the vulnerable range. Vercel Linux is not this Windows condition."
+    },
+    {
+      "advisory": "GHSA-2xp9-vwfh-vxw4",
+      "url": "https://github.com/vercel/next.js/security/advisories/GHSA-2xp9-vwfh-vxw4",
+      "patchedFrom": "16.3.3",
+      "assessment": "AVIF image optimizer path; source images use unoptimized rendering and no AVIF assets. Next and Sharp are nevertheless patched."
+    },
+    {
+      "advisory": "GHSA-vcvr-r3jv-pc5j",
+      "url": "https://github.com/vercel/next.js/security/advisories/GHSA-vcvr-r3jv-pc5j",
+      "patchedFrom": "16.3.6",
+      "assessment": "No app ImageResponse or next/og caller using attacker-controlled SVG was found. Final 16.3.8 is patched."
+    },
+    {
+      "advisory": "GHSA-m99w-x7hq-7vfj",
+      "url": "https://github.com/vercel/next.js/security/advisories/GHSA-m99w-x7hq-7vfj",
+      "patchedFrom": "16.2.11",
+      "assessment": "No Server Action was found in this app; feature condition not exposed. Final 16.3.8 is patched."
+    },
+    {
+      "advisory": "GHSA-cjq9-62q9-8jv4",
+      "url": "https://github.com/vercel/next.js/security/advisories/GHSA-cjq9-62q9-8jv4",
+      "patchedFrom": "16.3.8 (npm audit advisory range)",
+      "assessment": "No allowlisted remote image optimizer source is configured. The final production npm audit also clears the other Next advisory groups."
+    },
+    {
+      "advisory": "GHSA-wq5f-xc86-pv6w",
+      "url": "https://github.com/lovell/sharp/security/advisories/GHSA-wq5f-xc86-pv6w",
+      "patchedFrom": "0.35.5",
+      "assessment": "Sharp native image dependency updated within Next allowed range to 0.35.5, also resolving earlier Sharp groups in audit."
+    },
+    {
+      "advisory": "GHSA-fxqj-rqcc-2cmp",
+      "url": "https://github.com/postcss/postcss/security/advisories/GHSA-fxqj-rqcc-2cmp",
+      "patchedFrom": "8.5.23",
+      "assessment": "Local build uses supplied trusted CSS; final PostCSS 8.5.23 is patched rather than relying on the input condition."
+    }
+  ],
+  "limitations": [
+    "npm audit is a registry snapshot, not a guarantee of absence of vulnerabilities.",
+    "Linux/Vercel optional native binaries and deployed edge runtime were not executed locally.",
+    "Historical180 tests and full source audit were not rerun."
+  ]
+}
