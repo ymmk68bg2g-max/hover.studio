@@ -1350,6 +1350,7 @@ button {
 }
 
 .project-actions a,
+.project-actions > span[aria-disabled="true"],
 .featured-site-link {
   display: inline-flex;
   align-items: center;
@@ -6670,6 +6671,7 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
 }
 
 .project-actions a,
+.project-actions > span[aria-disabled="true"],
 .service-row > p,
 .service-detail a,
 .faq-link,

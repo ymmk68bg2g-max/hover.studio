@@ -477,9 +477,7 @@ export function CaseStudy({ locale, slug }: { locale: ProjectLocale; slug: Proje
   const caseSections = isSolarCity
     ? [...t.sections.slice(0, 5), "MOTION / INTERACTION", ...t.sections.slice(6)]
     : t.sections;
-  const liveHref = isSolarCity
-    ? `https://solarcity-concept-01.pipistrello-26.chatgpt.site/${locale === "en" ? "en/" : ""}`
-    : project.live;
+  const liveHref = project.live;
   const facts = [
     [t.client, project.client],
     [t.industry, project.industry],
@@ -557,11 +555,17 @@ export function CaseStudy({ locale, slug }: { locale: ProjectLocale; slug: Proje
           ))}
         </section>
 
-        {liveHref && (
+        {(liveHref || isBlueprint) && (
           <div className="case-live">
-            <a className="send-button" href={liveHref} target="_blank" rel="noopener noreferrer" data-project-live>
-              <span>{t.live}</span><LiveSiteArrow />
-            </a>
+            {liveHref ? (
+              <a className="send-button" href={liveHref} target="_blank" rel="noopener noreferrer" data-project-live>
+                <span>{t.live}</span><LiveSiteArrow />
+              </a>
+            ) : (
+              <span className="send-button" role="link" aria-disabled="true" style={{ cursor: "default" }} data-project-live>
+                <span>{t.live}</span><LiveSiteArrow />
+              </span>
+            )}
           </div>
         )}
 

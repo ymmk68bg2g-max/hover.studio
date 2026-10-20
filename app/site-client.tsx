@@ -45,10 +45,10 @@ const content = {
       label: "01 / SELECTED WORK",
       note: "SELECTED DIGITAL WORK / 2026",
       projects: [
-        { title: "SOLARCITY", slug: "solarcity", meta: "ENERGY HOLDING / 2026", description: "Corporate digital platform for an energy holding.", scope: "STRATEGY / UX/UI / DEVELOPMENT / MOTION", code: "SC—01", tone: "dark", preview: "/previews/solarcity-corporate.png", mobilePreview: null, live: "https://www.solarcity.com/" },
+        { title: "SOLARCITY", slug: "solarcity", meta: "ENERGY HOLDING / 2026", description: "Corporate digital platform for an energy holding.", scope: "STRATEGY / UX/UI / DEVELOPMENT / MOTION", code: "SC—01", tone: "dark", preview: "/previews/solarcity-corporate.png", mobilePreview: null, live: "https://www.solarcity.ua/" },
         { title: "SOLARFAMILY", slug: "solarfamily", meta: "ENERGY ENGINEERING / 2026", description: "Solar generation, energy storage and EV charging — one engineering platform.", scope: "STRATEGY / UX/UI / DEVELOPMENT / MOTION", code: "SF—02", tone: "warm", preview: "/previews/solarfamily-published.webp", mobilePreview: null, live: "https://solarfamily.ua/" },
         { title: "YEVAI", slug: "yevai", meta: "CREATIVE PLATFORM / 2026", description: "Creative portfolio and AI production platform.", scope: "STRATEGY / ART DIRECTION / UX/UI / DEVELOPMENT", code: "YV—03", tone: "yevai", preview: "/previews/yevai-home.png", mobilePreview: "/previews/yevai-mobile.jpg", live: "https://yevai.dev/" },
-        { title: "AI COMMERCIAL BLUEPRINT", slug: "ai-commercial-blueprint", meta: "DIGITAL PRODUCT / 2026", description: "Educational digital product and conversion-focused landing experience.", scope: "STRATEGY / UX/UI / DEVELOPMENT / MOTION", code: "AC—04", tone: "blueprint", preview: "/previews/ai-commercial-blueprint-cover.png", mobilePreview: "/previews/ai-commercial-blueprint-mobile.jpg", live: "https://ai-commercial-blueprint.pipistrello-26.chatgpt.site/" },
+        { title: "AI COMMERCIAL BLUEPRINT", slug: "ai-commercial-blueprint", meta: "DIGITAL PRODUCT / 2026", description: "Educational digital product and conversion-focused landing experience.", scope: "STRATEGY / UX/UI / DEVELOPMENT / MOTION", code: "AC—04", tone: "blueprint", preview: "/previews/ai-commercial-blueprint-cover.png", mobilePreview: "/previews/ai-commercial-blueprint-mobile.jpg", live: null },
       ],
       placeholder: "PROJECT MEDIA / READY TO REPLACE",
       view: "VIEW CASE",
@@ -127,10 +127,10 @@ const content = {
       label: "01 / ОБРАНІ ПРОЄКТИ",
       note: "ОБРАНІ DIGITAL-ПРОЄКТИ / 2026",
       projects: [
-        { title: "SOLARCITY", slug: "solarcity", meta: "ЕНЕРГЕТИЧНИЙ ХОЛДИНГ / 2026", description: "Корпоративна digital-платформа для енергетичного холдингу.", scope: "СТРАТЕГІЯ / UX/UI / РОЗРОБКА / MOTION", code: "SC—01", tone: "dark", preview: "/previews/solarcity-corporate.png", mobilePreview: null, live: "https://www.solarcity.com/" },
+        { title: "SOLARCITY", slug: "solarcity", meta: "ЕНЕРГЕТИЧНИЙ ХОЛДИНГ / 2026", description: "Корпоративна digital-платформа для енергетичного холдингу.", scope: "СТРАТЕГІЯ / UX/UI / РОЗРОБКА / MOTION", code: "SC—01", tone: "dark", preview: "/previews/solarcity-corporate.png", mobilePreview: null, live: "https://www.solarcity.ua/" },
         { title: "SOLARFAMILY", slug: "solarfamily", meta: "ЕНЕРГЕТИЧНА ІНЖЕНЕРІЯ / 2026", description: "Сонячна генерація, накопичення енергії та зарядна інфраструктура — в єдиній інженерній платформі.", scope: "СТРАТЕГІЯ / UX/UI / РОЗРОБКА / MOTION", code: "SF—02", tone: "warm", preview: "/previews/solarfamily-published.webp", mobilePreview: null, live: "https://solarfamily.ua/" },
         { title: "YEVAI", slug: "yevai", meta: "КРЕАТИВНА ПЛАТФОРМА / 2026", description: "Креативне портфоліо та платформа AI-продакшну.", scope: "СТРАТЕГІЯ / АРТДИРЕКШН / UX/UI / РОЗРОБКА", code: "YV—03", tone: "yevai", preview: "/previews/yevai-home.png", mobilePreview: "/previews/yevai-mobile.jpg", live: "https://yevai.dev/" },
-        { title: "AI COMMERCIAL BLUEPRINT", slug: "ai-commercial-blueprint", meta: "DIGITAL-ПРОДУКТ / 2026", description: "Освітній digital-продукт і conversion-focused landing experience.", scope: "СТРАТЕГІЯ / UX/UI / РОЗРОБКА / MOTION", code: "AC—04", tone: "blueprint", preview: "/previews/ai-commercial-blueprint-cover.png", mobilePreview: "/previews/ai-commercial-blueprint-mobile.jpg", live: "https://ai-commercial-blueprint.pipistrello-26.chatgpt.site/" },
+        { title: "AI COMMERCIAL BLUEPRINT", slug: "ai-commercial-blueprint", meta: "DIGITAL-ПРОДУКТ / 2026", description: "Освітній digital-продукт і conversion-focused landing experience.", scope: "СТРАТЕГІЯ / UX/UI / РОЗРОБКА / MOTION", code: "AC—04", tone: "blueprint", preview: "/previews/ai-commercial-blueprint-cover.png", mobilePreview: "/previews/ai-commercial-blueprint-mobile.jpg", live: null },
       ],
       placeholder: "МАТЕРІАЛИ ПРОЄКТУ / ГОТОВІ ДО ЗАМІНИ",
       view: "ДИВИТИСЯ КЕЙС",
@@ -403,7 +403,11 @@ export function HoverSite({ locale }: { locale: Locale }) {
                     <p>{project.scope}</p>
                     <div className="project-actions">
                       <a href={`/${locale}/work/${project.slug}`}>{t.work.view} <Arrow /></a>
-                      {project.live && <a href={project.live} target="_blank" rel="noreferrer">{t.work.live} <Arrow /></a>}
+                      {project.live ? (
+                        <a href={project.live} target="_blank" rel="noreferrer">{t.work.live} <Arrow /></a>
+                      ) : (
+                        <span role="link" aria-disabled="true" style={{ cursor: "default" }}>{t.work.live} <Arrow /></span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -481,7 +485,7 @@ export function HoverSite({ locale }: { locale: Locale }) {
           <div className="featured-detail reveal">
             <div className="featured-summary">
               <p className="section-lead">{t.featured.intro}</p>
-              <a className="featured-site-link" href="https://www.solarcity.com/" target="_blank" rel="noopener noreferrer">{locale === "ua" ? "ПЕРЕГЛЯНУТИ САЙТ" : "VIEW WEBSITE"} <Arrow /></a>
+              <a className="featured-site-link" href="https://www.solarcity.ua/" target="_blank" rel="noopener noreferrer">{locale === "ua" ? "ПЕРЕГЛЯНУТИ САЙТ" : "VIEW WEBSITE"} <Arrow /></a>
             </div>
             <div className="featured-motion">
               <h3 className="content-subheading">{t.featured.motionTitle}</h3>

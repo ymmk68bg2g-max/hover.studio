@@ -4,7 +4,6 @@ import { blueprintCaseCopy } from "./blueprint-case-copy";
 import { BlueprintPreview } from "./blueprint-preview";
 import { CaseTaskMotion } from "./case-task-motion";
 
-const productUrl = "https://ai-commercial-blueprint.pipistrello-26.chatgpt.site/";
 const artworkRoot = "/case/blueprint/";
 const palette = ["#0d0d0e", "#f2f0ea", "#315cff", "#747471"] as const;
 
@@ -96,7 +95,7 @@ function EditionComparison({ locale }: { locale: ProjectLocale }) {
             </section>
           ))}
         </div>
-        <a className="bp-editions-link" href={`${productUrl}#editions`} target="_blank" rel="noopener noreferrer">{isUa ? "ПОРІВНЯТИ ВИДАННЯ НА САЙТІ" : "COMPARE EDITIONS ON THE WEBSITE"} <span aria-hidden="true">↗</span></a>
+        <span className="bp-editions-link" role="link" aria-disabled="true" style={{ cursor: "default" }}>{isUa ? "ПОРІВНЯТИ ВИДАННЯ НА САЙТІ" : "COMPARE EDITIONS ON THE WEBSITE"} <span aria-hidden="true">↗</span></span>
       </div>
       <figcaption className="content-meta">{isUa ? "КОМПОНЕНТ ЛЕНДИНГУ / ПОРІВНЯННЯ BOOK І PRODUCTION EDITION" : "LANDING PAGE COMPONENT / BOOK AND PRODUCTION EDITION COMPARISON"}</figcaption>
     </figure>

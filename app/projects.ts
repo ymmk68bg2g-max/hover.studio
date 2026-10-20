@@ -29,7 +29,7 @@ const shared = {
     languages: "UA / EN",
     year: "2026",
     preview: "/previews/solarcity-corporate.png",
-    live: "https://www.solarcity.com/",
+    live: "https://www.solarcity.ua/",
     tone: "dark",
   },
   solarfamily: {
@@ -56,7 +56,7 @@ const shared = {
     languages: "UA",
     year: "2026",
     preview: "/previews/ai-commercial-blueprint-cover.png",
-    live: "https://ai-commercial-blueprint.pipistrello-26.chatgpt.site/",
+    live: null,
     tone: "blueprint",
   },
 } as const;
