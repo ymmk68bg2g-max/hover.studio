@@ -1,0 +1,32 @@
+.sf-energy-demo[data-paused="true"] .sf-energy-flow {
+  animation-play-state: paused;
+}
+
+.sf-energy-scheme .sf-energy-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.sf-energy-caption > span {
+  min-width: 0;
+}
+
+.sf-energy-pause {
+  flex: 0 0 auto;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--sf-border);
+  border-radius: 0;
+  background: transparent;
+  color: #cbd9ce;
+  font: 0.75rem/1.5 "IBM Plex Mono", Consolas, monospace;
+  cursor: pointer;
+}
+
+.sf-energy-pause:focus-visible {
+  outline: 2px solid var(--sf-yellow);
+  outline-offset: 3px;
+}

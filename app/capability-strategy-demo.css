@@ -1,0 +1,286 @@
+.cst-demo .cst-scene {
+  position: relative;
+  width: min(90cqi, 23rem);
+  height: 216px;
+  margin-top: 1rem;
+  animation-name: cst-scene-cycle;
+}
+
+.cst-demo .cst-connections {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.cst-demo .cst-map-link,
+.cst-demo .cst-action-link {
+  stroke: rgb(16 16 16 / 25%);
+  vector-effect: non-scaling-stroke;
+}
+
+.cst-demo .cst-map-link { animation-name: cst-map-link-cycle; }
+.cst-demo .cst-action-link { animation-name: cst-action-link-cycle; }
+
+.cst-demo .cst-route {
+  stroke: var(--cmd-orange, #ff4a17);
+  stroke-width: 2;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  vector-effect: none;
+  animation-name: cst-route-cycle;
+  animation-timing-function: linear;
+}
+
+.cst-demo .cst-goal {
+  position: absolute;
+  top: 8px;
+  left: 14%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 72%;
+  height: 50px;
+  padding-inline: 0.75rem;
+  border: 1px solid var(--cmd-ink, #101010);
+  background: var(--cmd-paper, #f4f4f0);
+  box-shadow: 0 4px 0 rgb(16 16 16 / 4%);
+  animation-name: cst-goal-cycle;
+}
+
+.cst-demo .cst-goal-label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #65655f;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  line-height: 1;
+  letter-spacing: 0.015em;
+}
+
+.cst-demo .cst-goal-dot {
+  width: 0.25rem;
+  height: 0.25rem;
+  background: var(--cmd-orange, #ff4a17);
+}
+
+.cst-demo .cst-goal-title {
+  font-size: clamp(0.875rem, 4cqi, 1.125rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+.cst-demo .cst-map {
+  position: absolute;
+  inset: 96px 0 auto;
+  height: 40px;
+}
+
+.cst-demo .cst-node {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.2rem;
+  width: 28%;
+  height: 40px;
+  padding-inline: clamp(0.4rem, 2.5cqi, 0.7rem);
+  overflow: hidden;
+  border: 1px solid rgb(16 16 16 / 40%);
+  background: var(--cmd-paper, #f4f4f0);
+}
+
+.cst-demo .cst-node-home { left: 0; animation-name: cst-home-cycle; }
+.cst-demo .cst-node-services { left: 36%; animation-name: cst-services-cycle; }
+.cst-demo .cst-node-contact { left: 72%; animation-name: cst-contact-cycle; }
+
+.cst-demo .cst-page-number {
+  color: #77776f;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  line-height: 1;
+}
+
+.cst-demo .cst-page-title {
+  font-size: clamp(0.6875rem, 3.4cqi, 0.75rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.cst-demo .cst-node-visited {
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: var(--cmd-orange, #ff4a17);
+  transform-origin: left;
+}
+
+.cst-demo .cst-home-visited { animation-name: cst-home-visited-cycle; }
+.cst-demo .cst-services-visited { animation-name: cst-services-visited-cycle; }
+.cst-demo .cst-contact-visited { animation-name: cst-contact-visited-cycle; }
+
+.cst-demo .cst-cta {
+  position: absolute;
+  top: 173px;
+  left: 12%;
+  width: 76%;
+  height: 38px;
+  overflow: hidden;
+  border: 1px solid var(--cmd-ink, #101010);
+  background: var(--cmd-paper, #f4f4f0);
+  animation-name: cst-cta-cycle;
+}
+
+.cst-demo .cst-cta-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--cmd-orange, #ff4a17);
+  transform-origin: left;
+  animation-name: cst-cta-fill-cycle;
+}
+
+.cst-demo .cst-cta-copy {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: 100%;
+  padding-inline: 0.7rem;
+  font-size: clamp(0.6875rem, 3.4cqi, 0.8125rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+
+.cst-demo .cst-cta-copy > span { font-size: 1rem; }
+
+/* Draw the complete route before the CTA responds, then hold the result. */
+@keyframes cst-scene-cycle {
+  0%, 86% { opacity: 1; transform: translateY(0); }
+  92% { opacity: 0; transform: translateY(-5px); }
+  94% { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cst-goal-cycle {
+  0%, 17% { transform: translateY(62px) scale(1.04); }
+  25%, 90% { transform: translateY(0) scale(1); }
+  92%, 100% { transform: translateY(62px) scale(1.04); }
+}
+
+@keyframes cst-map-link-cycle {
+  0%, 24% { opacity: 0; }
+  31%, 89% { opacity: 1; }
+  92%, 100% { opacity: 0; }
+}
+
+@keyframes cst-home-cycle {
+  0%, 25% { opacity: 0; transform: translateY(7px); }
+  33%, 89% { opacity: 1; transform: translateY(0); }
+  92%, 100% { opacity: 0; transform: translateY(7px); }
+}
+
+@keyframes cst-services-cycle {
+  0%, 31% { opacity: 0; transform: translateY(7px); }
+  39%, 89% { opacity: 1; transform: translateY(0); }
+  92%, 100% { opacity: 0; transform: translateY(7px); }
+}
+
+@keyframes cst-contact-cycle {
+  0%, 37% { opacity: 0; transform: translateY(7px); }
+  45%, 89% { opacity: 1; transform: translateY(0); }
+  92%, 100% { opacity: 0; transform: translateY(7px); }
+}
+
+@keyframes cst-action-link-cycle {
+  0%, 47% { opacity: 0; }
+  53%, 89% { opacity: 1; }
+  92%, 100% { opacity: 0; }
+}
+
+@keyframes cst-route-cycle {
+  0%, 47% { opacity: 0; stroke-dashoffset: 100; }
+  49% { opacity: 1; stroke-dashoffset: 100; }
+  70%, 89% { opacity: 1; stroke-dashoffset: 0; }
+  92%, 100% { opacity: 0; stroke-dashoffset: 0; }
+}
+
+@keyframes cst-home-visited-cycle {
+  0%, 54.6% { transform: scaleX(0); }
+  57%, 89% { transform: scaleX(1); }
+  92%, 100% { transform: scaleX(0); }
+}
+
+@keyframes cst-services-visited-cycle {
+  0%, 57.9% { transform: scaleX(0); }
+  61.1%, 89% { transform: scaleX(1); }
+  92%, 100% { transform: scaleX(0); }
+}
+
+@keyframes cst-contact-visited-cycle {
+  0%, 62% { transform: scaleX(0); }
+  64.4%, 89% { transform: scaleX(1); }
+  92%, 100% { transform: scaleX(0); }
+}
+
+@keyframes cst-cta-cycle {
+  0%, 47% { opacity: 0; transform: translateY(7px); }
+  54%, 89% { opacity: 1; transform: translateY(0); }
+  92%, 100% { opacity: 0; transform: translateY(7px); }
+}
+
+@keyframes cst-cta-fill-cycle {
+  0%, 72% { transform: scaleX(0); }
+  76%, 89% { transform: scaleX(1); }
+  92%, 100% { transform: scaleX(0); }
+}
+
+/* A complete, labeled route is the static pose when motion is reduced. */
+.cst-demo[data-reduced="true"] .cst-scene,
+.cst-demo[data-reduced="true"] .cst-goal,
+.cst-demo[data-reduced="true"] .cst-node,
+.cst-demo[data-reduced="true"] .cst-cta,
+.cst-demo[data-reduced="true"] .cst-node-visited,
+.cst-demo[data-reduced="true"] .cst-cta-fill {
+  opacity: 1;
+  transform: none;
+}
+
+.cst-demo[data-reduced="true"] .cst-map-link,
+.cst-demo[data-reduced="true"] .cst-action-link,
+.cst-demo[data-reduced="true"] .cst-route {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cst-demo .cst-scene,
+  .cst-demo .cst-goal,
+  .cst-demo .cst-node,
+  .cst-demo .cst-cta,
+  .cst-demo .cst-node-visited,
+  .cst-demo .cst-cta-fill {
+    opacity: 1;
+    transform: none;
+  }
+
+  .cst-demo .cst-map-link,
+  .cst-demo .cst-action-link,
+  .cst-demo .cst-route {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}

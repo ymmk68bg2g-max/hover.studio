@@ -1,0 +1,93 @@
+.sch-context {
+  container-type: inline-size;
+  margin: 0;
+  color: #f3f6f8;
+  background: #0a1119;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.sch-context *, .sch-context *::before, .sch-context *::after { box-sizing: border-box; }
+.sch-stage { position: relative; overflow: hidden; background: #0a1119; }
+.sch-map { position: relative; aspect-ratio: 2200 / 1529; }
+.sch-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  filter: saturate(.65) contrast(1.08) brightness(.65) hue-rotate(175deg);
+}
+.sch-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4, 9, 15, .2), rgba(4, 9, 15, .16) 55%, rgba(4, 9, 15, .9)); pointer-events: none; }
+.sch-map::before { content: ''; position: absolute; z-index: 2; inset: 22px; border: 1px solid rgba(255, 255, 255, .18); pointer-events: none; }
+.sch-leaders { position: absolute; z-index: 3; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.sch-leaders path { fill: none; stroke: rgba(53, 214, 228, .65); stroke-width: 1; stroke-dasharray: 4 5; }
+.sch-leaders circle { fill: #35d6e4; stroke: #06111e; stroke-width: 1.5; }
+.sch-leaders g[data-active='true'] path { stroke: #35d6e4; stroke-width: 1.5; }
+.sch-marker {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  background: rgba(4, 9, 15, .82);
+  color: #f3f6f8;
+  font: 9px/1 monospace;
+  letter-spacing: .08em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color .25s ease, background .25s ease;
+}
+.sch-marker > span:first-child { color: #35d6e4; }
+.sch-marker-label { color: #f3f6f8; }
+.sch-marker:hover, .sch-marker[aria-pressed='true'] { border-color: #35d6e4; background: #0d2030; }
+.sch-marker[data-visible='false'] { visibility: hidden; }
+.sch-map[data-ready='false'] .sch-marker, .sch-map[data-ready='false'] .sch-leaders { visibility: hidden; }
+.sch-marker:focus-visible, .sch-fallback-button:focus-visible, .sch-credit a:focus-visible { outline: 2px solid #35d6e4; outline-offset: 4px; }
+.sch-scan {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #35d6e4, transparent);
+  box-shadow: 0 0 16px #35d6e4;
+  pointer-events: none;
+  animation: sch-scan 6s ease-in-out infinite;
+}
+.sch-caption { position: absolute; z-index: 4; left: 52px; bottom: 44px; max-width: 460px; color: #f3f6f8; }
+.sch-caption-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.sch-index { color: #35d6e4; font: 10px/1.5 monospace; letter-spacing: .1em; }
+.sch-caption-copy { margin: 15px 0 0; font-size: 17px; line-height: 1.5; }
+.sch-fallback { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.sch-fallback-button { padding: 10px 12px; border: 1px solid rgba(255, 255, 255, .3); background: rgba(4, 9, 15, .82); color: #f3f6f8; font: 10px/1.4 monospace; text-align: left; cursor: pointer; }
+.sch-fallback-button:hover, .sch-fallback-button[aria-pressed='true'] { border-color: #35d6e4; background: #0d2030; color: #35d6e4; }
+.sch-credit a { color: inherit; text-decoration-color: rgba(53, 214, 228, .5); text-underline-offset: 3px; }
+.sch-credit a:hover { color: #35d6e4; }
+.sch-context[data-running='false'] .sch-scan { animation-play-state: paused; }
+.sch-context[data-running='false'] .sch-marker { transition: none; }
+@keyframes sch-scan {
+  0%, 100% { top: 8%; opacity: 0; }
+  15% { opacity: .8; }
+  85% { opacity: .8; }
+  95% { top: 92%; opacity: 0; }
+}
+@container (max-width: 960px) {
+  .sch-caption { position: relative; left: auto; right: auto; bottom: auto; max-width: none; padding: 24px; min-height: 150px; }
+}
+@container (max-width: 768px) {
+  .sch-map::before { inset: 10px; }
+  .sch-marker { width: 40px; height: 40px; overflow: hidden; gap: 20px; padding: 0 13px; }
+  .sch-marker > span:first-child { flex: 0 0 14px; }
+  .sch-marker-label { flex-shrink: 0; }
+  .sch-caption-top { flex-wrap: wrap; }
+}
+@container (max-width: 430px) {
+  .sch-caption { padding: 20px; }
+  .sch-caption-copy { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sch-context[data-reduced='true'] .sch-scan { animation: none; }
+  .sch-context[data-reduced='true'] .sch-marker { transition: none; }
+}

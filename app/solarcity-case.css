@@ -1,0 +1,184 @@
+.case-page-solarcity .case-cover.has-real-preview {
+  min-height: 0;
+  aspect-ratio: 2048 / 1130;
+  border: 1px solid #263549;
+  background: #061120;
+}
+
+.case-page-solarcity .case-cover img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.case-page-solarcity .case-kicker {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.case-page-solarcity .case-kicker > span:last-child {
+  justify-self: end;
+  text-align: right;
+}
+
+.case-page-solarcity .case-challenge .case-task-list {
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+}
+
+.case-page-solarcity .sc-challenge-description {
+  max-width: 46rem;
+  margin: 1.5rem 0 0;
+}
+
+.case-page-solarcity .sc-journey {
+  list-style: none;
+  margin: 2.75rem 0 0;
+  padding: 0;
+  border-top: 0;
+}
+
+.sc-journey > li {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.sc-journey > li:last-child { border-bottom: 0; }
+
+.sc-journey-index {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  color: #747771;
+}
+
+.sc-journey p { margin: 0; }
+
+.case-page-solarcity .sc-system-board {
+  margin-top: 3rem;
+  padding: clamp(1.35rem, 3vw, 3rem);
+  background: #061120;
+  color: #f3f6f8;
+  border: 1px solid #263549;
+}
+
+.case-page-solarcity .sc-type-specimen {
+  margin: 0 0 2.75rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(2.5rem, 5.25vw, 5.8rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 1.02;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.sc-type-specimen > span { display: block; }
+.sc-type-specimen > span:last-child { color: #35d6e4; }
+
+.sc-palette {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-bottom: 3rem;
+}
+
+.sc-swatch { min-width: 0; }
+
+.sc-swatch-color {
+  display: block;
+  height: clamp(3.5rem, 6vw, 6rem);
+  margin-bottom: 0.65rem;
+  border: 1px solid #476077;
+}
+
+.case-page-solarcity .sc-system-board .content-meta {
+  color: #b3c3d6;
+  font-size: 0.6rem;
+  overflow-wrap: anywhere;
+}
+
+.case-page-solarcity .sc-system-parts > div {
+  padding-top: 1.25rem;
+  border-top: 1px solid #294055;
+}
+
+.sc-system-parts > div + div { margin-top: 1.5rem; }
+
+.case-page-solarcity .sc-system-parts .content-subheading {
+  margin: 0 0 0.65rem;
+  color: #f3f6f8;
+}
+
+.case-page-solarcity .sc-system-parts .case-text-body {
+  margin: 0;
+  color: #b3c3d6;
+}
+
+.case-page-solarcity .sc-responsive-showcase { margin-top: 3rem; }
+.case-page-solarcity .sc-motion { margin-top: 3rem; }
+.case-page-solarcity .sch-context { margin-top: 3rem; }
+.case-page-solarcity .sc-hero-showcase { margin-top: 3rem; }
+
+.case-page-solarcity .sc-visuals-caption {
+  margin: 1rem 0 0;
+  color: #666762;
+  font-size: 0.65rem;
+  line-height: 1.65;
+}
+
+.case-page-solarcity .sc-gallery-heading { margin-top: 3rem; }
+.case-page-solarcity .sc-gallery-heading h3 { margin: 0 0 0.75rem; }
+.case-page-solarcity .sc-gallery-heading p { margin: 0; }
+
+.case-page-solarcity .sc-responsive-showcase .featured-stage {
+  background: linear-gradient(130deg, #102740, #061120);
+  border: 1px solid #263549;
+}
+
+.case-page-solarcity .sc-result-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.sc-result-facts > div {
+  min-width: 0;
+  padding: 1.25rem 1.25rem 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.sc-result-facts > div + div { padding-left: 1.25rem; border-left: 1px solid var(--line); }
+
+.case-page-solarcity .sc-result-facts strong {
+  display: block;
+  margin: 1.5rem 0 0.8rem;
+  font-size: clamp(1.1rem, 2vw, 1.9rem);
+  line-height: 1.15;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.case-page-solarcity .sc-result-facts p { margin: 0; font-size: 0.65rem; }
+
+@media (max-width: 1100px) {
+  .case-page-solarcity .sc-type-specimen { font-size: clamp(2.5rem, 5.5vw, 4.5rem); }
+}
+
+@media (max-width: 760px) {
+  .case-page-solarcity .case-kicker .sc-kicker-motion { display: block; white-space: nowrap; }
+  .case-page-solarcity .sc-system-board,
+  .case-page-solarcity .sc-responsive-showcase,
+  .case-page-solarcity .sch-context,
+  .case-page-solarcity .sc-hero-showcase { margin-top: 2rem; }
+  .sc-journey > li { grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.75rem; }
+  .case-page-solarcity .sc-type-specimen { font-size: clamp(2.1rem, 9vw, 3.5rem); letter-spacing: -0.045em; }
+  .sc-palette { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .case-page-solarcity .sc-result-facts { grid-template-columns: 1fr; margin-top: 2rem; }
+  .sc-result-facts > div + div { padding-left: 0; border-left: 0; }
+  .case-page-solarcity .sc-result-facts strong { margin-top: 1rem; font-size: 1.5rem; }
+}

@@ -1,0 +1,55 @@
+/* Shared mobile case tasks use the homepage Process scroll treatment. */
+@media (max-width: 760px) {
+  .case-page .case-task-progress .case-task-row {
+    --step-progress: 0;
+  }
+
+  .case-page .case-task-progress .case-task-row::before {
+    display: block;
+    position: absolute;
+    inset: -1px 0 auto;
+    width: 100%;
+    height: 2px;
+    background: var(--active);
+    transform: scaleX(var(--step-progress));
+    transform-origin: left center;
+    transition: none;
+    pointer-events: none;
+    content: "";
+  }
+
+  .case-page .case-task-progress .case-task-row::after {
+    position: absolute;
+    top: -2px;
+    left: calc(var(--step-progress) * 100%);
+    width: 16px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--active);
+    filter: blur(3px);
+    transform: translateX(-100%);
+    opacity: calc(4 * var(--step-progress) * (1 - var(--step-progress)));
+    pointer-events: none;
+    content: "";
+  }
+
+  .case-page .case-task-progress .case-task-row h3 {
+    color: inherit;
+    transform: none;
+    transition: none;
+  }
+
+  .case-page .case-task-progress .case-task-row > span {
+    color: var(--shell-meta-light, var(--grey));
+  }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .case-page .case-task-progress .case-task-row::before {
+    transform: none;
+  }
+
+  .case-page .case-task-progress .case-task-row::after {
+    display: none;
+  }
+}

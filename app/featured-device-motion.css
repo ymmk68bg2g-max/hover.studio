@@ -1,0 +1,180 @@
+/* Homepage device sequence: geometry remains in the existing featured styles. */
+.featured-stage[data-featured-motion] [data-featured-device] {
+  --featured-device-delay: 0s;
+  --featured-device-scale: 1.025;
+  --featured-device-rest-z: 2;
+  transform: scale(1);
+  transform-origin: center center;
+  z-index: var(--featured-device-rest-z);
+  box-shadow: var(--sc-device-frame-shadow);
+}
+
+.featured-stage[data-featured-motion] [data-featured-device="tablet"] {
+  --featured-device-delay: 4.2s;
+  --featured-device-scale: 1.04;
+  --featured-device-rest-z: 3;
+}
+
+.featured-stage[data-featured-motion] [data-featured-device="phone"] {
+  --featured-device-delay: 8.4s;
+  --featured-device-scale: 1.04;
+  --featured-device-rest-z: 3;
+}
+
+.featured-stage[data-featured-motion] .featured-device-trace {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.featured-stage[data-featured-motion] .featured-device-trace::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(53, 214, 228, .35), inset 0 0 14px rgba(53, 214, 228, .12);
+  opacity: 0;
+  pointer-events: none;
+  content: "";
+}
+
+.featured-stage[data-featured-motion] .featured-device-trace > svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.featured-stage[data-featured-motion] .featured-device-trace > svg > rect {
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  rx: max(0px, calc(var(--sc-device-frame-radius) - var(--screen-frame) - 1px));
+  ry: max(0px, calc(var(--sc-device-frame-radius) - var(--screen-frame) - 1px));
+  fill: none;
+  stroke: #35d6e4;
+  stroke-width: 1px;
+  stroke-linecap: round;
+  stroke-dasharray: 15 85;
+  stroke-dashoffset: 0;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.featured-stage[data-featured-motion][data-motion-playing="true"] [data-featured-device] {
+  will-change: transform;
+  animation: featured-device-lift 12.6s cubic-bezier(.45, 0, .25, 1) var(--featured-device-delay) infinite;
+}
+
+.featured-stage[data-featured-motion][data-motion-playing="true"] [data-featured-device] .featured-device-trace > svg > rect {
+  animation: featured-device-perimeter 12.6s linear var(--featured-device-delay) infinite;
+}
+
+.featured-stage[data-featured-motion][data-motion-playing="true"] [data-featured-device] .featured-device-trace::before {
+  animation: featured-device-glow 12.6s cubic-bezier(.45, 0, .25, 1) var(--featured-device-delay) infinite;
+}
+
+@keyframes featured-device-lift {
+  0%, 36.5%, 100% { transform: scale(1); }
+  10%, 22% { transform: scale(var(--featured-device-scale)); }
+}
+
+@keyframes featured-device-perimeter {
+  0% { opacity: 0; stroke-dashoffset: 0; }
+  8%, 24% { opacity: .85; }
+  36.5%, 100% { opacity: 0; stroke-dashoffset: -100; }
+}
+
+@keyframes featured-device-glow {
+  0%, 36.5%, 100% { opacity: 0; }
+  10%, 22% { opacity: 1; }
+}
+
+.featured-stage[data-featured-motion]:has([data-featured-device]:focus-visible) [data-featured-device],
+.featured-stage[data-featured-motion]:has([data-featured-device]:focus-visible) .featured-device-trace::before,
+.featured-stage[data-featured-motion]:has([data-featured-device]:focus-visible) .featured-device-trace > svg > rect {
+  animation-play-state: paused;
+}
+
+.featured-stage[data-featured-motion] [data-featured-device]:focus-visible {
+  z-index: 5 !important;
+}
+
+.featured-stage[data-featured-motion] .featured-motion-toggle {
+  position: absolute;
+  right: clamp(.5rem, 1.3vw, 1rem);
+  bottom: 2px;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 26px;
+  margin: 0;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: rgba(222, 238, 246, .8);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.featured-stage[data-featured-motion] .featured-motion-toggle::before {
+  width: 13px;
+  height: 1px;
+  background: #35d6e4;
+  content: "";
+}
+
+.featured-stage[data-featured-motion] .featured-motion-toggle:focus-visible {
+  outline: 2px solid #35d6e4;
+  outline-offset: 1px;
+}
+
+.featured-stage[data-featured-motion] .featured-motion-toggle[hidden] {
+  display: none;
+}
+
+@media (min-width: 1101px) {
+  .featured-stage[data-featured-motion] .featured-motion-toggle {
+    bottom: 8px;
+    min-height: 36px;
+  }
+}
+
+@media (max-width: 760px) {
+  .featured-stage[data-featured-motion] .featured-motion-toggle {
+    bottom: clamp(0px, .5vw, 4px);
+    min-height: clamp(24px, 5vw, 36px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-stage[data-featured-motion] [data-featured-device],
+  .featured-stage[data-featured-motion] .featured-device-trace::before,
+  .featured-stage[data-featured-motion] .featured-device-trace > svg > rect {
+    animation: none !important;
+  }
+
+  .featured-stage[data-featured-motion] [data-featured-device] {
+    transform: none !important;
+    z-index: var(--featured-device-rest-z);
+    box-shadow: var(--sc-device-frame-shadow);
+  }
+
+  .featured-stage[data-featured-motion] .featured-device-trace > svg > rect,
+  .featured-stage[data-featured-motion] .featured-device-trace::before {
+    opacity: 0;
+  }
+}

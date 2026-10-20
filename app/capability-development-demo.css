@@ -1,0 +1,262 @@
+.cdev-demo .cdev-workspace {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1.75rem minmax(0, 1.05fr);
+  align-items: center;
+  width: min(88cqi, 36rem);
+  margin-top: 0.8rem;
+  animation-name: cdev-workspace-cycle;
+}
+
+.cdev-demo .cdev-pane {
+  position: relative;
+  min-width: 0;
+  height: 11.25rem;
+  border: 1px solid var(--cmd-ink);
+  background: var(--cmd-paper);
+  box-shadow: 0 4px 0 rgb(16 16 16 / 5%);
+}
+
+.cdev-demo .cdev-pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  height: 1.9rem;
+  padding: 0 0.6rem;
+  border-bottom: 1px solid rgb(16 16 16 / 15%);
+}
+
+.cdev-demo .cdev-pane-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.cdev-demo .cdev-pane-name svg {
+  width: 0.8rem;
+  height: 0.8rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+}
+
+.cdev-demo .cdev-pane-type {
+  color: #65655f;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  line-height: 1;
+}
+
+.cdev-demo .cdev-editor-body {
+  display: flex;
+  height: calc(100% - 1.9rem);
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.85rem 0.65rem 0.65rem;
+}
+
+.cdev-demo .cdev-field { min-width: 0; }
+
+.cdev-demo .cdev-field-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #65655f;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  line-height: 1;
+}
+
+.cdev-demo .cdev-field-value {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  height: 2.1rem;
+  align-items: center;
+  padding: 0 0.45rem;
+  border: 1px solid rgb(16 16 16 / 24%);
+  background: #fafaf7;
+  font-size: clamp(0.6875rem, 2.6cqi, 0.875rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.cdev-demo .cdev-field-value > span:not(.cdev-field-focus) {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+
+.cdev-demo .cdev-field-focus {
+  position: absolute;
+  inset: -1px;
+  border: 1px solid var(--cmd-orange);
+  opacity: 0;
+  animation-name: cdev-field-focus-cycle;
+}
+
+.cdev-demo .cdev-caret {
+  display: inline-block;
+  width: 1px;
+  height: 0.85em;
+  margin-left: 2px;
+  background: var(--cmd-orange);
+  vertical-align: -0.05em;
+  animation-name: cdev-caret-cycle;
+}
+
+.cdev-demo .cdev-editor-footer {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.cdev-demo .cdev-draft-note {
+  color: #77776f;
+  font-size: 0.5625rem;
+  line-height: 1.2;
+}
+
+.cdev-demo .cdev-save {
+  position: relative;
+  display: grid;
+  height: 1.8rem;
+  align-items: center;
+  border: 1px solid var(--cmd-ink);
+  background: var(--cmd-orange);
+  animation-name: cdev-save-cycle;
+}
+
+.cdev-demo .cdev-save > span:not(.cdev-save-pulse) {
+  display: flex;
+  grid-area: 1 / 1;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.45rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.cdev-demo .cdev-save svg {
+  width: 0.8rem;
+  height: 0.8rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+
+.cdev-demo .cdev-save-pulse {
+  position: absolute;
+  inset: -1px;
+  border: 1px solid var(--cmd-orange);
+  opacity: 0;
+  animation-name: cdev-save-pulse-cycle;
+}
+
+.cdev-demo .cdev-transfer { position: relative; height: 1.25rem; }
+.cdev-demo .cdev-transfer-line { position: absolute; inset: 50% 0 auto; height: 1px; background: rgb(16 16 16 / 24%); }
+.cdev-demo .cdev-transfer-arrow { position: absolute; top: calc(50% - 0.4rem); right: 0; width: 0.8rem; height: 0.8rem; fill: none; stroke: #65655f; stroke-width: 1; }
+.cdev-demo .cdev-transfer-packet { position: absolute; top: calc(50% - 2px); left: 0; width: 5px; height: 5px; background: var(--cmd-orange); opacity: 0; animation-name: cdev-transfer-cycle; }
+
+.cdev-demo .cdev-site-mark { font-size: 0.875rem; font-weight: 600; letter-spacing: -0.08em; line-height: 1; }
+.cdev-demo .cdev-site-body { position: relative; height: calc(100% - 1.9rem); padding: 0.65rem; overflow: hidden; }
+.cdev-demo .cdev-site-art { position: relative; height: 3.35rem; margin-bottom: 0.65rem; overflow: hidden; background: #e2e2da; }
+.cdev-demo .cdev-art-disc { position: absolute; top: -45%; left: -10%; width: 70%; aspect-ratio: 1; border: 1px solid var(--cmd-ink); border-radius: 50%; background: var(--cmd-orange); }
+.cdev-demo .cdev-art-line { position: absolute; top: 50%; left: 12%; width: 90%; height: 1px; background: var(--cmd-ink); transform: rotate(-27deg); }
+.cdev-demo .cdev-art-number { position: absolute; right: 0.35rem; bottom: 0.25rem; font-family: "IBM Plex Mono", Consolas, monospace; font-size: 0.625rem; line-height: 1; }
+.cdev-demo .cdev-site-eyebrow { display: block; margin-bottom: 0.25rem; color: #65655f; font-family: "IBM Plex Mono", Consolas, monospace; font-size: 0.5rem; line-height: 1; }
+.cdev-demo .cdev-site-title { display: grid; min-width: 0; font-size: clamp(0.875rem, 3.8cqi, 1.25rem); font-weight: 500; letter-spacing: -0.045em; line-height: 1.1; }
+.cdev-demo .cdev-site-title > span { grid-area: 1 / 1; white-space: nowrap; }
+.cdev-demo .cdev-site-note { display: block; margin-top: 0.35rem; color: #65655f; font-size: 0.5625rem; line-height: 1.2; }
+.cdev-demo .cdev-site-update { position: absolute; inset: 0; border: 2px solid var(--cmd-orange); opacity: 0; pointer-events: none; animation-name: cdev-site-update-cycle; }
+
+.cdev-demo .cdev-published {
+  position: absolute;
+  right: 0;
+  bottom: -1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #65655f;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  line-height: 1;
+  opacity: 0;
+  animation-name: cdev-published-cycle;
+}
+
+.cdev-demo .cdev-published > span { width: 0.25rem; height: 0.25rem; background: var(--cmd-orange); }
+.cdev-demo .cdev-editor-before { animation-name: cdev-editor-before-cycle; }
+.cdev-demo .cdev-editor-after { opacity: 0; animation-name: cdev-editor-after-cycle; }
+.cdev-demo .cdev-site-before { animation-name: cdev-site-before-cycle; }
+.cdev-demo .cdev-site-after { opacity: 0; animation-name: cdev-site-after-cycle; }
+.cdev-demo .cdev-save-before { animation-name: cdev-save-before-cycle; }
+.cdev-demo .cdev-save-after { opacity: 0; animation-name: cdev-save-after-cycle; }
+
+/* 0–25% edit; 25–47% save and transfer; 47–84% hold the updated page. */
+@keyframes cdev-workspace-cycle {
+  0%, 84% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 0; transform: translateY(-0.4rem); }
+  91% { opacity: 0; transform: translateY(0.4rem); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes cdev-editor-before-cycle { 0%, 13% { opacity: 1; } 18%, 91% { opacity: 0; } 92%, 100% { opacity: 1; } }
+@keyframes cdev-editor-after-cycle { 0%, 14% { opacity: 0; } 21%, 90% { opacity: 1; } 91%, 100% { opacity: 0; } }
+@keyframes cdev-field-focus-cycle { 0%, 8% { opacity: 0; } 12%, 27% { opacity: 1; } 34%, 100% { opacity: 0; } }
+@keyframes cdev-caret-cycle { 0%, 14% { opacity: 0; } 19%, 25% { opacity: 1; } 29%, 100% { opacity: 0; } }
+@keyframes cdev-save-cycle { 0%, 29% { transform: scale(1); } 33% { transform: scale(0.955); } 37%, 100% { transform: scale(1); } }
+@keyframes cdev-save-pulse-cycle { 0%, 30% { opacity: 0; transform: scale(1); } 33% { opacity: 0.85; transform: scale(1.02, 1.08); } 41%, 100% { opacity: 0; transform: scale(1.12, 1.5); } }
+@keyframes cdev-save-before-cycle { 0%, 36% { opacity: 1; } 41%, 91% { opacity: 0; } 92%, 100% { opacity: 1; } }
+@keyframes cdev-save-after-cycle { 0%, 36% { opacity: 0; } 41%, 90% { opacity: 1; } 91%, 100% { opacity: 0; } }
+@keyframes cdev-transfer-cycle { 0%, 37% { opacity: 0; transform: translateX(0); } 39% { opacity: 1; transform: translateX(0); } 45% { opacity: 1; transform: translateX(calc(1.75rem - 5px)); } 47%, 100% { opacity: 0; transform: translateX(calc(1.75rem - 5px)); } }
+@keyframes cdev-site-before-cycle { 0%, 46% { opacity: 1; transform: translateY(0); } 49%, 91% { opacity: 0; transform: translateY(-0.2rem); } 92%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes cdev-site-after-cycle { 0%, 47% { opacity: 0; transform: translateY(0.25rem); } 52%, 90% { opacity: 1; transform: translateY(0); } 91%, 100% { opacity: 0; transform: translateY(0.25rem); } }
+@keyframes cdev-site-update-cycle { 0%, 46% { opacity: 0; } 48% { opacity: 0.75; } 57%, 100% { opacity: 0; } }
+@keyframes cdev-published-cycle { 0%, 49% { opacity: 0; transform: translateY(0.2rem); } 55%, 84% { opacity: 1; transform: translateY(0); } 90%, 100% { opacity: 0; transform: translateY(0); } }
+
+@container (max-width: 300px) {
+  .cdev-demo .cdev-workspace { grid-template-columns: minmax(0, 1fr); grid-template-rows: 5.7rem 1.1rem 6.6rem; width: 86cqi; margin-top: 0.9rem; }
+  .cdev-demo .cdev-pane { height: 100%; }
+  .cdev-demo .cdev-pane-header { height: 1.5rem; padding-inline: 0.5rem; }
+  .cdev-demo .cdev-editor-body { display: grid; grid-template-columns: minmax(0, 1fr) 4.6rem; align-items: end; gap: 0.55rem; height: calc(100% - 1.5rem); padding: 0.5rem; }
+  .cdev-demo .cdev-field-label { margin-bottom: 0.3rem; }
+  .cdev-demo .cdev-field-value { height: 1.75rem; font-size: 0.6875rem; }
+  .cdev-demo .cdev-draft-note { display: none; }
+  .cdev-demo .cdev-save { height: 1.75rem; }
+  .cdev-demo .cdev-save > span:not(.cdev-save-pulse) { padding-inline: 0.3rem; font-size: 0.625rem; }
+  .cdev-demo .cdev-transfer { justify-self: center; width: 1.1rem; height: 1.1rem; transform: rotate(90deg); }
+  .cdev-demo .cdev-transfer-packet { animation-name: cdev-transfer-small-cycle; }
+  .cdev-demo .cdev-site-body { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); align-items: center; gap: 0.65rem; height: calc(100% - 1.5rem); padding: 0.5rem; }
+  .cdev-demo .cdev-site-art { height: 100%; margin: 0; }
+  .cdev-demo .cdev-art-disc { top: -5%; left: -65%; width: 155%; }
+  .cdev-demo .cdev-art-line { top: 70%; left: -10%; width: 150%; }
+  .cdev-demo .cdev-site-eyebrow { font-size: 0.5rem; }
+  .cdev-demo .cdev-site-title { font-size: 1rem; }
+  .cdev-demo .cdev-site-note { font-size: 0.5625rem; }
+  .cdev-demo .cdev-published { bottom: -1.1rem; font-size: 0.5rem; }
+}
+
+@keyframes cdev-transfer-small-cycle { 0%, 37% { opacity: 0; transform: translateX(0); } 39% { opacity: 1; transform: translateX(0); } 45% { opacity: 1; transform: translateX(calc(1.1rem - 5px)); } 47%, 100% { opacity: 0; transform: translateX(calc(1.1rem - 5px)); } }
+
+/* Reduced motion presents a coherent saved title in both panes. */
+.cdev-demo[data-reduced="true"] .cdev-editor-before,
+.cdev-demo[data-reduced="true"] .cdev-site-before,
+.cdev-demo[data-reduced="true"] .cdev-save-before { opacity: 0; }
+.cdev-demo[data-reduced="true"] .cdev-editor-after,
+.cdev-demo[data-reduced="true"] .cdev-site-after,
+.cdev-demo[data-reduced="true"] .cdev-save-after,
+.cdev-demo[data-reduced="true"] .cdev-published { opacity: 1; transform: none; }
+.cdev-demo[data-reduced="true"] .cdev-caret { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .cdev-demo .cdev-editor-before,
+  .cdev-demo .cdev-site-before,
+  .cdev-demo .cdev-save-before { opacity: 0; }
+  .cdev-demo .cdev-editor-after,
+  .cdev-demo .cdev-site-after,
+  .cdev-demo .cdev-save-after,
+  .cdev-demo .cdev-published { opacity: 1; transform: none; }
+  .cdev-demo .cdev-caret { opacity: 0; }
+}

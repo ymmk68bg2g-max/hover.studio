@@ -1,0 +1,464 @@
+.cmd-motion {
+  --cmd-paper: #f4f4f0;
+  --cmd-ink: #101010;
+  --cmd-orange: #ff4a17;
+  --cmd-loop: 9s;
+  container-type: inline-size;
+  width: 100%;
+  min-width: 0;
+  margin: 0 0 2rem;
+  color: var(--cmd-ink);
+  font-family: "Inter Tight", "Arial Narrow", Arial, sans-serif;
+}
+
+.cmd-motion .cmd-stage {
+  position: relative;
+  display: grid;
+  height: 17.75rem;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgb(16 16 16 / 18%);
+  background: #eeeee9;
+  isolation: isolate;
+}
+
+.cmd-motion .cmd-stage::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 20%;
+  border-inline: 1px solid rgb(16 16 16 / 5%);
+  content: "";
+}
+
+.cmd-motion .cmd-stage-meta {
+  position: absolute;
+  inset: 0.7rem 0.85rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #65655f;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  line-height: 1;
+  letter-spacing: 0.025em;
+}
+
+.cmd-motion .cmd-stage-mark {
+  color: var(--cmd-ink);
+  font-family: "Inter Tight", "Arial Narrow", Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.08em;
+}
+
+.cmd-motion .cmd-arrow {
+  display: block;
+  flex: 0 0 auto;
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.cmd-motion :is(.cmd-stage-mark, .cmd-preview-detail, .cdev-site-mark) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.08em;
+}
+
+.cmd-motion :is(.cmd-stage-mark, .cmd-preview-detail, .cdev-site-mark) .cmd-arrow {
+  width: 0.75em;
+  height: 0.75em;
+}
+
+.cmd-motion .cmd-card {
+  position: relative;
+  width: min(78cqi, 19rem);
+  height: 13.25rem;
+  margin-top: 0.75rem;
+  border: 1px solid var(--cmd-ink);
+  background: var(--cmd-paper);
+  box-shadow: 0 5px 0 rgb(16 16 16 / 5%);
+  animation-name: cmd-card-cycle;
+}
+
+.cmd-motion .cmd-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: 2.1rem;
+  padding-inline: 0.875rem;
+  border-bottom: 1px solid rgb(16 16 16 / 14%);
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.cmd-motion .cmd-status {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.cmd-motion .cmd-status-dot {
+  width: 0.25rem;
+  height: 0.25rem;
+  background: var(--cmd-orange);
+}
+
+.cmd-motion .cmd-status-copy {
+  display: grid;
+  text-align: right;
+}
+
+.cmd-motion .cmd-status-copy > span {
+  grid-area: 1 / 1;
+}
+
+.cmd-motion .cmd-screen {
+  position: absolute;
+  inset: 2.1rem 0.875rem 4.1rem;
+}
+
+.cmd-motion .cmd-screen-before,
+.cmd-motion .cmd-screen-after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.cmd-motion .cmd-preview {
+  position: relative;
+  width: 100%;
+  height: 2.65rem;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  background: #e4e4dd;
+}
+
+.cmd-motion .cmd-preview-block {
+  position: absolute;
+  inset: 0 58% 0 0;
+  background: var(--cmd-orange);
+}
+
+.cmd-motion .cmd-preview-block::before {
+  position: absolute;
+  inset: 0;
+  border-right: 1px solid var(--cmd-ink);
+  transform: skewX(-28deg) translateX(-34%);
+  content: "";
+}
+
+.cmd-motion .cmd-preview-line {
+  position: absolute;
+  left: 51%;
+  width: 23%;
+  height: 2px;
+  background: rgb(16 16 16 / 27%);
+}
+
+.cmd-motion .cmd-preview-line-one { top: 36%; }
+.cmd-motion .cmd-preview-line-two { top: 55%; width: 15%; }
+
+.cmd-motion .cmd-preview-detail {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.08em;
+}
+
+.cmd-motion .cmd-title {
+  display: block;
+  font-size: clamp(1.35rem, 5.4cqi, 1.875rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.cmd-motion .cmd-note {
+  display: block;
+  margin-top: 0.35rem;
+  color: #65655f;
+  font-size: clamp(0.625rem, 2.4cqi, 0.75rem);
+  line-height: 1.25;
+}
+
+.cmd-motion .cmd-screen-after {
+  align-items: center;
+  text-align: center;
+}
+
+.cmd-motion .cmd-complete-mark {
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin-bottom: 0.7rem;
+  place-items: center;
+  background: var(--cmd-orange);
+}
+
+.cmd-motion .cmd-check {
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: none;
+  stroke: var(--cmd-ink);
+  stroke-width: 1.65;
+  stroke-linecap: square;
+  stroke-dasharray: 24;
+  stroke-dashoffset: 0;
+  animation-name: cmd-check-cycle;
+}
+
+.cmd-motion .cmd-action {
+  position: absolute;
+  inset: auto 0.875rem 0.875rem;
+  height: 2.45rem;
+  overflow: visible;
+  border: 1px solid var(--cmd-ink);
+  animation-name: cmd-button-cycle;
+}
+
+.cmd-motion .cmd-action-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--cmd-orange);
+  animation-name: cmd-action-fill-cycle;
+}
+
+.cmd-motion .cmd-action-copy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-inline: 0.7rem;
+  font-size: clamp(0.6875rem, 2.8cqi, 0.875rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.cmd-motion .cmd-action-copy > span { font-size: 1rem; }
+
+.cmd-motion .cmd-click-ring {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 0.35rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 1px solid var(--cmd-ink);
+  border-radius: 50%;
+  opacity: 0;
+  animation-name: cmd-click-cycle;
+}
+
+.cmd-motion .cmd-cursor {
+  position: absolute;
+  z-index: 2;
+  right: 1.5rem;
+  bottom: 0.75rem;
+  width: 1.2rem;
+  height: 1.4rem;
+  fill: var(--cmd-ink);
+  stroke: var(--cmd-paper);
+  stroke-width: 1.4;
+  opacity: 0;
+  filter: drop-shadow(0 1px 1px rgb(16 16 16 / 12%));
+  animation-name: cmd-cursor-cycle;
+}
+
+.cmd-motion .cmd-stage-corner {
+  position: absolute;
+  bottom: 0.65rem;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-bottom: 1px solid rgb(16 16 16 / 40%);
+}
+
+.cmd-motion .cmd-stage-corner-left { left: 0.65rem; border-left: 1px solid rgb(16 16 16 / 40%); }
+.cmd-motion .cmd-stage-corner-right { right: 0.65rem; border-right: 1px solid rgb(16 16 16 / 40%); }
+
+.cmd-motion .cmd-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.2rem 1rem;
+  padding-top: 0.85rem;
+}
+
+.cmd-motion .cmd-steps {
+  display: grid;
+  flex: 1 0 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.cmd-motion .cmd-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.25rem;
+  min-width: 0;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.625rem;
+  line-height: 1.25;
+}
+
+.cmd-motion .cmd-step-number { color: #77776f; }
+.cmd-motion .cmd-step-label { min-width: 0; color: #65655f; }
+.cmd-motion .cmd-step-track { grid-column: 1 / -1; height: 1px; background: rgb(16 16 16 / 16%); }
+.cmd-motion .cmd-step-progress { display: block; width: 100%; height: 100%; background: var(--cmd-orange); transform: scaleX(0); transform-origin: left; }
+.cmd-motion .cmd-step-1 .cmd-step-progress { animation-name: cmd-progress-one; }
+.cmd-motion .cmd-step-2 .cmd-step-progress { animation-name: cmd-progress-two; }
+.cmd-motion .cmd-step-3 .cmd-step-progress { animation-name: cmd-progress-three; }
+.cmd-motion .cmd-step-1 .cmd-step-number,
+.cmd-motion .cmd-step-1 .cmd-step-label { color: var(--cmd-ink); animation-name: cmd-label-one; }
+.cmd-motion .cmd-step-2 .cmd-step-number,
+.cmd-motion .cmd-step-2 .cmd-step-label { animation-name: cmd-label-two; }
+.cmd-motion .cmd-step-3 .cmd-step-number,
+.cmd-motion .cmd-step-3 .cmd-step-label { animation-name: cmd-label-three; }
+
+.cmd-motion .cmd-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 44px;
+  min-height: 44px;
+  margin-right: -0.35rem;
+  padding: 0.4rem 0.35rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #65655f;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.625rem;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.cmd-motion .cmd-control:hover { color: var(--cmd-ink); }
+.cmd-motion .cmd-control:focus-visible { outline: 2px solid var(--cmd-orange); outline-offset: 1px; color: var(--cmd-ink); }
+.cmd-motion .cmd-control:disabled { color: #77776f; cursor: default; }
+.cmd-motion .cmd-control-icon { display: grid; width: 0.7rem; height: 0.7rem; place-items: center; }
+.cmd-motion .cmd-control-icon svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.6; }
+
+.cmd-motion .cmd-accessible-caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* A paused timeline is also the server-rendered pose: the first card is readable. */
+.cmd-motion .cmd-before { animation-name: cmd-before-cycle; }
+.cmd-motion .cmd-after { opacity: 0; animation-name: cmd-after-cycle; }
+.cmd-motion .cmd-animated {
+  animation-duration: var(--cmd-loop);
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+  animation-fill-mode: both;
+}
+
+.cmd-motion[data-running="true"] .cmd-animated { animation-play-state: running; }
+
+/* 0–2.25s: establish the card. 2.25–4.23s: guide and react. 4.23–7.56s: confirm. */
+@keyframes cmd-card-cycle {
+  0%, 84% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 0; transform: translateY(-0.7rem); }
+  91% { opacity: 0; transform: translateY(0.9rem); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cmd-before-cycle {
+  0%, 40% { opacity: 1; transform: translateY(0); }
+  46%, 92% { opacity: 0; transform: translateY(-0.5rem); }
+  93% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cmd-after-cycle {
+  0%, 42% { opacity: 0; transform: translateY(0.7rem); }
+  50%, 89% { opacity: 1; transform: translateY(0); }
+  91%, 100% { opacity: 0; transform: translateY(0.7rem); }
+}
+
+@keyframes cmd-cursor-cycle {
+  0%, 21% { opacity: 0; transform: translate(2.5rem, 1.6rem); }
+  25% { opacity: 1; transform: translate(2.5rem, 1.6rem); }
+  33%, 35% { opacity: 1; transform: translate(0, 0) scale(1); }
+  37% { opacity: 1; transform: translate(0, 0) scale(0.86); }
+  40% { opacity: 1; transform: translate(0, 0) scale(1); }
+  47%, 100% { opacity: 0; transform: translate(0.3rem, -0.25rem); }
+}
+
+@keyframes cmd-button-cycle {
+  0%, 31% { transform: translateY(0) scale(1); }
+  34% { transform: translateY(-2px) scale(1); }
+  37% { transform: translateY(1px) scale(0.975); }
+  41%, 100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes cmd-click-cycle {
+  0%, 35% { opacity: 0; transform: scale(0.2); }
+  37% { opacity: 0.6; transform: scale(0.45); }
+  44%, 100% { opacity: 0; transform: scale(1.7); }
+}
+
+@keyframes cmd-action-fill-cycle {
+  0%, 40% { opacity: 1; }
+  49%, 91% { opacity: 0; }
+  93%, 100% { opacity: 1; }
+}
+
+@keyframes cmd-check-cycle {
+  0%, 45% { stroke-dashoffset: 24; }
+  55%, 90% { stroke-dashoffset: 0; }
+  92%, 100% { stroke-dashoffset: 24; }
+}
+
+@keyframes cmd-progress-one { 0% { transform: scaleX(0); } 25%, 89% { transform: scaleX(1); } 92%, 100% { transform: scaleX(0); } }
+@keyframes cmd-progress-two { 0%, 25% { transform: scaleX(0); } 47%, 89% { transform: scaleX(1); } 92%, 100% { transform: scaleX(0); } }
+@keyframes cmd-progress-three { 0%, 47% { transform: scaleX(0); } 84%, 89% { transform: scaleX(1); } 92%, 100% { transform: scaleX(0); } }
+@keyframes cmd-label-one { 0%, 24% { color: var(--cmd-ink); } 29%, 89% { color: #65655f; } 93%, 100% { color: var(--cmd-ink); } }
+@keyframes cmd-label-two { 0%, 24% { color: #65655f; } 29%, 46% { color: var(--cmd-ink); } 51%, 100% { color: #65655f; } }
+@keyframes cmd-label-three { 0%, 46% { color: #65655f; } 51%, 89% { color: var(--cmd-ink); } 93%, 100% { color: #65655f; } }
+
+@container (max-width: 310px) {
+  .cmd-motion .cmd-card { width: 84cqi; }
+  .cmd-motion .cmd-steps { gap: 0.45rem; }
+  .cmd-motion .cmd-step { gap: 0.2rem; font-size: 0.5625rem; }
+  .cmd-motion .cmd-title { font-size: 1.4rem; }
+}
+
+@container (max-width: 250px) {
+  .cmd-motion .cmd-step { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (hover: none) {
+  .cmd-motion .cmd-cursor { display: none; }
+}
+
+/* This also protects the initial paint before the media-query effect runs. */
+.cmd-motion[data-reduced="true"] .cmd-animated { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .cmd-motion .cmd-animated { animation: none; }
+}

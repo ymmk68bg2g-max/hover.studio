@@ -1,0 +1,219 @@
+@font-face {
+  font-family: "BpDisplay";
+  src: url("/case/blueprint/fonts/display.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0000-02FF,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "BpSerif";
+  src: url("/case/blueprint/fonts/serif.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0000-02FF,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "BpSans";
+  src: url("/case/blueprint/fonts/sans.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0000-02FF,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "BpDisplay";
+  src: url("/case/blueprint/fonts/display-cyrillic.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;
+}
+
+@font-face {
+  font-family: "BpSerif";
+  src: url("/case/blueprint/fonts/serif-cyrillic.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;
+}
+
+@font-face {
+  font-family: "BpSans";
+  src: url("/case/blueprint/fonts/sans-cyrillic.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;
+}
+
+.case-page-blueprint {
+  --bp-carbon: #0d0d0e;
+  --bp-paper: #f2f0ea;
+  --bp-blue: #315cff;
+  --bp-graphite: #747471;
+}
+
+.case-page-blueprint .case-hero { container-type: inline-size; }
+.case-page-blueprint .case-hero h1 {
+  max-width: 100%;
+  font-size: min(clamp(5.4rem, 12vw, 13rem), 16cqi);
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.case-page-blueprint .bp-challenge-description { margin: 1.5rem 0 0; max-width: 46rem; }
+.case-page-blueprint .case-challenge .case-task-list { margin-top: clamp(2.5rem, 4vw, 4rem); }
+
+.case-page-blueprint .bp-product-visual,
+.case-page-blueprint .bp-art-visual,
+.case-page-blueprint .bp-editions-visual { min-width: 0; margin: 3rem 0 0; }
+
+.case-page-blueprint .bp-product-visual img,
+.case-page-blueprint .bp-art-visual img,
+.case-page-blueprint .bp-device-viewport img,
+.case-page-blueprint .bp-editions-visual img { display: block; width: 100%; height: auto; object-fit: contain; }
+
+.case-page-blueprint .bp-product-visual > figcaption,
+.case-page-blueprint .bp-art-visual > figcaption,
+.case-page-blueprint .bp-editions-visual > figcaption,
+.case-page-blueprint .bp-device-sample > figcaption { margin-top: 1rem; }
+
+.case-page-blueprint .bp-product-stage {
+  padding: clamp(1.1rem, 3vw, 2.5rem);
+  border: 1px solid #303035;
+  background: var(--bp-carbon);
+  color: var(--bp-paper);
+}
+
+.bp-product-topline,
+.bp-product-baseline { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1rem; font: 400 11px/1.5 "IBM Plex Mono", monospace; letter-spacing: 0.035em; }
+.bp-product-topline { padding-bottom: 1rem; border-bottom: 1px solid #39393f; }
+.bp-product-topline > span:last-child,
+.bp-product-baseline { color: #aaa9a4; }
+.bp-product-baseline { padding-top: 1rem; border-top: 1px solid #39393f; }
+.bp-product-stage > img { margin: 1.5rem 0; }
+
+.case-page-blueprint .bp-journey { margin: 2.75rem 0 0; padding: 0; list-style: none; }
+.bp-journey > li { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); gap: 1rem; align-items: baseline; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+.bp-journey > li:last-child { border-bottom: 0; }
+.bp-journey p { margin: 0; }
+
+.bp-art-sheets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: clamp(0.8rem, 2vw, 2rem); padding: clamp(1rem, 3vw, 2.5rem); border: 1px solid #c7c5bf; background: #e5e3dd; }
+.bp-art-sheet { min-width: 0; border: 1px solid #c7c5bf; background: var(--bp-paper); box-shadow: 0 0.5rem 1.2rem rgb(13 13 14 / 8%); }
+
+.case-page-blueprint .bp-system-board {
+  margin-top: 3rem;
+  padding: clamp(1.25rem, 3vw, 3rem);
+  border: 1px solid #303035;
+  background: var(--bp-carbon);
+  color: var(--bp-paper);
+}
+
+.bp-ui-meta { font: 400 10px/1.5 "IBM Plex Mono", monospace; letter-spacing: 0.055em; }
+.bp-type-display > span { color: #aaa9a4; }
+.case-page-blueprint .bp-type-display > p { margin: 1.5rem 0 2.5rem; font: 700 clamp(2rem, 5vw, 5rem)/0.9 "BpDisplay", "Arial Narrow", sans-serif; letter-spacing: -0.035em; }
+.bp-support-type { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; padding: 1.25rem 0 2.5rem; border-top: 1px solid #39393f; }
+.bp-support-type > div { min-width: 0; }
+.bp-support-type .bp-ui-meta { color: #aaa9a4; }
+.case-page-blueprint .bp-serif-specimen { margin: 1.25rem 0 0; font: 400 clamp(1.25rem, 2.3vw, 2rem)/1.35 "BpSerif", Georgia, serif; }
+.case-page-blueprint .bp-sans-specimen { margin: 1.25rem 0 0; font: 400 clamp(1.125rem, 2vw, 1.6rem)/1.4 "BpSans", Arial, sans-serif; }
+.bp-palette { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 2.5rem; }
+.bp-swatch { min-width: 0; }
+.bp-swatch > span:first-child { display: block; height: clamp(3.5rem, 6vw, 5.5rem); margin-bottom: 0.65rem; border: 1px solid #55555b; }
+.bp-swatch > span:last-child { color: #b6b4ae; overflow-wrap: anywhere; }
+.case-page-blueprint .bp-system-parts > div { padding-top: 1.25rem; border-top: 1px solid #39393f; }
+.bp-system-parts > div + div { margin-top: 1.75rem; }
+.case-page-blueprint .bp-system-parts .content-subheading { margin: 0 0 0.8rem; color: var(--bp-paper); }
+.case-page-blueprint .bp-system-parts .case-text-body { margin: 0; color: #b6b4ae; }
+.case-page-blueprint .bp-preview { margin-top: 3rem; }
+
+.case-page-blueprint .bp-responsive-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-top: 3rem;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  border: 1px solid #cecec8;
+  background: radial-gradient(ellipse at 65% 35%, rgb(49 92 255 / 7%), transparent 70%), #e5e3dd;
+}
+.case-page-blueprint .bp-device-sample { min-width: 0; width: 100%; margin: 0; justify-self: center; }
+.case-page-blueprint .bp-device-tablet { max-width: 30rem; }
+.case-page-blueprint .bp-device-phone { max-width: 18rem; }
+.bp-device-frame { --bp-frame-radius: clamp(12px, 1.8vw, 24px); padding: clamp(4px, 0.55vw, 8px); border: 1px solid #39393f; border-radius: var(--bp-frame-radius); background: #171719; box-shadow: 0 4px 10px rgb(13 13 14 / 12%), 0 20px 36px rgb(13 13 14 / 16%); }
+.bp-device-phone .bp-device-frame { --bp-frame-radius: clamp(16px, 2.4vw, 32px); }
+.bp-device-viewport { position: relative; overflow: hidden; border-radius: calc(var(--bp-frame-radius) - 4px); background: var(--bp-carbon); }
+/* Mask Safari chrome in the original captures without resampling the artwork. */
+.bp-device-tablet .bp-device-viewport { aspect-ratio: 882 / 1212; }
+.bp-device-phone .bp-device-viewport { aspect-ratio: 995 / 1830; }
+.case-page-blueprint .bp-device-viewport > img { position: absolute; top: 0; left: 0; display: block; width: 100%; height: auto; }
+.bp-device-tablet .bp-device-viewport > img { transform: translateY(-5%); }
+.case-page-blueprint .bp-responsive-caption { margin: 1.5rem 0 0; }
+
+.case-page-blueprint .bp-gallery-heading { margin-top: 3rem; }
+.case-page-blueprint .bp-gallery-heading h3 { margin: 0 0 0.8rem; }
+.case-page-blueprint .bp-gallery-heading p { margin: 0; }
+.case-page-blueprint .bp-editions-board { container-type: inline-size; padding: clamp(1.1rem, 2.5vw, 2rem); border: 1px solid #303035; background: var(--bp-carbon); color: var(--bp-paper); }
+.bp-editions-heading { margin-bottom: 2rem; }
+.bp-editions-heading > span { color: var(--bp-blue); }
+.case-page-blueprint .bp-editions-heading > p { margin: 1rem 0 0; font: 700 clamp(1.8rem, 5cqi, 3.25rem)/0.95 "BpDisplay", "Arial Narrow", sans-serif; letter-spacing: -0.025em; }
+.bp-editions-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #55555b; border-left: 1px solid #55555b; }
+.case-page-blueprint .bp-edition { display: flex; flex-direction: column; min-width: 0; padding: clamp(1rem, 3cqi, 2rem); border-right: 1px solid #55555b; border-bottom: 1px solid #55555b; }
+.bp-edition-topline { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1rem; padding-bottom: 1rem; border-bottom: 1px solid #39393f; font: 400 8px/1.5 "IBM Plex Mono", monospace; letter-spacing: 0.035em; }
+.bp-edition-topline > span:last-child { color: #aaa9a4; }
+.bp-edition-heading { margin-top: 1.5rem; }
+.bp-edition-heading > span { color: var(--bp-blue); font-size: 8px; }
+.case-page-blueprint .bp-edition h3 { min-height: 1.8em; margin: 1rem 0; font: 700 clamp(1.8rem, 5.5cqi, 4.2rem)/0.9 "BpDisplay", "Arial Narrow", sans-serif; letter-spacing: -0.035em; }
+.bp-edition h3 > span { display: block; }
+.case-page-blueprint .bp-edition-description { margin: 0; font: 400 clamp(12px, 1.8cqi, 16px)/1.5 "BpSerif", Georgia, serif; }
+.bp-edition-art { display: flex; justify-content: center; align-items: center; margin-top: 1.75rem; padding: 1rem 0; }
+.bp-edition-cover { position: relative; container-type: inline-size; width: min(100%, 15rem); }
+/* Keep the original cover geometry; every badge dimension scales with the book. */
+.bp-edition-mark { position: absolute; top: 5%; right: 5%; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; width: 28%; min-width: 0; aspect-ratio: 1; padding: 3.75cqi; background: var(--bp-blue); color: var(--bp-paper); font: 400 2.2cqi/1.4 "IBM Plex Mono", monospace; letter-spacing: 0.08em; }
+.bp-edition-mark strong { font: inherit; font-weight: 500; }
+.bp-edition-mark > span { font-size: 1.8cqi; white-space: nowrap; }
+.bp-edition-includes { display: grid; gap: 0.75rem; margin: auto 0 0; padding: 1.5rem 0 0; border-top: 1px solid #39393f; list-style: none; }
+.bp-edition-includes > li { position: relative; min-width: 0; padding-left: 0.8rem; font: 400 clamp(10px, 1.6cqi, 13px)/1.5 "BpSans", Arial, sans-serif; }
+.bp-edition-includes > li::before { position: absolute; left: 0; color: var(--bp-blue); content: "/"; }
+.case-page-blueprint .bp-editions-link { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 2.75rem; margin-top: 1.75rem; border-bottom: 1px solid #55555b; color: var(--bp-paper); font: 400 11px/1.5 "IBM Plex Mono", monospace; }
+.bp-editions-link > span { color: var(--bp-blue); }
+.bp-native-link:focus-visible,
+.bp-editions-link:focus-visible { outline: 2px solid var(--bp-blue); outline-offset: 4px; }
+
+.case-page-blueprint .bp-result-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 3rem; border-top: 1px solid var(--line); }
+.bp-result-facts > div { min-width: 0; padding: 1.25rem 1.25rem 1.25rem 0; border-bottom: 1px solid var(--line); }
+.bp-result-facts > div + div { padding-left: 1.25rem; border-left: 1px solid var(--line); }
+.case-page-blueprint .bp-result-facts strong { display: block; margin: 1.5rem 0 0.8rem; font-size: clamp(1.1rem, 2vw, 1.9rem); font-weight: 500; letter-spacing: normal; line-height: 1.15; }
+.case-page-blueprint .bp-result-facts p { margin: 0; }
+
+@media (max-width: 1100px) {
+  .case-page-blueprint .bp-responsive-pair { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+}
+
+@media (max-width: 760px) {
+  .case-page-blueprint .case-hero h1 { font-size: min(clamp(3.5rem, 17vw, 6rem), 16cqi); }
+  .case-page-blueprint .bp-product-visual,
+  .case-page-blueprint .bp-art-visual,
+  .case-page-blueprint .bp-system-board,
+  .case-page-blueprint .bp-preview,
+  .case-page-blueprint .bp-responsive-pair,
+  .case-page-blueprint .bp-editions-visual { margin-top: 2rem; }
+  .bp-journey > li { grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.75rem; }
+  .bp-art-sheets { gap: 0.75rem; padding: 0.75rem; }
+  .bp-palette { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .bp-support-type { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+  .bp-editions-grid { grid-template-columns: minmax(0, 1fr); }
+  .case-page-blueprint .bp-edition h3 { min-height: 0; font-size: clamp(2.2rem, 11cqi, 3.5rem); }
+  .case-page-blueprint .bp-edition-description { font-size: 14px; }
+  .bp-edition-includes > li { font-size: 12px; }
+  .case-page-blueprint .bp-result-facts { grid-template-columns: minmax(0, 1fr); margin-top: 2rem; }
+  .bp-result-facts > div + div { padding-left: 0; border-left: 0; }
+  .case-page-blueprint .bp-result-facts strong { margin-top: 1rem; font-size: 1.5rem; }
+}

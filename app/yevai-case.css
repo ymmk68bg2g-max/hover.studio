@@ -1,0 +1,42 @@
+/* Match the SolarCity editorial scale without changing the client UI specimens. */
+.case-page-yevai .case-challenge > .case-text-lead {
+  max-width: 45ch;
+  margin: 0;
+  font-size: var(--content-lead-size);
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.4;
+}
+
+.case-page-yevai .yevai-challenge-description {
+  max-width: 46rem;
+  margin: 1.5rem 0 0;
+}
+
+.case-page-yevai .case-challenge .case-task-list {
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+}
+
+.case-page-yevai .yevai-result-facts strong {
+  font-size: clamp(1.1rem, 2vw, 1.9rem);
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: 1.15;
+}
+
+.case-page-yevai .yevai-result-facts p {
+  font-size: 0.65rem;
+}
+
+.case-page-yevai .yevai-art-composition li {
+  font-size: var(--section-meta-size);
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.45;
+}
+
+@media (max-width: 760px) {
+  .case-page-yevai .yevai-result-facts strong {
+    font-size: 1.5rem;
+  }
+}
