@@ -126,9 +126,21 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
             <div><p className="service-content-subheading">{ui.integrationsPrice}</p><p className="service-text-body">{ui.integrationsBody}</p></div>
           </div>
           <p className="service-text-body chatbots-budget-note">{ui.budgetNote}</p>
-          <div className="chatbots-running-costs">
+          <div className="chatbots-running-costs" id="chatbots-hosting">
             <h3 className="service-content-subheading">{ui.runningTitle}</h3>
-            <div><p className="service-text-body">{ui.runningBody}</p><p className="service-text-body">{ui.supportBody}</p><p className="service-text-body chatbots-note">{ui.accessBody}</p></div>
+            <div>
+              <p className="service-text-body">{ui.runningBody}</p>
+              <p className="service-text-body">{ui.hostingExample}</p>
+              <ol className="chatbots-hosting-options">
+                {ui.hostingOptions.map((option, index) => <li key={option.title}>
+                  <span className="chatbots-hosting-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                  <div><h4 className="service-content-subheading">{option.title}</h4><p className="service-text-body">{option.text}</p></div>
+                </li>)}
+              </ol>
+              <p className="service-text-body">{ui.hostingCosts}</p>
+              <p className="service-text-body">{ui.supportBody}</p>
+              <p className="service-text-body chatbots-note">{ui.accessBody}</p>
+            </div>
           </div>
         </section>
 

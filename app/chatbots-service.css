@@ -314,6 +314,30 @@
   margin-top: 0;
 }
 
+.chatbots-service-page .chatbots-hosting-options {
+  margin: 1.75rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chatbots-service-page .chatbots-hosting-options > li {
+  display: grid;
+  grid-template-columns: 1.6rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.chatbots-service-page .chatbots-hosting-number {
+  color: var(--active);
+  font-size: var(--content-meta-size);
+  line-height: 1.6;
+}
+
+.chatbots-service-page .chatbots-hosting-options h4 {
+  margin: 0;
+}
+
 .chatbots-service-page .chatbots-process-list > li {
   display: grid;
   grid-template-columns: 2rem minmax(0, 1fr);

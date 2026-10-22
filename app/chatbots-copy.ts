@@ -52,6 +52,9 @@ export type ChatbotsCopy = {
   budgetNote: string;
   runningTitle: string;
   runningBody: string;
+  hostingExample: string;
+  hostingOptions: readonly { title: string; text: string }[];
+  hostingCosts: string;
   supportBody: string;
   accessBody: string;
   processLabel: string;
@@ -183,10 +186,17 @@ export const chatbotsCopy = {
     integrationsPrice: "За оцінкою",
     integrationsBody: "Обсяг залежить від потрібних систем, їхніх можливостей і доступів. Будь-яка інтеграція не входить автоматично у стартову вартість.",
     budgetNote: "Це стартова вартість розробки в зазначеному обсязі. Остаточну оцінку погоджуємо після обговорення сценаріїв, мов та інтеграцій.",
-    runningTitle: "Інфраструктура й супровід після запуску",
-    runningBody: "Розробка оплачується окремо. Хостинг, база даних і сторонні сервіси можуть мати регулярну оплату. Фактичну конфігурацію та бюджет погоджуємо до запуску.",
+    runningTitle: "Де працюватиме бот і що оплачується після запуску?",
+    runningBody: "Боту потрібне місце для виконання коду — хмарний хостинг або сумісний сервер. У хмарному варіанті купувати фізичний сервер чи постійно тримати робочий комп’ютер увімкненим не потрібно. Для службових даних і зв’язків між діалогами може знадобитися окрема база даних.",
+    hostingExample: "Один із можливих варіантів — Vercel для серверної логіки бота та окрема база даних Neon / PostgreSQL. Це приклад конфігурації, а не обов’язковий набір сервісів для кожного проєкту. Потрібні інструменти обираємо під задачу.",
+    hostingOptions: [
+      { title: "Ваші хмарні акаунти", text: "Базовий підхід: проєкт розміщується у ваших облікових записах, ви контролюєте доступи й оплачуєте провайдерів напряму. HOVER налаштовує погоджене рішення та передає інструкцію." },
+      { title: "Ваша наявна інфраструктура", text: "Якщо вже є сервер або хмарний проєкт, спочатку перевіряємо сумісність, ресурси й доступи. Сам факт наявності сайту або оплаченого хостингу не означає, що він підтримує роботу бота. Потребу в додаткових ресурсах погоджуємо окремо." },
+      { title: "Розміщення через HOVER", text: "Можливе лише за окремою домовленістю. До запуску фіксуємо, кому належать акаунти, хто оплачує провайдерів, що входить у супровід і як передається проєкт. Таке розміщення не входить автоматично у стартову ціну розробки." },
+    ],
+    hostingCosts: "Розробка, хостинг і база даних, сторонні сервіси та підтримка — окремі складові бюджету. Деякі провайдери мають безкоштовні ліміти, але нульові витрати не гарантуємо: враховуємо навантаження й умови комерційного використання. Перелік додаткових акаунтів, тарифи та порядок оплати погоджуємо до запуску.",
     supportBody: "Підтримка й нові функції не є необмеженою безкоштовною частиною стартової вартості. Їхній обсяг і умови погоджуємо в проєкті.",
-    accessBody: "Умови доступів і передачі матеріалів узгоджуємо окремо. Доступи передаємо безпечним способом після погодження роботи.",
+    accessBody: "Регіон розміщення, доступи, відповідальних за резервні копії та відновлення визначаємо в межах проєкту. Доступи й матеріали передаємо безпечним способом після погодження роботи.",
     processLabel: "06 / ПРОЦЕС І МАТЕРІАЛИ",
     processTitle: "Спочатку задача. Потім логіка й запуск.",
     steps: [
@@ -214,7 +224,7 @@ export const chatbotsCopy = {
       { id: "website", question: "Чи потрібен сайт, щоб користуватися ботом?", answer: "Ні. Бот може бути окремим каналом звернень. Сайт є однією з можливих точок входу; посилання на бота також можна використовувати в інших матеріалах компанії." },
       { id: "existing", question: "Чи можна підключити до вже існуючого сайту?", answer: "Так, після перевірки доступів, платформи та потрібного способу інтеграції. Просте посилання й передавання даних із форми потребують різного обсягу робіт; можливості коду або CMS перевіряємо окремо." },
       { id: "answers", question: "Хто відповідає клієнтам?", answer: "У сценарному боті працюють погоджені автоматичні відповіді. У форматі переписки відповідає менеджер вашої компанії, а клієнт отримує повідомлення від бота. Робочий час і порядок відповідей визначає ваша команда; жива відповідь 24/7 не включена." },
-      { id: "ongoing", question: "Що оплачується після запуску?", answer: "Інфраструктура, погоджений супровід і нові задачі. Хостинг, база даних і сторонні сервіси можуть мати регулярну оплату. Конфігурацію, бюджет і умови підтримки погоджуємо до запуску." },
+      { id: "ongoing", question: "Чи потрібно окремо оплачувати сервер або інші сервіси?", answer: "Боту потрібен хостинг; залежно від сценарію — база даних та інші сервіси. Можна використати власні хмарні акаунти, сумісну наявну інфраструктуру або окремо погодити розміщення через HOVER. Розробка, рахунки провайдерів і супровід — різні складові бюджету. Потребу в додаткових акаунтах, тарифи, платника й умови підтримки погоджуємо до запуску; безкоштовну роботу назавжди не обіцяємо." },
       { id: "expansion", question: "Чи можна додати іншу мову або кількох менеджерів?", answer: "Такі розширення можна оцінити окремо. Додаткові мови, оператори та ролі не входять автоматично у стартову ціну; спочатку погоджуємо потрібну логіку й обсяг." },
     ],
     finalLabel: "08 / ОБГОВОРІМО",
@@ -334,10 +344,17 @@ export const chatbotsCopy = {
     integrationsPrice: "Estimated separately",
     integrationsBody: "The scope depends on the systems involved, their capabilities and available access. Integrations are not automatically included in the starting price.",
     budgetNote: "These are starting development prices for the scope shown. The final estimate depends on the agreed workflows, languages and integrations.",
-    runningTitle: "Infrastructure and support after launch",
-    runningBody: "Development is charged separately. Hosting, a database and third-party services may have recurring costs. We agree the actual configuration and budget before launch.",
+    runningTitle: "Where will the bot run, and what do you pay for after launch?",
+    runningBody: "The bot needs somewhere to run its code: cloud hosting or a compatible server. With a cloud setup, you do not need to buy a physical server or keep your work computer switched on. A separate database may be needed for operational data and the links between conversations.",
+    hostingExample: "One possible setup uses Vercel for the bot’s server-side logic and a separate Neon / PostgreSQL database. This is an example configuration, not a mandatory set of services for every project. We select the tools around your requirements.",
+    hostingOptions: [
+      { title: "Your cloud accounts", text: "The default approach: the project runs in accounts you own. You control access and pay the providers directly. HOVER sets up the agreed solution and provides a handover guide." },
+      { title: "Your existing infrastructure", text: "If you already have a server or cloud project, we first check compatibility, available resources and access. Having a website or a paid hosting plan does not automatically mean it can run the bot. Any additional resources are agreed separately." },
+      { title: "Hosting arranged through HOVER", text: "This requires a separate agreement. Before launch, we define who owns the accounts, who pays the providers, what support includes and how the project can be handed over. This arrangement is not automatically included in the starting development price." },
+    ],
+    hostingCosts: "Development, hosting and database services, third-party services, and support are separate budget items. Some providers offer free allowances, but we do not guarantee zero running costs: usage and commercial-use terms matter. We agree any additional accounts, provider plans and billing arrangements before launch.",
     supportBody: "Ongoing support and new functions are not an unlimited free part of the starting price. Their scope and terms are agreed within the project.",
-    accessBody: "We also agree access arrangements and the handover of materials. Credentials are shared through a secure process once the work has been agreed.",
+    accessBody: "The project also defines the hosting region, access arrangements, and responsibility for backups and recovery. Access and materials are handed over through a secure process once the work has been agreed.",
     processLabel: "06 / PROCESS & MATERIALS",
     processTitle: "Start with the task. Then shape the flow and launch.",
     steps: [
@@ -365,7 +382,7 @@ export const chatbotsCopy = {
       { id: "website", question: "Do I need a website to use the bot?", answer: "No. The bot can be a separate channel for enquiries. A website is one possible entry point; you can also use the bot’s link in your other company materials." },
       { id: "existing", question: "Can you connect it to an existing website?", answer: "Yes, after reviewing access, the platform and the integration required. A simple link and form data delivery have different scopes. We check what the website’s code or CMS allows before agreeing the work." },
       { id: "answers", question: "Who replies to clients?", answer: "A guided bot uses agreed automatic responses. In the conversation format, your company’s manager replies and the client receives the message from the bot. Your team defines its working hours and response process; round-the-clock human replies are not included." },
-      { id: "ongoing", question: "What do I pay for after launch?", answer: "Infrastructure, agreed support and new work. Hosting, a database and third-party services may have recurring costs. We agree the configuration, budget and support terms before launch." },
+      { id: "ongoing", question: "Do I need to pay separately for a server or other services?", answer: "The bot needs hosting and, depending on its workflow, a database and other services. We can use your cloud accounts, compatible existing infrastructure, or hosting arranged through HOVER by separate agreement. Development, provider bills and support are separate budget items. We agree any additional accounts, plans, billing responsibility and support terms before launch; permanently free operation is not promised." },
       { id: "expansion", question: "Can I add another language or several managers?", answer: "These extensions can be estimated separately. Additional languages, operators and roles are not automatically included in the starting price. We first agree the required logic and scope." },
     ],
     finalLabel: "08 / LET’S TALK",
