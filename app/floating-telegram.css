@@ -1,0 +1,180 @@
+.telegram-icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: url("/icons/telegram-plane.svg") center / contain no-repeat;
+  mask: url("/icons/telegram-plane.svg") center / contain no-repeat;
+}
+
+.telegram-float {
+  --telegram-content-gutter: 2.5rem;
+  position: fixed;
+  z-index: 80;
+  right: max(var(--telegram-content-gutter), env(safe-area-inset-right));
+  bottom: calc(max(24px, env(safe-area-inset-bottom)) + var(--floating-contact-offset-bottom, 0px));
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--active);
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--active);
+  isolation: isolate;
+  text-decoration: none;
+  transform-origin: right center;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), color 260ms ease, background-color 260ms ease;
+}
+
+body:has(.privacy-page) .telegram-float {
+  right: max(var(--telegram-content-gutter), calc((100% - 82rem) / 2), env(safe-area-inset-right));
+}
+
+.telegram-float::before {
+  position: absolute;
+  z-index: -1;
+  inset: -1px;
+  border: 1px solid var(--active);
+  border-radius: inherit;
+  opacity: 0;
+  content: "";
+  pointer-events: none;
+  animation: telegram-ring 3s ease-out infinite;
+}
+
+.telegram-float > .telegram-icon {
+  width: 25px;
+  height: 25px;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.telegram-float__tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  width: max-content;
+  max-width: min(18rem, calc(100vw - 112px));
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--active);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(5px);
+  transition: opacity 260ms ease, transform 260ms ease, visibility 260ms;
+}
+
+.telegram-float__tooltip::after {
+  position: absolute;
+  top: 0;
+  right: -14px;
+  width: 14px;
+  height: 100%;
+  content: "";
+}
+
+.telegram-float:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px var(--ink);
+}
+
+.telegram-float:focus-visible::before {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) {
+  .telegram-float:hover {
+    transform: scale(1.06);
+  }
+
+  .telegram-float:hover::before {
+    animation-play-state: paused;
+  }
+
+  .telegram-float:hover > .telegram-icon {
+    transform: translate(2px, -2px);
+  }
+}
+
+@media (min-width: 1101px) {
+  .telegram-float:focus-visible .telegram-float__tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+}
+
+@media (min-width: 1101px) and (hover: hover) {
+  .telegram-float:hover .telegram-float__tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+}
+
+.telegram-float[data-tooltip-dismissed] .telegram-float__tooltip {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.telegram-float:focus-visible > .telegram-icon {
+  transform: translate(2px, -2px);
+}
+
+.telegram-float[data-obscured],
+html[data-mobile-menu-visible] .telegram-float,
+body:has(.featured-lightbox) .telegram-float,
+body:has(dialog[open]) .telegram-float,
+body:has([role="dialog"][aria-modal="true"]) .telegram-float,
+body:has([data-floating-contact-blocker]:not([hidden])) .telegram-float {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (max-width: 1100px) {
+  .telegram-float {
+    --telegram-content-gutter: 1.5rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .telegram-float {
+    --telegram-content-gutter: 1.1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .telegram-float {
+    bottom: calc(max(16px, env(safe-area-inset-bottom)) + var(--floating-contact-offset-bottom, 0px));
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@keyframes telegram-ring {
+  0% { opacity: 0; transform: scale(0.98); }
+  12% { opacity: 0.45; }
+  85%, 100% { opacity: 0; transform: scale(1.6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .telegram-float,
+  .telegram-float > .telegram-icon,
+  .telegram-float__tooltip {
+    transition: none;
+    transform: none !important;
+  }
+
+  .telegram-float::before {
+    animation: none;
+  }
+}

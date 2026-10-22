@@ -19,6 +19,8 @@
 @import "./solarcity-responsive.css";
 @import "./featured-device-motion.css";
 @import "./solarfamily-energy-flow-controls.css";
+@import "./telegram-links.css";
+@import "./floating-telegram.css";
 
 :root {
   --paper: #f4f4f0;
