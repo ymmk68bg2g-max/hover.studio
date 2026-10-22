@@ -86,7 +86,7 @@ export function SitePageEnd({ fallbackLocale }: { fallbackLocale: SiteLocale }) 
             </div>
           </div>
           <div className="contact-form-wrap reveal">
-            <ContactForm key={`${pathname}:${locale}:${initialService ?? ""}`} locale={locale} initialService={initialService} />
+            <ContactForm key={locale} locale={locale} initialService={initialService} preselectionKey={`${pathname}?${searchParams.toString()}`} />
           </div>
         </div>
       </section>

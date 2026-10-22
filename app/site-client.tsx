@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Accordion,
   AccordionContent,
@@ -17,7 +18,7 @@ import {
 import { Faq } from "./faq";
 import { HeroTechnologyField } from "./hero-technology-field";
 import { FeaturedSolarcity } from "./featured-solarcity";
-import { getServices, type ServiceSlug } from "./services";
+import { getServiceContactHref, getServiceHref, getServices, type ServiceSlug } from "./services";
 import { PriceText } from "./price-text";
 import { SiteHeader } from "./site-chrome";
 import { Testimonials } from "./testimonials";
@@ -104,6 +105,8 @@ const content = {
       label: "07 / SERVICES",
       note: "CLEAR SCOPES.\nDIRECT COLLABORATION.",
       details: "View service ↗",
+      discussBot: "Discuss your bot ↗",
+      basicBot: "A basic guided bot.",
       disclaimer: "Final scope and estimate are confirmed after a short project discussion. International pricing is quoted separately.",
     },
     care: {
@@ -186,6 +189,8 @@ const content = {
       label: "07 / ПОСЛУГИ",
       note: "ЧІТКИЙ ОБСЯГ.\nПРЯМА СПІВПРАЦЯ.",
       details: "Детальніше ↗",
+      discussBot: "Обговорити бота ↗",
+      basicBot: "Базовий сценарний бот.",
       disclaimer: "Фінальний обсяг і кошторис підтверджуються після короткого обговорення проєкту. Для міжнародних проєктів ціна розраховується окремо.",
     },
     care: {
@@ -539,7 +544,7 @@ export function HoverSite({ locale }: { locale: Locale }) {
                     aria-controls={panelId}
                     onClick={() => setActiveService((current) => current === service.id ? null : service.id)}
                   >
-                    <span>{service.number}</span><h3>{service.name}</h3><p><PriceText value={service.price} /></p><Arrow />
+                    <span>{service.number}</span><h3>{service.name}</h3><p><PriceText value={service.price} />{service.id === "chatbots" ? <><br /><span>{t.services.basicBot}</span></> : null}</p><Arrow />
                   </button>
                   <div
                     className="service-detail"
@@ -550,9 +555,16 @@ export function HoverSite({ locale }: { locale: Locale }) {
                   >
                     <div>
                       <p className="section-body">{service.intro}</p>
-                      <a href={`/${locale}/services/${service.slug}`} tabIndex={isOpen ? undefined : -1}>
+                      {service.id === "chatbots" ? <>
+                        <Link href={getServiceHref(locale, service.slug)} tabIndex={isOpen ? undefined : -1}>
+                          {t.services.details}
+                        </Link>
+                        <Link href={getServiceContactHref(locale, service.slug)} tabIndex={isOpen ? undefined : -1}>
+                          {t.services.discussBot}
+                        </Link>
+                      </> : <a href={`/${locale}/services/${service.slug}`} tabIndex={isOpen ? undefined : -1}>
                         {t.services.details}
-                      </a>
+                      </a>}
                     </div>
                   </div>
                 </div>

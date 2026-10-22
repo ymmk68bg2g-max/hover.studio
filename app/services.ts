@@ -6,6 +6,7 @@ export const serviceSlugs = [
   "corporate-websites",
   "digital-experience",
   "website-care",
+  "chatbots",
 ] as const;
 
 export type ServiceSlug = (typeof serviceSlugs)[number];
@@ -28,6 +29,15 @@ export type LocalizedService = {
 };
 
 type ServiceCopy = Omit<LocalizedService, "id" | "slug" | "number">;
+
+const chatbotsPrices = {
+  ua: { guided: "ВІД 15 000 ГРН", manager: "ВІД 25 000 ГРН" },
+  en: { guided: "FROM $450", manager: "FROM $750" },
+} as const;
+
+export function getChatbotsPrices(locale: ServiceLocale) {
+  return chatbotsPrices[locale];
+}
 
 const servicesByLocale = {
   en: {
@@ -170,6 +180,35 @@ const servicesByLocale = {
         "The exact workload, collaboration format and estimate are agreed for the relevant period. The starting price is not an unlimited scope and does not include an unconfirmed SLA or 24/7 support.",
       relatedWork: [],
     },
+    chatbots: {
+      name: "Chatbots & Integrations",
+      formLabel: "Chatbots & Integrations",
+      price: getChatbotsPrices("en").guided,
+      intro:
+        "Telegram bots for enquiries, guided conversations and communication with your team. Connected to your website and agreed services, with a clear path from first message to human response.",
+      whenItFits:
+        "For a business that needs a clear Telegram channel for enquiries, agreed answers or conversations with its team.",
+      scope: [
+        "Discussion of the task and the right format",
+        "Agreed menus, messages and conversation flow",
+        "Enquiry delivery to an agreed working channel",
+        "Development of the agreed functions",
+        "A website entry point",
+        "Scenario and error checks, deployment and a short guide",
+      ],
+      separatelyAgreed: [
+        "Additional scenarios, languages, teams and operators",
+        "Media types and external APIs",
+        "Changes to an existing third-party website",
+        "Special storage rules, extended administration and support",
+        "Hosting, databases and third-party service costs",
+      ],
+      process:
+        "We define the task, agree the workflow and its limits, build and check the solution, then connect the agreed entry points and provide a short guide.",
+      estimate:
+        "Starting development prices cover the scope shown. The final estimate and timing depend on the agreed workflows, languages and integrations. Infrastructure and ongoing support are agreed separately.",
+      relatedWork: [],
+    },
   },
   ua: {
     "landing-pages": {
@@ -309,6 +348,35 @@ const servicesByLocale = {
         "Перевіряємо поточний сайт, погоджуємо пріоритети й обсяг на визначений період, виконуємо затверджені задачі та фіксуємо, що змінилося і що варто робити далі.",
       estimate:
         "Точний обсяг, формат взаємодії та оцінку погоджуємо на відповідний період. Стартова ціна не означає необмеженого обсягу та не включає непідтверджений SLA або підтримку 24/7.",
+      relatedWork: [],
+    },
+    chatbots: {
+      name: "Чат-боти та інтеграції",
+      formLabel: "Чат-боти та інтеграції",
+      price: getChatbotsPrices("ua").guided,
+      intro:
+        "Створюємо Telegram-ботів для звернень, відповідей за сценаріями та спілкування з менеджером. Підключаємо їх до сайту й погоджених сервісів, щоб організувати шлях від першого повідомлення до розмови з компанією.",
+      whenItFits:
+        "Для бізнесу, якому потрібен зрозумілий канал у Telegram для звернень, погоджених відповідей або спілкування з командою.",
+      scope: [
+        "Обговорення задачі й потрібного формату",
+        "Погоджені меню, повідомлення та логіка переходів",
+        "Налаштування отримання звернень у погодженому каналі",
+        "Розробка погоджених функцій",
+        "Підключення точки входу із сайту",
+        "Перевірка сценаріїв і помилок, розгортання та коротка інструкція",
+      ],
+      separatelyAgreed: [
+        "Додаткові сценарії, мови, команди й оператори",
+        "Медіатипи та зовнішні API",
+        "Доопрацювання стороннього сайту",
+        "Спеціальні правила зберігання, розширене адміністрування й підтримка",
+        "Hosting, бази даних і сторонні сервіси",
+      ],
+      process:
+        "Визначаємо задачу, погоджуємо сценарій і його межі, реалізуємо та перевіряємо рішення, підключаємо потрібні точки входу й передаємо коротку інструкцію.",
+      estimate:
+        "Стартова вартість розробки відповідає зазначеному обсягу. Остаточну оцінку й термін погоджуємо після обговорення сценаріїв, мов та інтеграцій. Інфраструктура й подальша підтримка погоджуються окремо.",
       relatedWork: [],
     },
   },
