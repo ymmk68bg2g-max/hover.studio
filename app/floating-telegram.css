@@ -9,9 +9,10 @@
 }
 
 .telegram-float {
+  --telegram-content-gutter: 2.5rem;
   position: fixed;
   z-index: 80;
-  right: max(24px, env(safe-area-inset-right));
+  right: max(var(--telegram-content-gutter), env(safe-area-inset-right));
   bottom: calc(max(24px, env(safe-area-inset-bottom)) + var(--floating-contact-offset-bottom, 0px));
   display: grid;
   place-items: center;
@@ -23,7 +24,12 @@
   color: var(--active);
   isolation: isolate;
   text-decoration: none;
+  transform-origin: right center;
   transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), color 260ms ease, background-color 260ms ease;
+}
+
+body:has(.privacy-page) .telegram-float {
+  right: max(var(--telegram-content-gutter), calc((100% - 82rem) / 2), env(safe-area-inset-right));
 }
 
 .telegram-float::before {
@@ -134,9 +140,20 @@ body:has([data-floating-contact-blocker]:not([hidden])) .telegram-float {
   pointer-events: none;
 }
 
+@media (max-width: 1100px) {
+  .telegram-float {
+    --telegram-content-gutter: 1.5rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .telegram-float {
+    --telegram-content-gutter: 1.1rem;
+  }
+}
+
 @media (max-width: 767px) {
   .telegram-float {
-    right: max(16px, env(safe-area-inset-right));
     bottom: calc(max(16px, env(safe-area-inset-bottom)) + var(--floating-contact-offset-bottom, 0px));
     width: 52px;
     height: 52px;
