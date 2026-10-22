@@ -26,6 +26,17 @@ export default async function RootLayout({
   const fallbackLocale = await getRequestLocale();
   return (
     <html lang={fallbackLocale === "ua" ? "uk" : "en"} suppressHydrationWarning>
+      {fallbackLocale === "ua" && (
+        <head>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18530491505" />
+          <script id="google-ads-tag" dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18530491505');`,
+          }} />
+        </head>
+      )}
       <body className="antialiased">
         <ScrollRestoration />
         {children}

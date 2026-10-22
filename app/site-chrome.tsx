@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { flushSync } from "react-dom";
 import {
   useCallback,
@@ -137,16 +136,16 @@ function LanguageLink({ href, locale, beforeNavigate, children, ...props }: {
   hrefLang?: string;
   "aria-label"?: string;
 }) {
-  const router = useRouter();
-  return <Link {...props} href={href} scroll={false} data-language-switch onClick={event => {
+  return <a {...props} href={href} data-language-switch onClick={event => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     beforeNavigate?.();
     const target = prepareLanguageNavigation(href);
     if (!target) return;
     event.preventDefault();
     try { localStorage.setItem("hover_locale", locale); } catch { /* Navigation works without storage. */ }
-    router.push(target, { scroll: false });
-  }}>{children}</Link>;
+    // A fresh document keeps the UA-only Google tag out of the EN version.
+    window.location.assign(target);
+  }}>{children}</a>;
 }
 
 export function SiteHeader({ locale, pageKind, languageHref }: SiteChromeProps) {
