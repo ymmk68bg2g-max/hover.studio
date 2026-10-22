@@ -4,6 +4,7 @@ import { ScrollRestoration } from "./scroll-restoration";
 import { SitePageEnd } from "./site-page-end";
 import { getRequestIndexing, getRequestLocale } from "./request-locale";
 import { SITE_ORIGIN } from "./site-config";
+import { FloatingTelegram } from "./floating-telegram";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -41,6 +42,7 @@ gtag('config', 'AW-18530491505');`,
         <ScrollRestoration />
         {children}
         <SitePageEnd fallbackLocale={fallbackLocale} />
+        <FloatingTelegram fallbackLocale={fallbackLocale} />
       </body>
     </html>
   );

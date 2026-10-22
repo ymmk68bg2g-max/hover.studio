@@ -15,6 +15,7 @@ import {
 import { privacyPublicationStatus } from "./client-experience-config";
 import { Wordmark } from "./wordmark";
 import { navigateToAnchor, prepareLanguageNavigation } from "./scroll-restoration";
+import { TelegramLink } from "./telegram-link";
 
 export type SiteLocale = "en" | "ua";
 export type SitePageKind = "home" | "service" | "project" | "default";
@@ -473,6 +474,12 @@ export function SiteHeader({ locale, pageKind, languageHref }: SiteChromeProps) 
           </a>
         ) : null}
         <div className="mobile-menu-bottom">
+          <div className="mobile-menu-contact">
+            <TelegramLink locale={locale} placement="menu" onClick={() => {
+              closeForNavigation();
+              toggleRef.current?.focus({ preventScroll: true });
+            }} />
+          </div>
           <div className="mobile-menu-brand">
             <Wordmark href={homeHref} onClick={closeForNavigation} />
             <span>DESIGN THAT RESPONDS.</span>
@@ -523,6 +530,7 @@ export function SiteFooter({ locale, pageKind, languageHref }: SiteChromeProps) 
         </nav>
         <nav aria-label={t.socialNavigation}>
           <div className="footer-link-row"><a className="footer-link" href="https://www.upwork.com/freelancers/~0156b684b62004c2df" target="_blank" rel="noopener noreferrer">UPWORK</a></div>
+          <div className="footer-link-row"><TelegramLink locale={locale} placement="footer" /></div>
         </nav>
       </div>
       <div className="footer-bottom">

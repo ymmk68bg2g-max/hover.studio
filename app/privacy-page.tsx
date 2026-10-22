@@ -101,7 +101,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
         blocks: [
           {
             type: "paragraph",
-            text: "Зміст звернень особисто розглядає Полосенко Євгеній Володимирович. Інші співробітники до їх розгляду не залучені.",
+            text: "Зміст звернень поза Telegram-ботом особисто розглядає Полосенко Євгеній Володимирович. Інші співробітники до їх розгляду не залучені. Порядок роботи операторів Telegram-бота описано в розділі 10.",
           },
           {
             type: "paragraph",
@@ -127,7 +127,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
         blocks: [
           {
             type: "paragraph",
-            text: "Листування за зверненнями, які не призвели до замовлення, власник видаляє зі своїх робочих каналів через 14 днів після останнього повідомлення, якщо погоджене обговорення проєкту вже не триває.",
+            text: "Листування поза Telegram-ботом за зверненнями, які не призвели до замовлення, власник видаляє зі своїх робочих каналів через 14 днів після останнього повідомлення, якщо погоджене обговорення проєкту вже не триває. Для Telegram-бота діє окремий строк від створення діалогу, описаний у розділі 10.",
           },
           {
             type: "paragraph",
@@ -140,7 +140,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           {
             type: "list",
             items: [
-              "Правило 14 днів не поширюється автоматично на листування за чинними проєктами, договори, розрахункові документи або дані, для яких існує окрема обґрунтована потреба чи законодавча вимога зберігання.",
+              "Це правило 14 днів після останнього повідомлення не поширюється автоматично на листування за чинними проєктами, договори, розрахункові документи або дані, для яких існує окрема обґрунтована потреба чи законодавча вимога зберігання.",
               "Такі дані зберігаються протягом проєкту й після його завершення лише доки це обґрунтовано потрібно для виконання зобов’язань, вирішення питань, захисту законних прав або дотримання вимог закону. Конкретні строки не встановлюються без підтвердженої підстави.",
               "Власник видаляє контрольовані ним копії з робочої пошти та зі свого боку листування у Telegram або Viber. Це не означає одночасного видалення резервних копій, технічних журналів постачальників або копій, які залишилися у співрозмовника. Для них діють правила відповідного сервісу.",
             ],
@@ -196,12 +196,42 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
         ],
       },
+      {
+        id: "telegram-bot",
+        title: "10 / Telegram-бот @hoverstudiobot",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Користування Telegram-ботом @hoverstudiobot є добровільним. Бот використовується, щоб відповісти на звернення, уточнити завдання та обговорити проєкт.",
+          },
+          {
+            type: "paragraph",
+            text: "Під час звернення через бота обробляються Telegram ID, доступні відомості профілю, зокрема ім’я та ім’я користувача, зміст повідомлень і надіслані вкладення, обрана мова й послуга, а також необхідні технічні дані: ідентифікатори діалогу, чату та повідомлень, час і статус обробки. Бот не вимагає номера телефону.",
+          },
+          {
+            type: "paragraph",
+            text: "Повідомлення та вкладення передаються до закритої операторської групи HOVER.STUDIO, де їх розглядають уповноважені оператори та надсилають відповіді через бота. Вкладення окремо не завантажуються до власного файлового сховища студії.",
+          },
+          {
+            type: "paragraph",
+            text: "У роботі бота беруть участь Telegram для обміну повідомленнями, Vercel для виконання бота та Neon для його робочої бази даних. Ці постачальники також обробляють дані відповідно до власних умов і політик.",
+          },
+          {
+            type: "paragraph",
+            text: "Для записів діалогу в робочій базі бота та його копії в закритій операторській групі встановлено строк зберігання 14 днів від створення діалогу. Нові повідомлення не подовжують цей строк. Налаштовано автоматичне видалення цих записів і теми діалогу в групі; у разі недоступності сервісів видалення може затриматися та потребувати перевірки оператора. Це окреме правило, яке не відраховується від останнього повідомлення.",
+          },
+          {
+            type: "paragraph",
+            text: `Для дострокового видалення скористайтеся командою /delete у боті та підтвердьте запит або напишіть на ${contactEmail}. Видалення з робочих систем бота не гарантує видалення історії у вашому особистому Telegram, незалежних копій у Telegram, резервних копій або інших копій, які перебувають поза контролем HOVER.STUDIO.`,
+          },
+        ],
+      },
     ],
   },
   en: {
     eyebrow: "LEGAL INFORMATION",
     title: "Privacy Policy",
-    updated: "Last updated: 15 October 2026.",
+    updated: "Last updated: 22 October 2026.",
     intro:
       "This policy explains how personal data received through the HOVER website and during project discussions is processed. FormSubmit is configured to forward contact-form enquiries, and Google/Gmail is used for working email. Exact processing countries, storage locations, retention of technical logs and backups, and the conditions of any international transfers are still being verified.",
     sections: [
@@ -273,7 +303,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
         blocks: [
           {
             type: "paragraph",
-            text: "Enquiry content is reviewed personally by Полосенко Євгеній Володимирович. No other staff members are involved in reviewing it.",
+            text: "Enquiry content outside the Telegram bot is reviewed personally by Полосенко Євгеній Володимирович. No other staff members are involved in reviewing it. The Telegram bot’s operator workflow is described in section 10.",
           },
           {
             type: "paragraph",
@@ -295,7 +325,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
         blocks: [
           {
             type: "paragraph",
-            text: "Correspondence concerning enquiries that do not result in an order is deleted by the owner from the work channels under his control 14 days after the last message, unless an agreed project discussion is still ongoing.",
+            text: "Correspondence outside the Telegram bot concerning enquiries that do not result in an order is deleted by the owner from the work channels under his control 14 days after the last message, unless an agreed project discussion is still ongoing. The Telegram bot has a separate period measured from the creation of the conversation, as described in section 10.",
           },
           {
             type: "paragraph",
@@ -304,7 +334,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           {
             type: "list",
             items: [
-              "The 14-day rule does not automatically apply to correspondence for active projects, contracts, payment records, or data retained for a separate justified need or legal requirement.",
+              "This 14-day rule measured from the last message does not automatically apply to correspondence for active projects, contracts, payment records, or data retained for a separate justified need or legal requirement.",
               "Those categories are kept during the project and afterwards only for as long as reasonably needed to meet obligations, resolve issues, protect legal rights, or comply with law. No specific period is stated without a confirmed basis.",
               "The owner deletes copies under his control from the working mailbox and his side of Telegram or Viber conversations. This does not mean that provider backups or technical logs, or copies held by the other participant, disappear at the same time. Those copies are governed by the relevant service’s rules.",
             ],
@@ -356,6 +386,36 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           {
             type: "paragraph",
             text: "A complaint may also be made to the Ukrainian Parliament Commissioner for Human Rights or a court, or, where another law applies, to the relevant competent data-protection authority.",
+          },
+        ],
+      },
+      {
+        id: "telegram-bot",
+        title: "10 / Telegram bot @hoverstudiobot",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Using the Telegram bot @hoverstudiobot is voluntary. The bot is used to reply to enquiries, clarify the requested work, and discuss a project.",
+          },
+          {
+            type: "paragraph",
+            text: "When you contact the bot, it processes your Telegram ID, available profile information such as your name and username, message content and attachments you send, selected language and service, and necessary technical data: conversation, chat, and message identifiers, timestamps, and processing status. The bot does not require a telephone number.",
+          },
+          {
+            type: "paragraph",
+            text: "Messages and attachments are relayed to a private HOVER.STUDIO operator group, where authorised operators review them and reply through the bot. Attachments are not separately downloaded to the studio’s own file storage.",
+          },
+          {
+            type: "paragraph",
+            text: "The bot uses Telegram for messaging, Vercel to run the bot, and Neon for its working database. These providers also process data under their own terms and policies.",
+          },
+          {
+            type: "paragraph",
+            text: "Conversation records in the bot’s working database and the copy in the private operator group have a retention period of 14 days from the creation of the conversation. New messages do not extend this period. Automatic deletion of those records and the group conversation topic is configured; if services are unavailable, deletion may be delayed and require operator review. This is a separate rule that is not measured from the last message.",
+          },
+          {
+            type: "paragraph",
+            text: `To request early deletion, use /delete in the bot and confirm the request, or email ${contactEmail}. Deletion from the bot’s working systems does not guarantee removal of history in your personal Telegram, independent copies in Telegram, backups, or other copies outside HOVER.STUDIO’s control.`,
           },
         ],
       },
