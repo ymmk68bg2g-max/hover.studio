@@ -9,6 +9,7 @@ import {
 import { contactIntegrationStatus, privacyPublicationStatus } from "./client-experience-config";
 import { contactEmail } from "./contact-settings";
 import { CONTACT_REQUEST_TIMEOUT_MS, submitContactRequest } from "./contact-request";
+import { reportContactConversion } from "./google-ads-conversion";
 import {
   budgetIds,
   validateContactPayload,
@@ -82,6 +83,7 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
   const serviceId = selection.value;
   const [errors, setErrors] = useState<Partial<Record<ContactField, string>>>({});
   const statusRef = useRef<HTMLDivElement>(null);
+  const submissionState = useRef<"idle" | "pending" | "succeeded">("idle");
 
   useEffect(() => {
     if (!["success", "server", "network", "timeout"].includes(status)) return;
@@ -158,7 +160,7 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (status === "loading") return;
+    if (submissionState.current !== "idle") return;
 
     const form = event.currentTarget;
     const values = new FormData(form);
@@ -184,6 +186,7 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
     }
 
     setErrors({});
+    submissionState.current = "pending";
     setStatus("loading");
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), CONTACT_REQUEST_TIMEOUT_MS);
@@ -201,7 +204,9 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
         return;
       }
       if (responseStatus >= 200 && responseStatus < 300 && result?.ok === true) {
+        submissionState.current = "succeeded";
         setStatus("success");
+        reportContactConversion();
         return;
       }
       setStatus(result?.code === "UPSTREAM_TIMEOUT" ? "timeout" : "server");
@@ -209,6 +214,7 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
       setStatus(error instanceof Error && error.name === "AbortError" ? "timeout" : "network");
     } finally {
       window.clearTimeout(timeout);
+      if (submissionState.current === "pending") submissionState.current = "idle";
     }
   };
 
@@ -218,7 +224,7 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
         <span>01 / OK</span>
         <h3>{t.successThanks}{" "}<span className="form-success-confirmation">{t.successConfirmation}</span></h3>
         <p>{t.successBody}</p>
-        <button type="button" onClick={() => setStatus("idle")}>{t.reset}{" "}<UiArrow /></button>
+        <button type="button" onClick={() => { submissionState.current = "idle"; setStatus("idle"); }}>{t.reset}{" "}<UiArrow /></button>
       </div>
     );
   }
