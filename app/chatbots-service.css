@@ -46,8 +46,7 @@
   outline-offset: 5px;
 }
 
-.chatbots-service-page .chatbots-text-link:hover,
-.chatbots-service-page .chatbots-example-price:hover {
+.chatbots-service-page .chatbots-text-link:hover {
   color: var(--active);
   border-color: var(--active);
 }
@@ -138,17 +137,6 @@
   margin: 1.25rem 0 0;
 }
 
-.chatbots-service-page .chatbots-example-price {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--line);
-  font-family: "IBM Plex Mono", Consolas, monospace;
-  font-size: var(--content-meta-size);
-  font-weight: 400;
-  line-height: 1.5;
-}
-
 .chatbots-service-page .chatbots-example-details {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
@@ -226,6 +214,8 @@
 .chatbots-service-page .chatbots-price-intro {
   min-height: 4.65em;
   margin: 0;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
 }
 
 .chatbots-service-page .chatbots-price-format .chatbots-scope-list {
@@ -239,6 +229,16 @@
 
 .chatbots-service-page .chatbots-price-format .service-primary-cta {
   width: fit-content;
+}
+
+@media (min-width: 761px) {
+  @supports (grid-template-rows: subgrid) {
+    .chatbots-service-page .chatbots-price-format {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 7;
+    }
+  }
 }
 
 .chatbots-service-page .chatbots-commercial-notes {

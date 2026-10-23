@@ -66,7 +66,6 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
               <h2 className="chatbots-section-title content-heading" id="chatbots-example-title">{ui.exampleTitle}</h2>
               <p className="service-text-body">{ui.exampleBody}</p>
               <p className="chatbots-small-note content-meta">{ui.ownSolution}</p>
-              <a className="chatbots-example-price" href="#chatbots-prices">{ui.similarPrice} <PriceText value={prices.manager} /><span aria-hidden="true"> ↓</span></a>
             </div>
           </div>
 

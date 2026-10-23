@@ -22,7 +22,6 @@ export type ChatbotsCopy = {
   exampleTitle: string;
   exampleBody: string;
   ownSolution: string;
-  similarPrice: string;
   replyTitle: string;
   replyBody: string;
   privacyBody: string;
@@ -113,7 +112,6 @@ export const chatbotsCopy = {
     exampleTitle: "Один бот для клієнта. Окремі діалоги для команди.",
     exampleBody: "Для HOVER ми створили власний канал спілкування через Telegram. Клієнт звертається до бота студії, а робота зі зверненням відбувається у закритому просторі з окремими діалогами. Відповідь менеджера повертається клієнту від імені HOVER.",
     ownSolution: "Це власне рішення студії, а не зовнішній клієнтський проєкт.",
-    similarPrice: "Подібне рішення —",
     replyTitle: "Reply — відповідь клієнту. Нотатка — для команди.",
     replyBody: "Менеджер використовує Reply на повідомлення клієнта у відповідному внутрішньому діалозі. Так відповідь надходить клієнту від бота HOVER. Звичайні повідомлення без Reply залишаються внутрішніми нотатками.",
     privacyBody: "Звернення надходять у закриту робочу групу HOVER | CLIENT INBOX. Для кожного клієнта є окремий внутрішній діалог; інші клієнти не приєднуються до цієї групи.",
@@ -273,7 +271,6 @@ export const chatbotsCopy = {
     exampleTitle: "One bot for the client. Separate conversations for the team.",
     exampleBody: "We built HOVER’s own communication channel in Telegram. Clients contact the studio’s bot, while the team handles each enquiry in a separate conversation within a private workspace. A manager’s reply reaches the client on behalf of HOVER.",
     ownSolution: "This is the studio’s own implementation, rather than an external client project.",
-    similarPrice: "A similar implementation —",
     replyTitle: "Reply reaches the client. Notes stay with the team.",
     replyBody: "The manager uses Reply on a client’s message in the relevant internal conversation. This sends the response to the client through HOVER’s bot. Ordinary messages posted without Reply remain internal notes.",
     privacyBody: "Enquiries arrive in the private HOVER | CLIENT INBOX working group. Each client has a separate internal conversation; other clients do not join this group.",
