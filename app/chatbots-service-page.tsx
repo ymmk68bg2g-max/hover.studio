@@ -37,9 +37,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
               <p className="service-text-lead">{ui.lead}</p>
               <p className="service-text-body">{ui.intro}</p>
             </div>
-            <div className="chatbots-intro-actions">
-              <a className="service-primary-cta" href="#hover-example"><span>{ui.seeExample}</span><span aria-hidden="true">↓</span></a>
-            </div>
+            <a className="service-primary-cta" href="#hover-example"><span>{ui.seeExample}</span><span aria-hidden="true">↓</span></a>
           </div>
         </section>
 

@@ -3,23 +3,13 @@
   color: #65645f;
 }
 
-.chatbots-service-page .chatbots-intro {
-  min-height: max(49rem, calc(100svh - 5.25rem));
-  padding-bottom: 4.5rem;
-}
-
 .chatbots-service-page .chatbots-intro .service-text-title {
-  max-width: 100%;
-  margin: 5rem 0 4.5rem;
   text-transform: uppercase;
 }
 
-.chatbots-service-page .chatbots-intro-copy {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.48fr);
-  gap: clamp(2rem, 5vw, 6rem);
-  margin-left: calc(var(--service-label-width) + var(--service-column-gap));
-  align-items: end;
+.chatbots-service-page .chatbots-intro-text {
+  grid-column: 2;
+  max-width: 42rem;
 }
 
 .chatbots-service-page .chatbots-intro-text,
@@ -35,16 +25,7 @@
   margin: 0;
 }
 
-.chatbots-service-page .chatbots-intro-actions {
-  display: flex;
-  align-items: end;
-  min-width: 0;
-  padding-bottom: 0.2rem;
-}
-
-.chatbots-service-page .chatbots-intro-actions .service-primary-cta {
-  grid-column: auto;
-  width: 100%;
+.chatbots-service-page .chatbots-intro-copy .service-primary-cta {
   text-transform: uppercase;
 }
 
@@ -495,14 +476,6 @@
 }
 
 @media (max-width: 1100px) {
-  .chatbots-service-page .chatbots-intro {
-    min-height: auto;
-  }
-
-  .chatbots-service-page .chatbots-intro-copy {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .chatbots-service-page .chatbots-scope-columns,
   .chatbots-service-page .chatbots-connection-options {
     grid-template-columns: minmax(0, 1fr);
@@ -532,26 +505,8 @@
 }
 
 @media (max-width: 760px) {
-  .chatbots-service-page .chatbots-intro {
-    padding-bottom: 3.5rem;
-  }
-
-  .chatbots-service-page .chatbots-intro .service-text-title {
-    margin: 4rem 0 3rem;
-    font-size: clamp(2.65rem, 10.5vw, 4.25rem);
-  }
-
-  .chatbots-service-page .chatbots-intro-copy {
-    margin-left: 0;
-    gap: 2rem;
-  }
-
-  .chatbots-service-page .chatbots-intro-actions {
-    width: min(100%, 21rem);
-  }
-
-  .chatbots-service-page .chatbots-intro-actions .service-primary-cta {
-    width: min(100%, 21rem);
+  .chatbots-service-page .chatbots-intro-text {
+    margin-bottom: 2.5rem;
   }
 
   .chatbots-service-page .service-section-index {

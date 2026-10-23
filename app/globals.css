@@ -5458,8 +5458,10 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
 
 .service-primary-cta {
   display: inline-flex;
-  justify-content: space-between;
-  gap: 1.5rem;
+  width: fit-content;
+  max-width: 100%;
+  justify-content: flex-start;
+  gap: 1rem;
   align-items: center;
   padding-bottom: 0.45rem;
   border-bottom: 1px solid var(--ink);
@@ -5539,6 +5541,7 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
 
 .service-intro-copy .service-primary-cta {
   grid-column: 4;
+  justify-self: end;
 }
 
 .service-editorial-section {
