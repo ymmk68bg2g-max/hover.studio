@@ -27,9 +27,9 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
   ua: {
     eyebrow: "ЮРИДИЧНА ІНФОРМАЦІЯ",
     title: "Політика конфіденційності",
-    updated: "Актуалізовано 22 жовтня 2026 року.",
+    updated: "Актуалізовано 23 жовтня 2026 року.",
     intro:
-      "Ця політика пояснює, як обробляються персональні дані, отримані через сайт HOVER та під час обговорення співпраці. Для передавання звернень із контактної форми налаштовано FormSubmit, а для робочої пошти використовується Google/Gmail. В українській версії сайту встановлено Google tag для Google Ads з ідентифікатором AW-18530491505 для вимірювання ефективності реклами. Точні країни обробки, місця зберігання, строки зберігання технічних журналів і резервних копій та умови міжнародної передачі ще перевіряються.",
+      "Ця політика пояснює, як обробляються персональні дані, отримані через сайт HOVER та під час обговорення співпраці. Для передавання звернень із контактної форми налаштовано FormSubmit, а для робочої пошти використовується Google/Gmail. На всіх мовних версіях сайту встановлено Google tag для Google Ads з ідентифікатором AW-18530491505 для вимірювання ефективності реклами. Точні країни обробки, місця зберігання, строки зберігання технічних журналів і резервних копій та умови міжнародної передачі ще перевіряються.",
     sections: [
       {
         id: "controller",
@@ -56,7 +56,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "Форма не містить поля для номера телефону або завантаження файлів.",
               "Під час листування електронною поштою, у Telegram або Viber обробляються адреса чи ідентифікатор профілю, зміст і час повідомлень та інші відомості, які особа сама надсилає в обраному каналі.",
               "Під час відвідування сайту хостингова й захисна інфраструктура може обробляти технічні відомості, необхідні для передавання та захисту сторінок: зокрема IP-адресу, тип браузера, заголовки запиту, адресу запитаної сторінки, дату й час запиту.",
-              "Під час завантаження української версії сайту Google tag може передавати Google URL відвіданої сторінки, IP-адресу, відомості про браузер, пристрій і час запиту, а також ідентифікатори cookies та переходів із реклами. Конкретний склад даних залежить від налаштувань Google, браузера та взаємодії з рекламою.",
+              "Під час завантаження будь-якої мовної версії сайту Google tag може передавати Google URL відвіданої сторінки, IP-адресу, відомості про браузер, пристрій і час запиту, а також ідентифікатори cookies та переходів із реклами. Конкретний склад даних залежить від налаштувань Google, браузера та взаємодії з рекламою.",
             ],
           },
         ],
@@ -71,7 +71,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "Щоб відповісти на звернення, уточнити завдання, підготувати пропозицію та обговорити співпрацю.",
               "Щоб вести погоджений проєкт.",
               "Щоб забезпечити роботу й захист контактної форми та запобігати зловживанням.",
-              "Щоб оцінювати ефективність реклами та пов’язувати відвідування української версії сайту з рекламними переходами за допомогою Google Ads.",
+              "Щоб оцінювати ефективність реклами та пов’язувати відвідування сайту в усіх мовних версіях з рекламними переходами за допомогою Google Ads.",
               "Щоб виконати конкретний юридичний обов’язок, якщо він виникає.",
             ],
           },
@@ -109,7 +109,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
-            text: "Google також отримує технічні дані через Google tag для Google Ads в українській версії сайту. Як Google використовує дані сайтів-партнерів, описано на https://policies.google.com/technologies/partner-sites?hl=uk.",
+            text: "Google також отримує технічні дані через Google tag для Google Ads в усіх мовних версіях сайту. Як Google використовує дані сайтів-партнерів, описано на https://policies.google.com/technologies/partner-sites?hl=uk.",
           },
           {
             type: "paragraph",
@@ -171,7 +171,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "Сайт зберігає вибір мови в cookie hover_locale строком до одного року та в localStorage браузера. Запис у localStorage зберігається, доки його не буде замінено або видалено у браузері.",
               "Позиція прокручування для конкретної адреси тимчасово зберігається в sessionStorage, щоб відновити її після оновлення сторінки.",
               "Шрифти завантажуються з Google Fonts, тому браузер надсилає цьому сервісу окремий технічний запит.",
-              "В українській версії встановлено Google tag для Google Ads з ідентифікатором AW-18530491505. Він завантажується під час відкриття UA-сторінок і може встановлювати або зчитувати рекламні та вимірювальні cookies, зокрема для пов’язування відвідування з переходом із реклами.",
+              "На всіх мовних версіях сайту встановлено Google tag для Google Ads з ідентифікатором AW-18530491505. Він завантажується під час відкриття сторінок сайту будь-якою мовою і може встановлювати або зчитувати рекламні та вимірювальні cookies, зокрема для пов’язування відвідування з переходом із реклами.",
               "Google може використовувати отримані від сайтів дані для вимірювання ефективності реклами та, залежно від налаштувань, її персоналізації. Керувати cookies можна в налаштуваннях браузера, а параметрами персоналізації реклами — у налаштуваннях Google.",
               "Хостингова або захисна платформа може встановлювати суворо необхідні cookies, якщо відповідні функції захисту ввімкнені. Фактичну конфігурацію та строки зберігання таких cookies ще потрібно перевірити.",
             ],
@@ -231,9 +231,9 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
   en: {
     eyebrow: "LEGAL INFORMATION",
     title: "Privacy Policy",
-    updated: "Last updated: 22 October 2026.",
+    updated: "Last updated: 23 October 2026.",
     intro:
-      "This policy explains how personal data received through the HOVER website and during project discussions is processed. FormSubmit is configured to forward contact-form enquiries, and Google/Gmail is used for working email. Exact processing countries, storage locations, retention of technical logs and backups, and the conditions of any international transfers are still being verified.",
+      "This policy explains how personal data received through the HOVER website and during project discussions is processed. FormSubmit is configured to forward contact-form enquiries, and Google/Gmail is used for working email. The Google tag for Google Ads, with the identifier AW-18530491505, is installed across all language versions of the website to measure advertising effectiveness. Exact processing countries, storage locations, retention of technical logs and backups, and the conditions of any international transfers are still being verified.",
     sections: [
       {
         id: "controller",
@@ -260,6 +260,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "The form does not include a telephone-number field or file uploads.",
               "When a conversation continues by email, Telegram, or Viber, the address or profile identifier, message content and time, and other information voluntarily sent through that channel are processed.",
               "When the website is visited, hosting and security infrastructure may process technical information needed to deliver and protect the pages, including the IP address, browser type, request headers, requested page, and request date and time.",
+              "When any language version of the website loads, the Google tag may send Google the URL of the page visited, IP address, browser and device information, request time, and cookie and advertising-click identifiers. The exact data depends on Google settings, the browser, and interaction with advertising.",
             ],
           },
         ],
@@ -274,6 +275,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "Replying to an enquiry, clarifying the requested work, preparing a proposal, and discussing possible cooperation.",
               "Managing an agreed project.",
               "Operating and protecting the contact form and preventing misuse.",
+              "Measuring advertising effectiveness and associating visits to all language versions of the website with advertising clicks through Google Ads.",
               "Complying with a specific legal obligation where one arises.",
             ],
           },
@@ -311,6 +313,10 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
+            text: "Google also receives technical data through the Google tag for Google Ads across all language versions of the website. How Google uses data from partner websites is described at https://policies.google.com/technologies/partner-sites?hl=en.",
+          },
+          {
+            type: "paragraph",
             text: `After server validation, the browser sends contact-form data to FormSubmit over HTTPS for forwarding to the working address ${contactEmail}.`,
           },
           {
@@ -332,6 +338,10 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
             text: "According to FormSubmit’s documentation, the service retains form submissions for 30 days. This is a separate retention period at FormSubmit; the owner deleting correspondence from his working channels after 14 days does not shorten it.",
           },
           {
+            type: "paragraph",
+            text: "Google data retention depends on the type of data, the processing purpose, and the settings of its services and the user. Exact retention periods for Google Ads data and advertising cookies in the website’s actual configuration have not yet been confirmed. The 14-day rule for correspondence does not apply to them.",
+          },
+          {
             type: "list",
             items: [
               "This 14-day rule measured from the last message does not automatically apply to correspondence for active projects, contracts, payment records, or data retained for a separate justified need or legal requirement.",
@@ -347,11 +357,11 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
         blocks: [
           {
             type: "paragraph",
-            text: "HOVER works with clients in Ukraine and other countries. Technical providers and messaging services may process data outside Ukraine. Processing locations depend on the actual configuration of the relevant providers.",
+            text: "HOVER works with clients in Ukraine and other countries. Technical providers and messaging services may process data outside Ukraine. Processing locations depend on the actual configuration of the relevant providers. Google states that it uses servers in various countries; Google Ads data may also be processed outside Ukraine.",
           },
           {
             type: "paragraph",
-            text: "The exact processing countries and applicable safeguards have not yet been confirmed for FormSubmit, Google/Gmail, and the actual hosting configuration. Where data-protection law imposes requirements on a particular transfer, it must be made on a basis and with safeguards provided by that law.",
+            text: "The exact processing countries and applicable safeguards have not yet been confirmed for FormSubmit, Google/Gmail, Google Ads, and the actual hosting configuration. Where data-protection law imposes requirements on a particular transfer, it must be made on a basis and with safeguards provided by that law.",
           },
         ],
       },
@@ -365,7 +375,8 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "The website stores the language choice in the hover_locale cookie for up to one year and in the browser’s localStorage. The localStorage entry remains until it is replaced or cleared in the browser.",
               "The scroll position for a specific address is stored temporarily in sessionStorage so it can be restored after a page reload.",
               "Fonts are loaded from Google Fonts, which causes the browser to make a separate technical request to that service.",
-              "No Google Analytics, advertising pixels, marketing trackers, or third-party embeds were found in the inspected code. Google Search Console is not Google Analytics; possible configuration outside the source code does not mean that enquiry content is sent to it.",
+              "The Google tag for Google Ads, with the identifier AW-18530491505, is installed across all language versions of the website. It loads when pages are opened in any language and may set or read advertising and measurement cookies, including to associate visits with advertising clicks.",
+              "Google may use data received from websites to measure advertising effectiveness and, depending on settings, to personalise advertising. Cookies can be managed in browser settings, and advertising-personalisation preferences can be managed in Google settings.",
               "The hosting or security platform may set strictly necessary cookies if the relevant protection features are enabled. The actual configuration and retention of any such cookies still need to be verified.",
             ],
           },

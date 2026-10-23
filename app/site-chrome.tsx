@@ -139,7 +139,7 @@ function LanguageLink({ href, locale, beforeNavigate, children, ...props }: {
     if (!target) return;
     event.preventDefault();
     try { localStorage.setItem("hover_locale", locale); } catch { /* Navigation works without storage. */ }
-    // A fresh document keeps the UA-only Google tag out of the EN version.
+    // A fresh document applies the selected language and its saved scroll context together.
     window.location.assign(target);
   }}>{children}</a>;
 }
