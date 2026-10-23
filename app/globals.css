@@ -5554,6 +5554,13 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
   color: var(--grey);
 }
 
+@media (min-width: 761px) {
+  .service-page .service-editorial-section:not(.service-related) h2:not(.sr-only) {
+    /* Align Inter Tight cap tops with the IBM Plex Mono section label. */
+    translate: 0 calc(var(--section-meta-size) * 0.402 - 0.5lh + 0.36376953em);
+  }
+}
+
 .service-when .service-text-lead {
   max-width: 63rem;
   margin: 0;

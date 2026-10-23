@@ -36,11 +36,9 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
             <div className="chatbots-intro-text">
               <p className="service-text-lead">{ui.lead}</p>
               <p className="service-text-body">{ui.intro}</p>
-              <p className="chatbots-intro-price"><PriceText value={prices.guided} /><span> — {ui.basicPriceNote}</span></p>
             </div>
             <div className="chatbots-intro-actions">
-              <Link className="service-primary-cta" href={contactHref}><span>{ui.discuss}</span><Arrow /></Link>
-              <a className="chatbots-text-link" href="#hover-example"><span>{ui.seeExample}</span><span aria-hidden="true">↓</span></a>
+              <a className="service-primary-cta" href="#hover-example"><span>{ui.seeExample}</span><span aria-hidden="true">↓</span></a>
             </div>
           </div>
         </section>
@@ -121,26 +119,35 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
               </article>
             ))}
           </div>
-          <div className="chatbots-integration-estimate">
-            <h3 className="service-content-subheading">{ui.integrationsTitle}</h3>
-            <div><p className="service-content-subheading">{ui.integrationsPrice}</p><p className="service-text-body">{ui.integrationsBody}</p></div>
-          </div>
-          <p className="service-text-body chatbots-budget-note">{ui.budgetNote}</p>
-          <div className="chatbots-running-costs" id="chatbots-hosting">
-            <h3 className="service-content-subheading">{ui.runningTitle}</h3>
-            <div>
-              <p className="service-text-body">{ui.runningBody}</p>
-              <p className="service-text-body">{ui.hostingExample}</p>
+          <div className="chatbots-commercial-notes">
+            <aside className="chatbots-integration-estimate" aria-labelledby="chatbots-integrations-title">
+              <div className="chatbots-integration-heading">
+                <h3 className="service-content-subheading" id="chatbots-integrations-title">{ui.integrationsTitle}</h3>
+                <p>{ui.integrationsPrice}</p>
+              </div>
+              <p className="service-text-body">{ui.integrationsBody}</p>
+              <p className="service-text-body chatbots-budget-note">{ui.budgetNote}</p>
+            </aside>
+            <section className="chatbots-running-costs" id="chatbots-hosting" aria-labelledby="chatbots-hosting-title">
+              <div className="chatbots-hosting-overview">
+                <h3 className="service-content-subheading" id="chatbots-hosting-title">{ui.runningTitle}</h3>
+                <div>
+                  <p className="service-text-body">{ui.runningBody}</p>
+                  <p className="service-text-body">{ui.hostingExample}</p>
+                </div>
+              </div>
               <ol className="chatbots-hosting-options">
                 {ui.hostingOptions.map((option, index) => <li key={option.title}>
                   <span className="chatbots-hosting-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                   <div><h4 className="service-content-subheading">{option.title}</h4><p className="service-text-body">{option.text}</p></div>
                 </li>)}
               </ol>
-              <p className="service-text-body">{ui.hostingCosts}</p>
-              <p className="service-text-body">{ui.supportBody}</p>
-              <p className="service-text-body chatbots-note">{ui.accessBody}</p>
-            </div>
+              <div className="chatbots-hosting-terms">
+                <div><h4>{ui.hostingCostsLabel}</h4><p className="service-text-body">{ui.hostingCosts}</p></div>
+                <div><h4>{ui.supportLabel}</h4><p className="service-text-body">{ui.supportBody}</p></div>
+                <div><h4>{ui.accessLabel}</h4><p className="service-text-body">{ui.accessBody}</p></div>
+              </div>
+            </section>
           </div>
         </section>
 

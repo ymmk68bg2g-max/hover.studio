@@ -13,7 +13,6 @@ export type ChatbotsCopy = {
   service: string;
   lead: string;
   intro: string;
-  basicPriceNote: string;
   discuss: string;
   seeExample: string;
   formatsLabel: string;
@@ -54,6 +53,9 @@ export type ChatbotsCopy = {
   runningBody: string;
   hostingExample: string;
   hostingOptions: readonly { title: string; text: string }[];
+  hostingCostsLabel: string;
+  supportLabel: string;
+  accessLabel: string;
   hostingCosts: string;
   supportBody: string;
   accessBody: string;
@@ -74,10 +76,9 @@ export type ChatbotsCopy = {
 
 export const chatbotsCopy = {
   ua: {
-    service: "ПОСЛУГА / TELEGRAM",
+    service: "ПОСЛУГА",
     lead: "Від першого повідомлення — до розмови з менеджером.",
     intro: "Telegram-боти для бізнесу: приймання звернень, відповіді за погодженими сценаріями та спілкування від імені компанії. Допомагаємо обрати потрібний формат, налаштовуємо логіку й підключаємо його до сайту.",
-    basicPriceNote: "базовий сценарний бот.",
     discuss: "Обговорити задачу",
     seeExample: "Як це працює у HOVER",
     formatsLabel: "02 / ФОРМАТИ",
@@ -194,6 +195,9 @@ export const chatbotsCopy = {
       { title: "Ваша наявна інфраструктура", text: "Якщо вже є сервер або хмарний проєкт, спочатку перевіряємо сумісність, ресурси й доступи. Сам факт наявності сайту або оплаченого хостингу не означає, що він підтримує роботу бота. Потребу в додаткових ресурсах погоджуємо окремо." },
       { title: "Розміщення через HOVER", text: "Можливе лише за окремою домовленістю. До запуску фіксуємо, кому належать акаунти, хто оплачує провайдерів, що входить у супровід і як передається проєкт. Таке розміщення не входить автоматично у стартову ціну розробки." },
     ],
+    hostingCostsLabel: "Витрати й оплата",
+    supportLabel: "Підтримка",
+    accessLabel: "Доступи й передача",
     hostingCosts: "Розробка, хостинг і база даних, сторонні сервіси та підтримка — окремі складові бюджету. Деякі провайдери мають безкоштовні ліміти, але нульові витрати не гарантуємо: враховуємо навантаження й умови комерційного використання. Перелік додаткових акаунтів, тарифи та порядок оплати погоджуємо до запуску.",
     supportBody: "Підтримка й нові функції не є необмеженою безкоштовною частиною стартової вартості. Їхній обсяг і умови погоджуємо в проєкті.",
     accessBody: "Регіон розміщення, доступи, відповідальних за резервні копії та відновлення визначаємо в межах проєкту. Доступи й матеріали передаємо безпечним способом після погодження роботи.",
@@ -232,10 +236,9 @@ export const chatbotsCopy = {
     finalBody: "Розкажіть, як зараз надходять звернення, хто на них відповідає та що хочете впорядкувати. Запропонуємо відповідний сценарій і погодимо обсяг роботи.",
   },
   en: {
-    service: "SERVICE / TELEGRAM",
+    service: "SERVICE",
     lead: "From the first message to a conversation with your team.",
     intro: "Telegram bots for business enquiries, agreed response flows and conversations on behalf of your company. We help you choose the right format, build the logic and connect it to your website.",
-    basicPriceNote: "a basic guided bot.",
     discuss: "Discuss your project",
     seeExample: "See how HOVER uses it",
     formatsLabel: "02 / FORMATS",
@@ -352,6 +355,9 @@ export const chatbotsCopy = {
       { title: "Your existing infrastructure", text: "If you already have a server or cloud project, we first check compatibility, available resources and access. Having a website or a paid hosting plan does not automatically mean it can run the bot. Any additional resources are agreed separately." },
       { title: "Hosting arranged through HOVER", text: "This requires a separate agreement. Before launch, we define who owns the accounts, who pays the providers, what support includes and how the project can be handed over. This arrangement is not automatically included in the starting development price." },
     ],
+    hostingCostsLabel: "Costs & billing",
+    supportLabel: "Support",
+    accessLabel: "Access & handover",
     hostingCosts: "Development, hosting and database services, third-party services, and support are separate budget items. Some providers offer free allowances, but we do not guarantee zero running costs: usage and commercial-use terms matter. We agree any additional accounts, provider plans and billing arrangements before launch.",
     supportBody: "Ongoing support and new functions are not an unlimited free part of the starting price. Their scope and terms are agreed within the project.",
     accessBody: "The project also defines the hosting region, access arrangements, and responsibility for backups and recovery. Access and materials are handed over through a secure process once the work has been agreed.",
