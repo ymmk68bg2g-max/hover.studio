@@ -5,6 +5,7 @@ import { getProject } from "./projects";
 import { PriceText } from "./price-text";
 import { getService, type ServiceLocale, type ServiceSlug } from "./services";
 import { SiteHeader } from "./site-chrome";
+import { UiArrow } from "./ui-arrow";
 
 const copy = {
   en: {
@@ -22,7 +23,7 @@ const copy = {
 } as const;
 
 function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+  return <UiArrow />;
 }
 
 export function ServicePage({ locale, slug }: { locale: ServiceLocale; slug: ServiceSlug }) {

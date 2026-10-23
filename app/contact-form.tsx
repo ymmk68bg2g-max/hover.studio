@@ -15,6 +15,7 @@ import {
   type ContactField,
 } from "./contact-schema";
 import { getServices, type ServiceLocale, type ServiceSlug } from "./services";
+import { UiArrow } from "./ui-arrow";
 
 type FormStatus = "idle" | "loading" | "success" | "validation" | "server" | "network" | "timeout";
 
@@ -66,11 +67,7 @@ const copy = {
 } as const;
 
 function Arrow() {
-  return (
-    <span className="ui-arrow" aria-hidden="true">
-      <svg viewBox="0 0 16 16" focusable="false"><path d="M3.25 12.75 12.75 3.25M6 3.25h6.75V10" /></svg>
-    </span>
-  );
+  return <UiArrow />;
 }
 
 export function ContactForm({ locale, initialService, preselectionKey }: { locale: ServiceLocale; initialService?: ServiceSlug; preselectionKey?: string }) {
@@ -221,7 +218,7 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
         <span>01 / OK</span>
         <h3>{t.successThanks}{" "}<span className="form-success-confirmation">{t.successConfirmation}</span></h3>
         <p>{t.successBody}</p>
-        <button type="button" onClick={() => setStatus("idle")}>{t.reset} ↗</button>
+        <button type="button" onClick={() => setStatus("idle")}>{t.reset}{" "}<UiArrow /></button>
       </div>
     );
   }
@@ -283,7 +280,7 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
       </button>
       <div className="form-data-notice">
         <p>{contactIntegrationStatus === "pending" ? t.pendingNotice : t.privacyNotice}</p>
-        {privacyPublicationStatus !== "hidden" ? <Link href={`/${locale}/privacy`}>{t.privacyLink} ↗</Link> : null}
+        {privacyPublicationStatus !== "hidden" ? <Link href={`/${locale}/privacy`}>{t.privacyLink}{" "}<UiArrow /></Link> : null}
       </div>
     </form>
   );

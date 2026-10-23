@@ -16,6 +16,7 @@ import { privacyPublicationStatus } from "./client-experience-config";
 import { Wordmark } from "./wordmark";
 import { navigateToAnchor, prepareLanguageNavigation } from "./scroll-restoration";
 import { TelegramLink } from "./telegram-link";
+import { UiArrow } from "./ui-arrow";
 
 export type SiteLocale = "en" | "ua";
 export type SitePageKind = "home" | "service" | "project" | "default";
@@ -35,8 +36,8 @@ const chromeCopy = {
     about: "ABOUT",
     contact: "CONTACT",
     start: "START A PROJECT",
-    backServices: "← BACK TO SERVICES",
-    backWork: "← BACK TO WORK",
+    backServices: "BACK TO SERVICES",
+    backWork: "BACK TO WORK",
     descriptor: "DIGITAL DESIGN / DEVELOPMENT",
     location: "KYIV / UKRAINE\nWORKING WORLDWIDE",
     top: "BACK TO TOP",
@@ -58,8 +59,8 @@ const chromeCopy = {
     about: "ПРО СТУДІЮ",
     contact: "КОНТАКТ",
     start: "ПОЧАТИ ПРОЄКТ",
-    backServices: "← НАЗАД ДО ПОСЛУГ",
-    backWork: "← НАЗАД ДО ПРОЄКТІВ",
+    backServices: "НАЗАД ДО ПОСЛУГ",
+    backWork: "НАЗАД ДО ПРОЄКТІВ",
     descriptor: "DIGITAL-ДИЗАЙН / РОЗРОБКА",
     location: "КИЇВ / УКРАЇНА\nПРАЦЮЄМО ПО ВСЬОМУ СВІТУ",
     top: "НАГОРУ",
@@ -76,13 +77,7 @@ type SiteChromeProps = {
 };
 
 function HeaderArrow() {
-  return (
-    <span className="ui-arrow" aria-hidden="true">
-      <svg viewBox="0 0 16 16" focusable="false">
-        <path d="M3.25 12.75 12.75 3.25M6 3.25h6.75V10" />
-      </svg>
-    </span>
-  );
+  return <UiArrow />;
 }
 
 function CompactMenuIcon({ open }: { open: boolean }) {
@@ -410,7 +405,7 @@ export function SiteHeader({ locale, pageKind, languageHref }: SiteChromeProps) 
             <span className={locale === "ua" ? "active" : ""}>UA</span> / <span className={locale === "en" ? "active" : ""}>EN</span>
           </LanguageLink>
           <a className="header-cta" href={action.href} data-header-action>
-            <span>{action.label}</span>
+            <span>{pageKind === "service" || pageKind === "project" ? <><UiArrow direction="left" />{" "}</> : null}{action.label}</span>
             {pageKind === "home" || pageKind === "default" ? <HeaderArrow /> : null}
           </a>
           <button
@@ -470,7 +465,7 @@ export function SiteHeader({ locale, pageKind, languageHref }: SiteChromeProps) 
             aria-label={action.label}
             onClick={(event) => followMobileNav(event, mobileActionHref)}
           >
-            {action.label}
+            {pageKind === "service" || pageKind === "project" ? <><UiArrow direction="left" />{" "}</> : null}{action.label}
           </a>
         ) : null}
         <div className="mobile-menu-bottom">
@@ -517,7 +512,7 @@ export function SiteFooter({ locale, pageKind, languageHref }: SiteChromeProps) 
 
   return (
     <footer className="footer" data-site-footer data-scroll-region="footer">
-      <div className="footer-top"><Link href={brandHref} className="footer-brand">HOVER.STUDIO</Link><a className="footer-link" href="#top">{t.top} ↑</a></div>
+      <div className="footer-top"><Link href={brandHref} className="footer-brand">HOVER.STUDIO</Link><a className="footer-link" href="#top">{t.top}{" "}<UiArrow direction="up" /></a></div>
       <div className="footer-grid">
         <span className="footer-info">{t.descriptor}</span>
         <span className="footer-info preline">{t.location}</span>

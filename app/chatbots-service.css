@@ -49,6 +49,15 @@
   margin: 0 0 3rem;
 }
 
+.chatbots-service-page .chatbots-scope .chatbots-section-title {
+  margin-bottom: 1.5rem;
+}
+
+.chatbots-service-page .chatbots-scope-intro {
+  max-width: 76ch;
+  margin: 0 0 3rem;
+}
+
 .chatbots-service-page .chatbots-format-list,
 .chatbots-service-page .chatbots-process-list {
   margin: 0;
@@ -435,6 +444,10 @@
 }
 
 @media (max-width: 760px) {
+  .chatbots-service-page .chatbots-prices-title-second {
+    display: block;
+  }
+
   .chatbots-service-page .chatbots-intro-text {
     margin-bottom: 2.5rem;
   }
