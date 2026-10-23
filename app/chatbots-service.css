@@ -1,9 +1,7 @@
-.chatbots-service-page .service-section-label,
-.chatbots-service-page .service-section-index {
-  color: #65645f;
-}
-
 .chatbots-service-page .chatbots-intro .service-text-title {
+  /* Keep wrapped Cyrillic capitals and the dots above Ї clear of each other. */
+  letter-spacing: -0.035em;
+  line-height: 1.02;
   text-transform: uppercase;
 }
 
@@ -36,8 +34,10 @@
   gap: 1.25rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--line);
+  font-family: "IBM Plex Mono", Consolas, monospace;
   font-size: var(--content-meta-size);
-  line-height: 1.55;
+  font-weight: 400;
+  line-height: 1.5;
   transition: color 180ms ease, border-color 180ms ease;
 }
 
@@ -55,10 +55,6 @@
 .chatbots-service-page .chatbots-section-title {
   max-width: 28ch;
   margin: 0 0 3rem;
-  font-size: var(--content-heading-size);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.18;
 }
 
 .chatbots-service-page .chatbots-format-list,
@@ -81,9 +77,6 @@
   display: flex;
   gap: 1.25rem;
   margin-bottom: 1.5rem;
-  color: #65645f;
-  font-size: var(--content-meta-size);
-  line-height: 1.5;
 }
 
 .chatbots-service-page .chatbots-format-meta > span:first-child {
@@ -112,7 +105,7 @@
 }
 
 .chatbots-service-page .chatbots-note {
-  color: #65645f;
+  color: #555550;
 }
 
 .chatbots-service-page .chatbots-connection-options {
@@ -143,9 +136,6 @@
 .chatbots-service-page .chatbots-small-note {
   max-width: 65ch;
   margin: 1.25rem 0 0;
-  color: #65645f;
-  font-size: var(--content-meta-size);
-  line-height: 1.6;
 }
 
 .chatbots-service-page .chatbots-example-price {
@@ -153,8 +143,10 @@
   margin-top: 1.5rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--line);
+  font-family: "IBM Plex Mono", Consolas, monospace;
   font-size: var(--content-meta-size);
-  line-height: 1.6;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .chatbots-service-page .chatbots-example-details {
@@ -176,8 +168,6 @@
 .chatbots-service-page .chatbots-bot-handle {
   display: block;
   margin-top: 0.75rem;
-  color: #65645f;
-  font-size: var(--content-meta-size);
 }
 
 .chatbots-service-page .chatbots-scope-columns {
@@ -244,7 +234,7 @@
 
 .chatbots-service-page .chatbots-price-limit {
   margin: 1.5rem 0 2rem;
-  color: #65645f;
+  color: #555550;
 }
 
 .chatbots-service-page .chatbots-price-format .service-primary-cta {
@@ -284,7 +274,7 @@
 }
 
 .chatbots-service-page .chatbots-budget-note {
-  color: #65645f;
+  color: #555550;
 }
 
 .chatbots-service-page .chatbots-running-costs {
@@ -299,8 +289,6 @@
 
 .chatbots-service-page .chatbots-hosting-overview > h3 {
   max-width: 25ch;
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
-  line-height: 1.18;
 }
 
 .chatbots-service-page .chatbots-running-costs .service-text-body:first-child {
@@ -326,8 +314,6 @@
   display: block;
   margin-bottom: 1.25rem;
   color: var(--active);
-  font-size: var(--content-meta-size);
-  line-height: 1.6;
 }
 
 .chatbots-service-page .chatbots-hosting-options h4 {
@@ -348,7 +334,7 @@
 
 .chatbots-service-page .chatbots-hosting-terms h4 {
   margin: 0;
-  color: #65645f;
+  color: var(--shell-meta-light);
   font-family: "IBM Plex Mono", Consolas, monospace;
   font-size: var(--section-meta-size);
   font-weight: 400;
@@ -370,12 +356,11 @@
 
 .chatbots-service-page .chatbots-process-number {
   color: var(--active);
-  font-size: var(--content-meta-size);
-  line-height: 2;
 }
 
 .chatbots-service-page .chatbots-process-list p {
   margin: 0.75rem 0 0;
+  color: #555550;
 }
 
 .chatbots-service-page .chatbots-timeline {

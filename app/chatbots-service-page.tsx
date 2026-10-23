@@ -43,11 +43,11 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
         <section className="service-editorial-section chatbots-formats" aria-labelledby="chatbots-formats-title" data-scroll-region="chatbots-formats">
           <span className="service-section-index">{ui.formatsLabel}</span>
           <div className="chatbots-section-content">
-            <h2 className="chatbots-section-title service-text-lead" id="chatbots-formats-title">{ui.formatsTitle}</h2>
+            <h2 className="chatbots-section-title content-heading" id="chatbots-formats-title">{ui.formatsTitle}</h2>
             <ol className="chatbots-format-list">
               {ui.formats.map((format, index) => (
                 <li className="chatbots-format" key={format.label}>
-                  <div className="chatbots-format-meta"><span>{String(index + 1).padStart(2, "0")}</span><span>{format.label}</span></div>
+                  <div className="chatbots-format-meta content-meta"><span>{String(index + 1).padStart(2, "0")}</span><span>{format.label}</span></div>
                   <h3 className="service-content-subheading chatbots-format-title">{format.title}</h3>
                   {format.body.map((paragraph) => <p className="service-text-body" key={paragraph}>{paragraph}</p>)}
                   {format.options && <div className="chatbots-connection-options">{format.options.map((option) => <div key={option.title}><h4 className="service-content-subheading">{option.title}</h4><p className="service-text-body">{option.text}</p></div>)}</div>}
@@ -63,9 +63,9 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
           <div className="chatbots-section-heading">
             <span className="service-section-index">{ui.exampleLabel}</span>
             <div className="chatbots-section-content">
-              <h2 className="chatbots-section-title service-text-lead" id="chatbots-example-title">{ui.exampleTitle}</h2>
+              <h2 className="chatbots-section-title content-heading" id="chatbots-example-title">{ui.exampleTitle}</h2>
               <p className="service-text-body">{ui.exampleBody}</p>
-              <p className="chatbots-small-note">{ui.ownSolution}</p>
+              <p className="chatbots-small-note content-meta">{ui.ownSolution}</p>
               <a className="chatbots-example-price" href="#chatbots-prices">{ui.similarPrice} <PriceText value={prices.manager} /><span aria-hidden="true"> ↓</span></a>
             </div>
           </div>
@@ -82,7 +82,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
               <h3 className="service-content-subheading">{ui.liveBotTitle}</h3>
               <p className="service-text-body">{ui.liveBotBody}</p>
               <a className="chatbots-text-link" href="https://t.me/hoverstudiobot" target="_blank" rel="noopener noreferrer"><span>{ui.liveBotLink}</span><Arrow /></a>
-              <span className="chatbots-bot-handle">@hoverstudiobot</span>
+              <span className="chatbots-bot-handle content-meta">@hoverstudiobot</span>
             </div>
           </div>
         </section>
@@ -90,7 +90,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
         <section className="service-editorial-section chatbots-scope" aria-labelledby="chatbots-scope-title" data-scroll-region="chatbots-scope">
           <span className="service-section-index">{ui.scopeLabel}</span>
           <div className="chatbots-section-content">
-            <h2 className="chatbots-section-title service-text-lead" id="chatbots-scope-title">{ui.scopeTitle}</h2>
+            <h2 className="chatbots-section-title content-heading" id="chatbots-scope-title">{ui.scopeTitle}</h2>
             <div className="chatbots-scope-columns">
               <div><h3 className="service-content-subheading">{ui.includedTitle}</h3><ScopeList items={ui.included} /></div>
               <div><h3 className="service-content-subheading">{ui.separateTitle}</h3><ScopeList items={ui.separate} /></div>
@@ -101,12 +101,12 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
         <section className="service-editorial-section chatbots-wide-section chatbots-prices" id="chatbots-prices" aria-labelledby="chatbots-prices-title" data-scroll-region="chatbots-prices">
           <div className="chatbots-section-heading">
             <span className="service-section-index">{ui.pricesLabel}</span>
-            <h2 className="chatbots-section-title service-text-lead" id="chatbots-prices-title">{ui.pricesTitle}</h2>
+            <h2 className="chatbots-section-title content-heading" id="chatbots-prices-title">{ui.pricesTitle}</h2>
           </div>
           <div className="chatbots-price-comparison">
             {ui.packages.map((format, index) => (
               <article className="chatbots-price-format" key={format.key} aria-labelledby={`chatbots-price-${format.key}`}>
-                <div className="chatbots-format-meta"><span>{String(index + 1).padStart(2, "0")}</span><span>{ui.oneOff}</span></div>
+                <div className="chatbots-format-meta content-meta"><span>{String(index + 1).padStart(2, "0")}</span><span>{ui.oneOff}</span></div>
                 <h3 className="service-content-subheading" id={`chatbots-price-${format.key}`}>{format.title}</h3>
                 <p className="chatbots-price"><PriceText value={prices[format.key]} /></p>
                 <p className="service-text-body chatbots-price-intro">{format.intro}</p>
@@ -135,7 +135,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
               </div>
               <ol className="chatbots-hosting-options">
                 {ui.hostingOptions.map((option, index) => <li key={option.title}>
-                  <span className="chatbots-hosting-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="chatbots-hosting-number content-meta" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                   <div><h4 className="service-content-subheading">{option.title}</h4><p className="service-text-body">{option.text}</p></div>
                 </li>)}
               </ol>
@@ -151,9 +151,9 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
         <section className="service-editorial-section chatbots-process" aria-labelledby="chatbots-process-title" data-scroll-region="chatbots-process">
           <span className="service-section-index">{ui.processLabel}</span>
           <div className="chatbots-section-content">
-            <h2 className="chatbots-section-title service-text-lead" id="chatbots-process-title">{ui.processTitle}</h2>
+            <h2 className="chatbots-section-title content-heading" id="chatbots-process-title">{ui.processTitle}</h2>
             <ol className="chatbots-process-list">
-              {ui.steps.map((step, index) => <li key={step.title}><span className="chatbots-process-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><div><h3 className="service-content-subheading">{step.title}</h3><p className="service-text-body">{step.text}</p></div></li>)}
+              {ui.steps.map((step, index) => <li key={step.title}><span className="chatbots-process-number content-meta" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><div><h3 className="service-content-subheading">{step.title}</h3><p className="service-text-body">{step.text}</p></div></li>)}
             </ol>
             <p className="service-text-body chatbots-note chatbots-timeline">{ui.timeline}</p>
             <div className="chatbots-materials">
@@ -167,7 +167,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
         <section className="service-editorial-section chatbots-faq" aria-labelledby="chatbots-faq-title" data-scroll-region="chatbots-faq">
           <span className="service-section-index">{ui.faqLabel}</span>
           <div className="chatbots-section-content">
-            <h2 className="chatbots-section-title service-text-lead" id="chatbots-faq-title">{ui.faqTitle}</h2>
+            <h2 className="chatbots-section-title content-heading" id="chatbots-faq-title">{ui.faqTitle}</h2>
             <ChatbotsFaq items={ui.faqs} />
           </div>
         </section>
@@ -175,7 +175,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
         <section className="service-editorial-section chatbots-final" aria-labelledby="chatbots-final-title" data-scroll-region="chatbots-final">
           <span className="service-section-index">{ui.finalLabel}</span>
           <div className="chatbots-section-content">
-            <h2 className="chatbots-section-title service-text-lead" id="chatbots-final-title">{ui.finalTitle}</h2>
+            <h2 className="chatbots-section-title content-heading" id="chatbots-final-title">{ui.finalTitle}</h2>
             <p className="service-text-body">{ui.finalBody}</p>
             <a className="service-primary-cta" href={contactHref}><span>{ui.discuss}</span><Arrow /></a>
           </div>
