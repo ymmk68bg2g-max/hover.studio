@@ -5,11 +5,8 @@ import { LocaleSync } from "./locale-sync";
 import { PriceText } from "./price-text";
 import { getChatbotsPrices, getService, type ServiceLocale } from "./services";
 import { SiteHeader } from "./site-chrome";
+import { UiArrow } from "./ui-arrow";
 import "./chatbots-service.css";
-
-function Arrow() {
-  return <span aria-hidden="true">↗</span>;
-}
 
 function ScopeList({ items }: { items: readonly string[] }) {
   return <ul className="chatbots-scope-list">{items.map((item) => <li className="service-text-body" key={item}>{item}</li>)}</ul>;
@@ -36,7 +33,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
               <p className="service-text-lead">{ui.lead}</p>
               <p className="service-text-body">{ui.intro}</p>
             </div>
-            <a className="service-primary-cta" href="#hover-example"><span>{ui.seeExample}</span><span aria-hidden="true">↓</span></a>
+            <a className="service-primary-cta" href="#hover-example"><span>{ui.seeExample}</span><UiArrow direction="down" /></a>
           </div>
         </section>
 
@@ -80,7 +77,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
             <div className="chatbots-live-bot">
               <h3 className="service-content-subheading">{ui.liveBotTitle}</h3>
               <p className="service-text-body">{ui.liveBotBody}</p>
-              <a className="chatbots-text-link" href="https://t.me/hoverstudiobot" target="_blank" rel="noopener noreferrer"><span>{ui.liveBotLink}</span><Arrow /></a>
+              <a className="chatbots-text-link" href="https://t.me/hoverstudiobot" target="_blank" rel="noopener noreferrer"><span>{ui.liveBotLink}</span><UiArrow /></a>
               <span className="chatbots-bot-handle content-meta">@hoverstudiobot</span>
             </div>
           </div>
@@ -90,6 +87,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
           <span className="service-section-index">{ui.scopeLabel}</span>
           <div className="chatbots-section-content">
             <h2 className="chatbots-section-title content-heading" id="chatbots-scope-title">{ui.scopeTitle}</h2>
+            <p className="service-text-body chatbots-scope-intro">{ui.scopeIntro}</p>
             <div className="chatbots-scope-columns">
               <div><h3 className="service-content-subheading">{ui.includedTitle}</h3><ScopeList items={ui.included} /></div>
               <div><h3 className="service-content-subheading">{ui.separateTitle}</h3><ScopeList items={ui.separate} /></div>
@@ -100,7 +98,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
         <section className="service-editorial-section chatbots-wide-section chatbots-prices" id="chatbots-prices" aria-labelledby="chatbots-prices-title" data-scroll-region="chatbots-prices">
           <div className="chatbots-section-heading">
             <span className="service-section-index">{ui.pricesLabel}</span>
-            <h2 className="chatbots-section-title content-heading" id="chatbots-prices-title">{ui.pricesTitle}</h2>
+            <h2 className="chatbots-section-title content-heading" id="chatbots-prices-title"><span>{ui.pricesTitle[0]}</span>{" "}<span className="chatbots-prices-title-second">{ui.pricesTitle[1]}</span></h2>
           </div>
           <div className="chatbots-price-comparison">
             {ui.packages.map((format, index) => (
@@ -111,7 +109,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
                 <p className="service-text-body chatbots-price-intro">{format.intro}</p>
                 <ScopeList items={format.items} />
                 <p className="service-text-body chatbots-price-limit">{format.limit}</p>
-                <a className="service-primary-cta" href={contactHref}><span>{ui.discuss}</span><Arrow /></a>
+                <a className="service-primary-cta" href={contactHref}><span>{ui.discuss}</span><UiArrow /></a>
               </article>
             ))}
           </div>
@@ -176,7 +174,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
           <div className="chatbots-section-content">
             <h2 className="chatbots-section-title content-heading" id="chatbots-final-title">{ui.finalTitle}</h2>
             <p className="service-text-body">{ui.finalBody}</p>
-            <a className="service-primary-cta" href={contactHref}><span>{ui.discuss}</span><Arrow /></a>
+            <a className="service-primary-cta" href={contactHref}><span>{ui.discuss}</span><UiArrow /></a>
           </div>
         </section>
       </main>

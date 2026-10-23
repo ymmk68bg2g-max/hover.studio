@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import { TelegramIcon } from "./telegram-link";
+import { UiArrow } from "./ui-arrow";
 import "./chatbots-showcase.css";
 
 const showcaseCopy = {
@@ -103,7 +104,7 @@ export function ChatbotsShowcase({ locale }: { locale: "ua" | "en" }) {
           >
             <span className="chatbots-showcase__step-index" aria-hidden="true">0{index + 1}</span>
             <span>{title}</span>
-            <span className="chatbots-showcase__step-arrow" aria-hidden="true">↗</span>
+            <UiArrow className="chatbots-showcase__step-arrow" />
           </button>
         ))}
       </div>
@@ -184,7 +185,7 @@ export function ChatbotsShowcase({ locale }: { locale: "ua" | "en" }) {
           {copy.flow.map((label, index) => (
             <li key={`${index}-${label}`} data-active={(step === 0 && index < 2) || (step === 1 && index === 2) || (step === 2 && index > 2)}>
               <span>{label}</span>
-              {index < copy.flow.length - 1 && <span className="chatbots-showcase__flow-arrow" aria-hidden="true">→</span>}
+              {index < copy.flow.length - 1 && <UiArrow className="chatbots-showcase__flow-arrow" direction="right" />}
             </li>
           ))}
         </ol>

@@ -3,6 +3,7 @@ import type { ProjectLocale } from "./projects";
 import { blueprintCaseCopy } from "./blueprint-case-copy";
 import { BlueprintPreview } from "./blueprint-preview";
 import { CaseTaskMotion } from "./case-task-motion";
+import { UiArrow } from "./ui-arrow";
 
 const artworkRoot = "/case/blueprint/";
 const palette = ["#0d0d0e", "#f2f0ea", "#315cff", "#747471"] as const;
@@ -95,7 +96,7 @@ function EditionComparison({ locale }: { locale: ProjectLocale }) {
             </section>
           ))}
         </div>
-        <span className="bp-editions-link" role="link" aria-disabled="true" style={{ cursor: "default" }}>{isUa ? "ПОРІВНЯТИ ВИДАННЯ НА САЙТІ" : "COMPARE EDITIONS ON THE WEBSITE"} <span aria-hidden="true">↗</span></span>
+        <span className="bp-editions-link" role="link" aria-disabled="true" style={{ cursor: "default" }}>{isUa ? "ПОРІВНЯТИ ВИДАННЯ НА САЙТІ" : "COMPARE EDITIONS ON THE WEBSITE"} <UiArrow /></span>
       </div>
       <figcaption className="content-meta">{isUa ? "КОМПОНЕНТ ЛЕНДИНГУ / ПОРІВНЯННЯ BOOK І PRODUCTION EDITION" : "LANDING PAGE COMPONENT / BOOK AND PRODUCTION EDITION COMPARISON"}</figcaption>
     </figure>

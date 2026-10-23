@@ -4,6 +4,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Dialog, DialogClose, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import type { ProjectLocale } from "./projects";
+import { UiArrow } from "./ui-arrow";
 
 const pages = [
   {
@@ -91,7 +92,7 @@ export function BlueprintPreview({ locale }: { locale: ProjectLocale }) {
               <p className="bp-preview-title" aria-live="polite" aria-atomic="true">0{selected + 1} / {copy.title}</p>
               <span className="bp-preview-label">{copy.label}</span>
             </div>
-            <span className="bp-preview-enlarge" aria-hidden="true">{isUa ? "ЗБІЛЬШИТИ" : "ENLARGE"} ↗</span>
+            <span className="bp-preview-enlarge" aria-hidden="true">{isUa ? "ЗБІЛЬШИТИ" : "ENLARGE"} <UiArrow /></span>
           </figcaption>
         </figure>
         <p className="bp-preview-hint">{isUa ? "Оберіть сторінку та натисніть на неї, щоб розглянути оригінал." : "Choose a page and select it to inspect the original."}</p>

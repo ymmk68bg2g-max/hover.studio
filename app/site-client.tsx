@@ -26,6 +26,7 @@ import { CapabilityMotionDemo } from "./capability-motion-demo";
 import { CapabilityStrategyDemo } from "./capability-strategy-demo";
 import { CapabilityDesignDemo } from "./capability-design-demo";
 import { CapabilityDevelopmentDemo } from "./capability-development-demo";
+import { UiArrow } from "./ui-arrow";
 
 type Locale = "en" | "ua";
 
@@ -104,7 +105,7 @@ const content = {
     services: {
       label: "07 / SERVICES",
       note: "CLEAR SCOPES.\nDIRECT COLLABORATION.",
-      details: "View service ↗",
+      details: "View service",
       disclaimer: "Final scope and estimate are confirmed after a short project discussion. International pricing is quoted separately.",
     },
     care: {
@@ -186,7 +187,7 @@ const content = {
     services: {
       label: "07 / ПОСЛУГИ",
       note: "ЧІТКИЙ ОБСЯГ.\nПРЯМА СПІВПРАЦЯ.",
-      details: "Детальніше ↗",
+      details: "Детальніше",
       disclaimer: "Фінальний обсяг і кошторис підтверджуються після короткого обговорення проєкту. Для міжнародних проєктів ціна розраховується окремо.",
     },
     care: {
@@ -199,17 +200,7 @@ const content = {
 } as const;
 
 function Arrow({ down = false }: { down?: boolean }) {
-  return (
-    <span className="ui-arrow" aria-hidden="true">
-      <svg viewBox="0 0 16 16" focusable="false">
-        {down ? (
-          <path d="M8 2.5v10.25m-4-4L8 12.75l4-4" />
-        ) : (
-          <path d="M3.25 12.75 12.75 3.25M6 3.25h6.75V10" />
-        )}
-      </svg>
-    </span>
-  );
+  return <UiArrow direction={down ? "down" : "up-right"} />;
 }
 
 function SectionLabel({ children, side }: { children: string; side?: ReactNode }) {
@@ -552,9 +543,9 @@ export function HoverSite({ locale }: { locale: Locale }) {
                     <div>
                       <p className="section-body">{service.intro}</p>
                       {service.id === "chatbots" ? <Link href={getServiceHref(locale, service.slug)} tabIndex={isOpen ? undefined : -1}>
-                        {t.services.details}
+                        {t.services.details}{" "}<UiArrow />
                       </Link> : <a href={`/${locale}/services/${service.slug}`} tabIndex={isOpen ? undefined : -1}>
-                        {t.services.details}
+                        {t.services.details}{" "}<UiArrow />
                       </a>}
                     </div>
                   </div>

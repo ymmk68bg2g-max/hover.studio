@@ -8,6 +8,7 @@ import { SolarFamilyCaseSection } from "./solarfamily-case";
 import { SolarCityCaseSection } from "./solarcity-case";
 import { CaseTaskMotion } from "./case-task-motion";
 import { BlueprintCaseSection } from "./blueprint-case";
+import { UiArrow } from "./ui-arrow";
 
 const labels = {
   en: {
@@ -354,8 +355,8 @@ function YevaiCaseSection({ index, locale }: { index: number; locale: ProjectLoc
             <span>03 / UI</span>
             <div className="yevai-ui-samples" aria-hidden="true">
               <div className="yevai-ui-nav">{locale === "ua" ? "КЕЙСИ   ПОСЛУГИ   ПРО МЕНЕ" : "CASES   SERVICES   ABOUT"}</div>
-              <div className="yevai-ui-button">{locale === "ua" ? "ОБГОВОРИТИ ПРОЄКТ" : "DISCUSS A PROJECT"} <b>↗</b></div>
-              <div className="yevai-ui-link">{locale === "ua" ? "ПЕРЕГЛЯНУТИ КЕЙС" : "VIEW CASE"} <b>↘</b></div>
+              <div className="yevai-ui-button">{locale === "ua" ? "ОБГОВОРИТИ ПРОЄКТ" : "DISCUSS A PROJECT"} <b><UiArrow /></b></div>
+              <div className="yevai-ui-link">{locale === "ua" ? "ПЕРЕГЛЯНУТИ КЕЙС" : "VIEW CASE"} <b><UiArrow direction="down-right" /></b></div>
             </div>
           </section>
           <section className="yevai-system-grid">
@@ -571,7 +572,7 @@ export function CaseStudy({ locale, slug }: { locale: ProjectLocale; slug: Proje
 
         <section className="next-project" data-scroll-region="case-next">
           <span>{t.next}</span>
-          <Link href={`/${locale}/work/${nextSlug}`}><strong>{next.title}</strong><span>→</span></Link>
+          <Link href={`/${locale}/work/${nextSlug}`}><strong>{next.title}</strong><UiArrow direction="right" /></Link>
         </section>
 
       </main>

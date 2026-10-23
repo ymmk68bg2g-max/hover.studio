@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { UiArrow } from "./ui-arrow";
 
 export type FaqLocale = "ua" | "en";
 
@@ -83,7 +84,7 @@ const faqCopy: Record<FaqLocale, FaqCopy> = {
           "Website Care може охоплювати оновлення контенту, нові сторінки, швидкодію, подальшу розробку та підтримку аналітики. Усунення помилок і нові задачі розділяються, а точний обсяг погоджується окремо.",
         link: {
           href: "/ua/services/website-care",
-          label: "Детальніше про підтримку сайту ↗",
+          label: "Детальніше про підтримку сайту",
         },
       },
     ],
@@ -141,7 +142,7 @@ const faqCopy: Record<FaqLocale, FaqCopy> = {
           "Website Care may cover content updates, new pages, performance, ongoing development and analytics support. Bug fixes and new work are treated separately, and the exact scope is agreed for each engagement.",
         link: {
           href: "/en/services/website-care",
-          label: "View Website Care ↗",
+          label: "View Website Care",
         },
       },
     ],
@@ -174,7 +175,7 @@ export function Faq({ locale }: { locale: FaqLocale }) {
               <p className="section-body">{item.answer}</p>
               {item.link ? (
                 <Link className="faq-link" href={item.link.href}>
-                  {item.link.label}
+                  {item.link.label}{" "}<UiArrow />
                 </Link>
               ) : null}
             </AccordionContent>

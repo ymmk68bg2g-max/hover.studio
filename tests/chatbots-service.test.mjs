@@ -110,6 +110,7 @@ test("mounted form updates only the selected service when a CTA changes preselec
     "@/components/ui/native-select": { NativeSelect: "select", NativeSelectOption: "option" },
     "./client-experience-config": { contactIntegrationStatus: "ready", privacyPublicationStatus: "published" },
     "./contact-settings": { contactEmail: "example@example.com" },
+    "./ui-arrow": { UiArrow: "svg-arrow" },
     "./contact-request": { CONTACT_REQUEST_TIMEOUT_MS: 1000, submitContactRequest: () => { throw new Error("Must not send"); } },
     "./contact-schema": schema,
   });
