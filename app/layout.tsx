@@ -27,17 +27,28 @@ export default async function RootLayout({
   const fallbackLocale = await getRequestLocale();
   return (
     <html lang={fallbackLocale === "ua" ? "uk" : "en"} suppressHydrationWarning>
-      {fallbackLocale === "ua" && (
-        <head>
-          <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18530491505" />
-          <script id="google-ads-tag" dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
+      <head>
+        {fallbackLocale === "ua" && (
+          <>
+            {/* Google tag (gtag.js): one server-rendered installation for every UA page. */}
+            <script
+              id="google-ads-loader"
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=AW-18530491505"
+            />
+            <script
+              id="google-ads-tag"
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
+
 gtag('config', 'AW-18530491505');`,
-          }} />
-        </head>
-      )}
+              }}
+            />
+          </>
+        )}
+      </head>
       <body className="antialiased">
         <ScrollRestoration />
         {children}
