@@ -153,11 +153,16 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
               {ui.steps.map((step, index) => <li key={step.title}><span className="chatbots-process-number content-meta" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><div><h3 className="service-content-subheading">{step.title}</h3><p className="service-text-body">{step.text}</p></div></li>)}
             </ol>
             <p className="service-text-body chatbots-note chatbots-timeline">{ui.timeline}</p>
-            <div className="chatbots-materials">
-              <h3 className="service-content-subheading">{ui.materialsTitle}</h3>
-              <ScopeList items={ui.materials} />
-              <p className="service-text-body chatbots-note">{ui.materialsNote}</p>
-            </div>
+            <section className="chatbots-materials" aria-labelledby="chatbots-materials-title">
+              <h3 className="service-content-subheading" id="chatbots-materials-title">{ui.materialsTitle}</h3>
+              <ol className="chatbots-materials-list" role="list">
+                {ui.materials.map((item, index) => <li key={item}>
+                  <span className="chatbots-materials-number content-meta" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                  <p className="service-text-body">{item}</p>
+                </li>)}
+              </ol>
+              <p className="service-text-body chatbots-note chatbots-materials-note">{ui.materialsNote}</p>
+            </section>
           </div>
         </section>
 

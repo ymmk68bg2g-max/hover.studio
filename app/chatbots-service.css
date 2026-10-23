@@ -370,13 +370,46 @@
 }
 
 .chatbots-service-page .chatbots-materials {
+  min-width: 0;
   margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--ink);
+  padding: clamp(1.25rem, 2.5vw, 2.25rem);
+  background: color-mix(in srgb, var(--ink) 4%, var(--paper));
 }
 
-.chatbots-service-page .chatbots-materials > p {
-  margin: 1.5rem 0 0;
+.chatbots-service-page .chatbots-materials-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.75rem 2rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chatbots-service-page .chatbots-materials-list > li {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  gap: 0.75rem;
+  min-width: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.chatbots-service-page .chatbots-materials-number {
+  padding-top: 0.2rem;
+  color: var(--active);
+}
+
+.chatbots-service-page .chatbots-materials-list p {
+  min-width: 0;
+  margin: 0;
+}
+
+.chatbots-service-page .chatbots-materials-note {
+  max-width: none;
+  margin: 2rem 0 0;
+  padding: 1.25rem 1.5rem;
+  border-left: 2px solid var(--active);
+  background: var(--paper);
 }
 
 .chatbots-service-page .chatbots-faq-list {
@@ -426,6 +459,11 @@
 }
 
 @media (max-width: 1279px) {
+  .chatbots-service-page .chatbots-materials-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
   .chatbots-service-page .chatbots-hosting-options,
   .chatbots-service-page .chatbots-hosting-terms {
     grid-template-columns: minmax(0, 1fr);
@@ -444,6 +482,14 @@
 }
 
 @media (max-width: 760px) {
+  .chatbots-service-page .chatbots-materials-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .chatbots-service-page .chatbots-materials-note {
+    padding: 1rem 1.25rem;
+  }
+
   .chatbots-service-page .chatbots-prices-title-second {
     display: block;
   }

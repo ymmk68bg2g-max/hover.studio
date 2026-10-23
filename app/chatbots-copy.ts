@@ -122,7 +122,7 @@ export const chatbotsCopy = {
     scopeLabel: "04 / ОБСЯГ РОБІТ",
     scopeTitle: "Від сценарію до робочої точки входу.",
     scopeIntro: "Спочатку погоджуємо задачу, сценарій і спосіб отримання звернень. На цій основі визначаємо обсяг розробки, підключення та запуску; додаткові можливості обговорюємо окремо.",
-    includedTitle: "Що входить у роботу",
+    includedTitle: "Що входить у роботу:",
     included: [
       "Обговорення задачі й потрібного формату",
       "Проєктування погодженого сценарію",
@@ -134,7 +134,7 @@ export const chatbotsCopy = {
       "Розгортання",
       "Коротка інструкція користування",
     ],
-    separateTitle: "Окремо погоджуємо",
+    separateTitle: "Окремо погоджуємо:",
     separate: [
       "Додаткові сценарії та мови",
       "Кілька команд / робочих груп і додаткові ролі",
@@ -282,7 +282,7 @@ export const chatbotsCopy = {
     scopeLabel: "04 / SCOPE OF WORK",
     scopeTitle: "From an agreed flow to a working point of entry.",
     scopeIntro: "We first agree on the task, conversation flow and how enquiries will reach your team. This defines the scope of development, integration and launch; additional features are discussed separately.",
-    includedTitle: "What the work includes",
+    includedTitle: "What the work includes:",
     included: [
       "Discussing your task and choosing the format",
       "Designing the agreed conversation flow",
@@ -294,7 +294,7 @@ export const chatbotsCopy = {
       "Deployment",
       "A short usage guide",
     ],
-    separateTitle: "Agreed separately",
+    separateTitle: "Agreed separately:",
     separate: [
       "Additional workflows and languages",
       "Multiple teams / working groups and extra roles",
