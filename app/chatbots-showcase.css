@@ -101,11 +101,12 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 1rem;
-  min-height: 6.75rem;
   padding: 1.5rem 0 2rem;
 }
 
 .chatbots-showcase__explanation > span {
+  grid-column: 1;
+  grid-row: 1;
   padding-top: 0.1875rem;
   color: #62625b;
   font-family: "IBM Plex Mono", Consolas, monospace;
@@ -113,10 +114,17 @@
 }
 
 .chatbots-showcase__explanation p {
+  grid-column: 2;
+  grid-row: 1;
   max-width: 49rem;
   margin: 0;
   font-size: 1rem;
   line-height: 1.5;
+  visibility: hidden;
+}
+
+.chatbots-showcase__explanation p[data-active="true"] {
+  visibility: visible;
 }
 
 .chatbots-showcase__scenes {
@@ -555,7 +563,6 @@
   }
 
   .chatbots-showcase__explanation {
-    min-height: 8.5rem;
     padding-top: 1.25rem;
   }
 
