@@ -1,10 +1,9 @@
-import Link from "next/link";
 import { chatbotsCopy, type ChatbotsCopy } from "./chatbots-copy";
 import { ChatbotsFaq } from "./chatbots-faq";
 import { ChatbotsShowcase } from "./chatbots-showcase";
 import { LocaleSync } from "./locale-sync";
 import { PriceText } from "./price-text";
-import { getChatbotsPrices, getService, getServiceContactHref, type ServiceLocale } from "./services";
+import { getChatbotsPrices, getService, type ServiceLocale } from "./services";
 import { SiteHeader } from "./site-chrome";
 import "./chatbots-service.css";
 
@@ -21,7 +20,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
   const service = getService(locale, "chatbots");
   const prices = getChatbotsPrices(locale);
   const otherLocale: ServiceLocale = locale === "ua" ? "en" : "ua";
-  const contactHref = getServiceContactHref(locale, "chatbots");
+  const contactHref = "#contact";
 
   return (
     <div className="service-page chatbots-service-page" lang={locale === "ua" ? "uk" : "en"} data-service="chatbots">
@@ -113,7 +112,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
                 <p className="service-text-body chatbots-price-intro">{format.intro}</p>
                 <ScopeList items={format.items} />
                 <p className="service-text-body chatbots-price-limit">{format.limit}</p>
-                <Link className="service-primary-cta" href={contactHref}><span>{ui.discuss}</span><Arrow /></Link>
+                <a className="service-primary-cta" href={contactHref}><span>{ui.discuss}</span><Arrow /></a>
               </article>
             ))}
           </div>
@@ -178,7 +177,7 @@ export function ChatbotsServicePage({ locale }: { locale: ServiceLocale }) {
           <div className="chatbots-section-content">
             <h2 className="chatbots-section-title service-text-lead" id="chatbots-final-title">{ui.finalTitle}</h2>
             <p className="service-text-body">{ui.finalBody}</p>
-            <Link className="service-primary-cta" href={contactHref}><span>{ui.discuss}</span><Arrow /></Link>
+            <a className="service-primary-cta" href={contactHref}><span>{ui.discuss}</span><Arrow /></a>
           </div>
         </section>
       </main>

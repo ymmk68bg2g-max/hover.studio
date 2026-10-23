@@ -15,15 +15,15 @@ type ChatbotsFaqItem = {
 
 export function ChatbotsFaq({ items }: { items: readonly ChatbotsFaqItem[] }) {
   return (
-    <Accordion className="chatbots-faq-list" type="single" collapsible>
+    <Accordion className="faq-list chatbots-faq-list" type="single" collapsible>
       {items.map((item, index) => (
-        <AccordionItem className="chatbots-faq-item" key={item.id} value={item.id}>
-          <AccordionTrigger className="chatbots-faq-trigger" data-language-disclosure={`chatbots-faq-${item.id}`}>
-            <span className="chatbots-faq-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-            <span className="service-content-subheading">{item.question}</span>
+        <AccordionItem className="faq-item" key={item.id} value={item.id}>
+          <AccordionTrigger className="faq-trigger" data-language-disclosure={`chatbots-faq-${item.id}`}>
+            <span className="faq-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+            <span className="faq-question content-subheading">{item.question}</span>
           </AccordionTrigger>
-          <AccordionContent className="chatbots-faq-content">
-            <p className="service-text-body">{item.answer}</p>
+          <AccordionContent className="faq-content">
+            <p className="section-body">{item.answer}</p>
           </AccordionContent>
         </AccordionItem>
       ))}
