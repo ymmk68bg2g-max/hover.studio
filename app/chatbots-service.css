@@ -1,10 +1,3 @@
-.chatbots-service-page .chatbots-intro .service-text-title {
-  /* Keep wrapped Cyrillic capitals and the dots above Ї clear of each other. */
-  letter-spacing: -0.035em;
-  line-height: 1.02;
-  text-transform: uppercase;
-}
-
 .chatbots-service-page .chatbots-intro-text {
   grid-column: 2;
   max-width: 42rem;
