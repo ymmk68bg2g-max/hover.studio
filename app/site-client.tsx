@@ -8,7 +8,6 @@ import {
   type ReactNode,
 } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   Accordion,
   AccordionContent,
@@ -542,11 +541,9 @@ export function HoverSite({ locale }: { locale: Locale }) {
                   >
                     <div>
                       <p className="section-body">{service.intro}</p>
-                      {service.id === "chatbots" ? <Link href={getServiceHref(locale, service.slug)} tabIndex={isOpen ? undefined : -1}>
+                      <a href={getServiceHref(locale, service.slug)} tabIndex={isOpen ? undefined : -1}>
                         {t.services.details}{" "}<UiArrow />
-                      </Link> : <a href={`/${locale}/services/${service.slug}`} tabIndex={isOpen ? undefined : -1}>
-                        {t.services.details}{" "}<UiArrow />
-                      </a>}
+                      </a>
                     </div>
                   </div>
                 </div>
