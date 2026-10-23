@@ -112,6 +112,7 @@ test("mounted form updates only the selected service when a CTA changes preselec
     "./contact-settings": { contactEmail: "example@example.com" },
     "./ui-arrow": { UiArrow: "svg-arrow" },
     "./contact-request": { CONTACT_REQUEST_TIMEOUT_MS: 1000, submitContactRequest: () => { throw new Error("Must not send"); } },
+    "./google-ads-conversion": { reportContactConversion: () => { throw new Error("Must not track before delivery"); } },
     "./contact-schema": schema,
   });
   function render(initialService, preselectionKey) {
