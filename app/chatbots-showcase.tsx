@@ -111,7 +111,9 @@ export function ChatbotsShowcase({ locale }: { locale: "ua" | "en" }) {
 
       <div className="chatbots-showcase__explanation" id={explanationId} aria-live="polite" aria-atomic="true">
         <span aria-hidden="true">0{step + 1} /</span>
-        <p>{copy.explanations[step]}</p>
+        {copy.explanations.map((explanation, index) => (
+          <p key={explanation} data-active={step === index} aria-hidden={step === index ? undefined : true}>{explanation}</p>
+        ))}
       </div>
 
       <div className="chatbots-showcase__scenes" id={sceneId}>
