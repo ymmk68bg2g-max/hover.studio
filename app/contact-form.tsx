@@ -73,11 +73,16 @@ function Arrow() {
   );
 }
 
-export function ContactForm({ locale, initialService }: { locale: ServiceLocale; initialService?: ServiceSlug }) {
+export function ContactForm({ locale, initialService, preselectionKey }: { locale: ServiceLocale; initialService?: ServiceSlug; preselectionKey?: string }) {
   const t = copy[locale];
   const services = getServices(locale);
   const [status, setStatus] = useState<FormStatus>("idle");
-  const [serviceId, setServiceId] = useState(initialService ?? "");
+  const [selection, setSelection] = useState({ requested: initialService, context: preselectionKey, value: initialService ?? "" });
+  // A service CTA may update the shared, already mounted form. Only its service changes.
+  if (selection.requested !== initialService || selection.context !== preselectionKey) {
+    setSelection({ requested: initialService, context: preselectionKey, value: initialService ?? selection.value });
+  }
+  const serviceId = selection.value;
   const [errors, setErrors] = useState<Partial<Record<ContactField, string>>>({});
   const statusRef = useRef<HTMLDivElement>(null);
 
@@ -247,7 +252,7 @@ export function ContactForm({ locale, initialService }: { locale: ServiceLocale;
       </label>
       <label>
         <span>{t.fields.serviceId} <i aria-hidden="true">*</i></span>
-        <NativeSelect name="serviceId" required value={serviceId} onChange={(event) => setServiceId(event.target.value)} {...fieldProps("serviceId")}>
+        <NativeSelect name="serviceId" required value={serviceId} onChange={(event) => setSelection({ requested: initialService, context: preselectionKey, value: event.target.value })} {...fieldProps("serviceId")}>
           <NativeSelectOption value="" disabled>{t.select}</NativeSelectOption>
           {services.map((service) => <NativeSelectOption value={service.id} key={service.id}>{service.formLabel}</NativeSelectOption>)}
           <NativeSelectOption value="not-sure">{t.notSureService}</NativeSelectOption>

@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Accordion,
   AccordionContent,
@@ -17,7 +18,7 @@ import {
 import { Faq } from "./faq";
 import { HeroTechnologyField } from "./hero-technology-field";
 import { FeaturedSolarcity } from "./featured-solarcity";
-import { getServices, type ServiceSlug } from "./services";
+import { getServiceHref, getServices, type ServiceSlug } from "./services";
 import { PriceText } from "./price-text";
 import { SiteHeader } from "./site-chrome";
 import { Testimonials } from "./testimonials";
@@ -539,7 +540,7 @@ export function HoverSite({ locale }: { locale: Locale }) {
                     aria-controls={panelId}
                     onClick={() => setActiveService((current) => current === service.id ? null : service.id)}
                   >
-                    <span>{service.number}</span><h3>{service.name}</h3><p><PriceText value={service.price} /></p><Arrow />
+                    <span>{service.number}</span><h3>{service.id === "chatbots" ? service.name.toLocaleUpperCase(locale === "ua" ? "uk" : "en") : service.name}</h3><p><PriceText value={service.price} /></p><Arrow />
                   </button>
                   <div
                     className="service-detail"
@@ -550,9 +551,11 @@ export function HoverSite({ locale }: { locale: Locale }) {
                   >
                     <div>
                       <p className="section-body">{service.intro}</p>
-                      <a href={`/${locale}/services/${service.slug}`} tabIndex={isOpen ? undefined : -1}>
+                      {service.id === "chatbots" ? <Link href={getServiceHref(locale, service.slug)} tabIndex={isOpen ? undefined : -1}>
                         {t.services.details}
-                      </a>
+                      </Link> : <a href={`/${locale}/services/${service.slug}`} tabIndex={isOpen ? undefined : -1}>
+                        {t.services.details}
+                      </a>}
                     </div>
                   </div>
                 </div>

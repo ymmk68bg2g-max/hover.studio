@@ -5458,8 +5458,10 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
 
 .service-primary-cta {
   display: inline-flex;
-  justify-content: space-between;
-  gap: 1.5rem;
+  width: fit-content;
+  max-width: 100%;
+  justify-content: flex-start;
+  gap: 1rem;
   align-items: center;
   padding-bottom: 0.45rem;
   border-bottom: 1px solid var(--ink);
@@ -5510,8 +5512,9 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
   margin: auto 0;
   font-size: clamp(3.6rem, 8vw, 8.5rem);
   font-weight: 500;
-  letter-spacing: -0.07em;
-  line-height: 0.85;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  text-transform: uppercase;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
@@ -5539,6 +5542,7 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
 
 .service-intro-copy .service-primary-cta {
   grid-column: 4;
+  justify-self: end;
 }
 
 .service-editorial-section {
@@ -5552,6 +5556,13 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
 
 .service-section-index {
   color: var(--grey);
+}
+
+@media (min-width: 761px) {
+  .service-page .service-editorial-section:not(.service-related) h2:not(.sr-only) {
+    /* Align Inter Tight cap tops with the IBM Plex Mono section label. */
+    translate: 0 calc(var(--section-meta-size) * 0.402 - 0.5lh + 0.36376953em);
+  }
 }
 
 .service-when .service-text-lead {
@@ -6901,7 +6912,7 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
 
   .service-page[lang="uk"][data-service="corporate-websites"] .service-text-title {
     min-width: 0;
-    font-size: min(clamp(2.5rem, 11.5vw, 4rem), 13cqi);
+    font-size: min(clamp(2.5rem, 11.5vw, 4rem), 12.4cqi);
   }
 
   .about:lang(en) .about-grid {

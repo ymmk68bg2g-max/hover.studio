@@ -31,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: {
       languages: {
         en: siteUrl(`/en/services/${slug}`),
-        "uk-UA": siteUrl(`/ua/services/${slug}`),
+        [slug === "chatbots" ? "uk" : "uk-UA"]: siteUrl(`/ua/services/${slug}`),
       },
     },
   })));
