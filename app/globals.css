@@ -2296,6 +2296,58 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
   resize: vertical;
 }
 
+.contact-verification {
+  grid-column: 1 / -1;
+  min-width: 0;
+  max-width: 100%;
+  margin-top: 1.5rem;
+}
+
+.contact-verification-label,
+.contact-verification-status {
+  margin: 0;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.contact-verification-label {
+  margin-bottom: 0.75rem;
+  color: #b4b3ad;
+}
+
+.contact-verification-widget {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.contact-verification-status {
+  margin-top: 0.75rem;
+  color: #d5d4cd;
+}
+
+.contact-verification-retry {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  max-width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.75rem;
+  text-align: left;
+}
+
+.contact-verification-retry:hover,
+.contact-verification-retry:focus-visible {
+  color: var(--active);
+}
+
 .send-button {
   grid-column: 1 / -1;
   display: flex;

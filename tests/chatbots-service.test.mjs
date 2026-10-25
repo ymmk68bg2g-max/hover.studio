@@ -5,7 +5,7 @@ import vm from "node:vm";
 import ts from "typescript";
 
 const modules = new Map();
-function loadModule(file, imports = {}) {
+function loadModule(file, imports = {}, globals = {}) {
   const source = readFileSync(new URL(`../app/${file}`, import.meta.url), "utf8");
   const compiled = ts.transpileModule(source, {
     compilerOptions: {
@@ -22,6 +22,7 @@ function loadModule(file, imports = {}) {
       if (modules.has(name)) return modules.get(name);
       throw new Error(`Unexpected import: ${name}`);
     },
+    ...globals,
   }, { filename: file });
   return exports;
 }
@@ -29,7 +30,6 @@ function loadModule(file, imports = {}) {
 const services = loadModule("services.ts");
 modules.set("./services", services);
 const schema = loadModule("contact-schema.ts");
-const delivery = loadModule("contact-delivery.ts");
 
 const oldSlugs = ["landing-pages", "business-websites", "corporate-websites", "digital-experience", "website-care"];
 const oldPrices = {
@@ -62,15 +62,13 @@ for (const locale of ["ua", "en"]) {
     assert.equal(services.getServiceHref(locale, "chatbots"), `/${locale}/services/chatbots`);
   });
 
-  test(`${locale}: shared server validation and delivery template accept the stable service ID`, () => {
+  test(`${locale}: shared validation accepts the stable service ID and rejects translated display labels`, () => {
     const parsed = schema.validateContactPayload(validPayload(locale));
     assert.equal(parsed.ok, true);
     assert.equal(parsed.data.serviceId, "chatbots");
-    const prepared = delivery.formSubmitPayload(parsed.data, `https://example.com/${locale}#contact`);
     const label = locale === "ua" ? "Чат-боти та інтеграції" : "Chatbots & Integrations";
-    assert.equal(prepared["Послуга / Service"], label);
-    assert.ok(prepared._subject.endsWith(label));
-    assert.equal(prepared["Мова / Language"], locale.toUpperCase());
+    assert.equal(services.getService(locale, parsed.data.serviceId).formLabel, label);
+    assert.equal(parsed.data.locale, locale);
     const invalid = schema.validateContactPayload({ ...validPayload(locale), serviceId: label });
     assert.equal(invalid.ok, false);
     assert.equal(invalid.fieldErrors.serviceId, "invalid");
@@ -105,6 +103,7 @@ test("mounted form updates only the selected service when a CTA changes preselec
         return hooks[index] ??= { current };
       },
       useEffect() {},
+      useCallback(callback) { const index = hookIndex++; return hooks[index] ??= callback; },
     },
     "next/link": { default: "link" },
     "@/components/ui/native-select": { NativeSelect: "select", NativeSelectOption: "option" },
@@ -113,8 +112,9 @@ test("mounted form updates only the selected service when a CTA changes preselec
     "./ui-arrow": { UiArrow: "svg-arrow" },
     "./contact-request": { CONTACT_REQUEST_TIMEOUT_MS: 1000, submitContactRequest: () => { throw new Error("Must not send"); } },
     "./google-ads-conversion": { reportContactConversion: () => { throw new Error("Must not track before delivery"); } },
+    "./contact-turnstile": { ContactTurnstile: "turnstile" },
     "./contact-schema": schema,
-  });
+  }, { process: { env: { NEXT_PUBLIC_TURNSTILE_SITE_KEY: "test-public-key" } } });
   function render(initialService, preselectionKey) {
     let tree;
     let attempts = 0;

@@ -27,9 +27,9 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
   ua: {
     eyebrow: "ЮРИДИЧНА ІНФОРМАЦІЯ",
     title: "Політика конфіденційності",
-    updated: "Актуалізовано 23 жовтня 2026 року.",
+    updated: "Актуалізовано 25 жовтня 2026 року.",
     intro:
-      "Ця політика пояснює, як обробляються персональні дані, отримані через сайт HOVER та під час обговорення співпраці. Для передавання звернень із контактної форми налаштовано FormSubmit, а для робочої пошти використовується Google/Gmail. На всіх мовних версіях сайту встановлено Google tag для Google Ads з ідентифікатором AW-18530491505 для вимірювання ефективності реклами. Точні країни обробки, місця зберігання, строки зберігання технічних журналів і резервних копій та умови міжнародної передачі ще перевіряються.",
+      "Ця політика пояснює, як обробляються персональні дані, отримані через сайт HOVER та під час обговорення співпраці. Для передавання звернень із контактної форми використовується серверна доставка через Resend, для захисту від автоматичних відправлень — Cloudflare Turnstile, а для робочої пошти — Google/Gmail. На всіх мовних версіях сайту встановлено Google tag для Google Ads з ідентифікатором AW-18530491505 для вимірювання ефективності реклами. Точні країни обробки, місця зберігання, строки зберігання технічних журналів і резервних копій та умови міжнародної передачі ще перевіряються.",
     sections: [
       {
         id: "controller",
@@ -56,6 +56,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "Форма не містить поля для номера телефону або завантаження файлів.",
               "Під час листування електронною поштою, у Telegram або Viber обробляються адреса чи ідентифікатор профілю, зміст і час повідомлень та інші відомості, які особа сама надсилає в обраному каналі.",
               "Під час відвідування сайту хостингова й захисна інфраструктура може обробляти технічні відомості, необхідні для передавання та захисту сторінок: зокрема IP-адресу, тип браузера, заголовки запиту, адресу запитаної сторінки, дату й час запиту.",
+              "Cloudflare Turnstile обробляє технічні відомості про браузер і пристрій та результат перевірки для захисту контактної форми від автоматичних відправлень. Сервер перевіряє одноразовий токен перед доставкою звернення.",
               "Під час завантаження будь-якої мовної версії сайту Google tag може передавати Google URL відвіданої сторінки, IP-адресу, відомості про браузер, пристрій і час запиту, а також ідентифікатори cookies та переходів із реклами. Конкретний склад даних залежить від налаштувань Google, браузера та взаємодії з рекламою.",
             ],
           },
@@ -105,7 +106,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
-            text: "Цей сайт розміщено на Vercel. FormSubmit бере участь у передаванні звернень із контактної форми, Google/Gmail — у роботі пошти, а Telegram або Viber — у листуванні, коли обрано відповідний канал.",
+            text: "Цей сайт розміщено на Vercel. Resend бере участь у серверній доставці звернень із контактної форми, Cloudflare Turnstile — у перевірці браузера для захисту форми, Google/Gmail — у роботі пошти, а Telegram або Viber — у листуванні, коли обрано відповідний канал.",
           },
           {
             type: "paragraph",
@@ -113,11 +114,11 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
-            text: `Після серверної перевірки браузер передає дані контактної форми FormSubmit через HTTPS для пересилання на робочу адресу ${contactEmail}.`,
+            text: `Після серверної перевірки даних і токена Cloudflare Turnstile сервер Vercel передає дані контактної форми Resend через HTTPS для доставки на робочу адресу ${contactEmail}.`,
           },
           {
             type: "paragraph",
-            text: "FormSubmit обробляє дані звернення для його передавання, а Google/Gmail — для отримання листа та подальшого листування щодо звернення. Точні місця зберігання й строки зберігання технічних журналів та резервних копій у фактичній конфігурації цих сервісів ще не підтверджені.",
+            text: "Resend обробляє дані звернення для доставки листа, а Google/Gmail — для отримання листа та подальшого листування щодо звернення. До Cloudflare Turnstile не передаються ім’я, email, назва компанії чи текст повідомлення з форми; сервіс обробляє технічні сигнали браузера для перевірки. Точні місця зберігання й строки зберігання технічних журналів та резервних копій у фактичній конфігурації цих сервісів ще не підтверджені.",
           },
         ],
       },
@@ -131,7 +132,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
-            text: "За документацією FormSubmit, сервіс зберігає подані через форму звернення протягом 30 днів. Це окремий строк зберігання у FormSubmit; видалення листування власником зі своїх робочих каналів через 14 днів не скорочує його.",
+            text: "Строки зберігання копій листів і службових даних у Resend визначаються умовами сервісу та фактичними налаштуваннями облікового запису. Видалення листування власником зі своїх робочих каналів через 14 днів не скорочує окремі строки зберігання постачальників.",
           },
           {
             type: "paragraph",
@@ -157,7 +158,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
-            text: "Точні країни обробки та застосовні механізми захисту ще не підтверджені для FormSubmit, Google/Gmail, Google Ads та фактичної конфігурації хостингу. Якщо до конкретної передачі застосовуються вимоги законодавства про захист даних, вона має здійснюватися на передбаченій ним підставі та із відповідними гарантіями.",
+            text: "Точні країни обробки та застосовні механізми захисту ще не підтверджені для Resend, Cloudflare Turnstile, Google/Gmail, Google Ads та фактичної конфігурації хостингу. Якщо до конкретної передачі застосовуються вимоги законодавства про захист даних, вона має здійснюватися на передбаченій ним підставі та із відповідними гарантіями.",
           },
         ],
       },
@@ -231,9 +232,9 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
   en: {
     eyebrow: "LEGAL INFORMATION",
     title: "Privacy Policy",
-    updated: "Last updated: 23 October 2026.",
+    updated: "Last updated: 25 October 2026.",
     intro:
-      "This policy explains how personal data received through the HOVER website and during project discussions is processed. FormSubmit is configured to forward contact-form enquiries, and Google/Gmail is used for working email. The Google tag for Google Ads, with the identifier AW-18530491505, is installed across all language versions of the website to measure advertising effectiveness. Exact processing countries, storage locations, retention of technical logs and backups, and the conditions of any international transfers are still being verified.",
+      "This policy explains how personal data received through the HOVER website and during project discussions is processed. Contact-form enquiries are delivered by the server through Resend, Cloudflare Turnstile protects against automated submissions, and Google/Gmail is used for working email. The Google tag for Google Ads, with the identifier AW-18530491505, is installed across all language versions of the website to measure advertising effectiveness. Exact processing countries, storage locations, retention of technical logs and backups, and the conditions of any international transfers are still being verified.",
     sections: [
       {
         id: "controller",
@@ -260,6 +261,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "The form does not include a telephone-number field or file uploads.",
               "When a conversation continues by email, Telegram, or Viber, the address or profile identifier, message content and time, and other information voluntarily sent through that channel are processed.",
               "When the website is visited, hosting and security infrastructure may process technical information needed to deliver and protect the pages, including the IP address, browser type, request headers, requested page, and request date and time.",
+              "Cloudflare Turnstile processes technical browser and device information and verification results to protect the contact form against automated submissions. The server validates a single-use token before delivering the enquiry.",
               "When any language version of the website loads, the Google tag may send Google the URL of the page visited, IP address, browser and device information, request time, and cookie and advertising-click identifiers. The exact data depends on Google settings, the browser, and interaction with advertising.",
             ],
           },
@@ -309,7 +311,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
-            text: "This website is hosted on Vercel. FormSubmit participates in forwarding contact-form enquiries, Google/Gmail operates the working email service, and Telegram or Viber processes communications when those channels are used.",
+            text: "This website is hosted on Vercel. Resend delivers contact-form enquiries from the server, Cloudflare Turnstile checks browsers to protect the form, Google/Gmail operates the working email service, and Telegram or Viber processes communications when those channels are used.",
           },
           {
             type: "paragraph",
@@ -317,11 +319,11 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
-            text: `After server validation, the browser sends contact-form data to FormSubmit over HTTPS for forwarding to the working address ${contactEmail}.`,
+            text: `After validating the form data and Cloudflare Turnstile token, the Vercel server sends contact-form data to Resend over HTTPS for delivery to the working address ${contactEmail}.`,
           },
           {
             type: "paragraph",
-            text: "FormSubmit processes enquiry data to forward it, while Google/Gmail processes it to receive the email and support subsequent correspondence about the enquiry. Exact storage locations and retention periods for technical logs and backups in the actual configuration of these services have not yet been confirmed.",
+            text: "Resend processes enquiry data to deliver the email, while Google/Gmail processes it to receive the email and support subsequent correspondence about the enquiry. The form’s name, email, company and message fields are not sent to Cloudflare Turnstile; it processes technical browser signals for verification. Exact storage locations and retention periods for technical logs and backups in the actual configuration of these services have not yet been confirmed.",
           },
         ],
       },
@@ -335,7 +337,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
-            text: "According to FormSubmit’s documentation, the service retains form submissions for 30 days. This is a separate retention period at FormSubmit; the owner deleting correspondence from his working channels after 14 days does not shorten it.",
+            text: "Retention of email copies and service data at Resend is governed by its terms and the account’s actual settings. The owner deleting correspondence from his working channels after 14 days does not shorten providers’ separate retention periods.",
           },
           {
             type: "paragraph",
@@ -361,7 +363,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
-            text: "The exact processing countries and applicable safeguards have not yet been confirmed for FormSubmit, Google/Gmail, Google Ads, and the actual hosting configuration. Where data-protection law imposes requirements on a particular transfer, it must be made on a basis and with safeguards provided by that law.",
+            text: "The exact processing countries and applicable safeguards have not yet been confirmed for Resend, Cloudflare Turnstile, Google/Gmail, Google Ads, and the actual hosting configuration. Where data-protection law imposes requirements on a particular transfer, it must be made on a basis and with safeguards provided by that law.",
           },
         ],
       },
