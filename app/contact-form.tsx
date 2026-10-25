@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import {
   NativeSelect,
   NativeSelectOption,
@@ -9,6 +9,7 @@ import {
 import { contactIntegrationStatus, privacyPublicationStatus } from "./client-experience-config";
 import { contactEmail } from "./contact-settings";
 import { CONTACT_REQUEST_TIMEOUT_MS, submitContactRequest } from "./contact-request";
+import { ContactTurnstile } from "./contact-turnstile";
 import { reportContactConversion } from "./google-ads-conversion";
 import {
   budgetIds,
@@ -18,7 +19,7 @@ import {
 import { getServices, type ServiceLocale, type ServiceSlug } from "./services";
 import { UiArrow } from "./ui-arrow";
 
-type FormStatus = "idle" | "loading" | "success" | "validation" | "server" | "network" | "timeout";
+type FormStatus = "idle" | "loading" | "success" | "validation" | "server" | "network" | "timeout" | "verification" | "rate-limit";
 
 const copy = {
   en: {
@@ -37,6 +38,8 @@ const copy = {
     server: `Submission is currently unavailable. Your entries remain in the form. You can also email ${contactEmail}.`,
     network: "We couldn’t reach the server. Check your connection and try again.",
     timeout: `We couldn’t confirm that the enquiry was received. Your entries remain in the form. You can contact us at ${contactEmail} to check.`,
+    verification: "Please complete the verification below, then try sending again. Your entries remain in the form.",
+    rateLimit: "Too many attempts. Please wait before trying again. Your entries remain in the form.",
     fieldError: "Check this field.",
     emailError: "Enter a valid email address.",
     pendingNotice: "The secure delivery channel is still being configured. The form will never show success unless the server confirms receipt.",
@@ -59,6 +62,8 @@ const copy = {
     server: `Надсилання зараз недоступне. Дані залишилися у формі. Ви також можете написати на ${contactEmail}.`,
     network: "Не вдалося зв’язатися із сервером. Перевірте мережу та повторіть спробу.",
     timeout: `Не вдалося підтвердити отримання запиту. Дані залишилися у формі. Для уточнення напишіть на ${contactEmail}.`,
+    verification: "Пройдіть перевірку нижче та спробуйте надіслати ще раз. Дані залишилися у формі.",
+    rateLimit: "Забагато спроб. Зачекайте перед наступним надсиланням. Дані залишилися у формі.",
     fieldError: "Перевірте це поле.",
     emailError: "Вкажіть коректну електронну адресу.",
     pendingNotice: "Безпечний канал надсилання ще налаштовується. Форма не покаже успіх без підтвердження сервера.",
@@ -74,6 +79,7 @@ function Arrow() {
 export function ContactForm({ locale, initialService, preselectionKey }: { locale: ServiceLocale; initialService?: ServiceSlug; preselectionKey?: string }) {
   const t = copy[locale];
   const services = getServices(locale);
+  const turnstileConfigured = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim());
   const [status, setStatus] = useState<FormStatus>("idle");
   const [selection, setSelection] = useState({ requested: initialService, context: preselectionKey, value: initialService ?? "" });
   // A service CTA may update the shared, already mounted form. Only its service changes.
@@ -84,9 +90,16 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
   const [errors, setErrors] = useState<Partial<Record<ContactField, string>>>({});
   const statusRef = useRef<HTMLDivElement>(null);
   const submissionState = useRef<"idle" | "pending" | "succeeded">("idle");
+  const submissionIdentity = useRef<{ payload: string; id: string } | null>(null);
+  const turnstileToken = useRef<string | null>(null);
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
+  const handleTurnstileToken = useCallback((token: string | null) => {
+    turnstileToken.current = token;
+    if (token) setStatus(current => current === "verification" ? "idle" : current);
+  }, []);
 
   useEffect(() => {
-    if (!["success", "server", "network", "timeout"].includes(status)) return;
+    if (!["success", "server", "network", "timeout", "verification", "rate-limit"].includes(status)) return;
     const confirmation = statusRef.current;
     if (!confirmation) return;
     if (status !== "success" || !window.matchMedia("(max-width: 760px)").matches) {
@@ -186,13 +199,26 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
     }
 
     setErrors({});
+    if (!turnstileConfigured) return;
+    const token = turnstileToken.current;
+    if (!token) {
+      setStatus("verification");
+      return;
+    }
     submissionState.current = "pending";
+    turnstileToken.current = null;
     setStatus("loading");
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), CONTACT_REQUEST_TIMEOUT_MS);
 
     try {
-      const { status: responseStatus, result } = await submitContactRequest(payload, controller.signal);
+      const canonicalPayload = JSON.stringify(parsed.data);
+      if (submissionIdentity.current?.payload !== canonicalPayload) {
+        submissionIdentity.current = { payload: canonicalPayload, id: crypto.randomUUID() };
+      }
+      const { status: responseStatus, result } = await submitContactRequest({
+        ...parsed.data, website: payload.website, turnstileToken: token, submissionId: submissionIdentity.current.id,
+      }, controller.signal);
 
       if (responseStatus === 422 && result?.code === "VALIDATION_ERROR") {
         const fieldErrors = result.fieldErrors ?? {};
@@ -201,6 +227,14 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
         const first = Object.keys(fieldErrors)[0] as ContactField | undefined;
         const element = first ? form.elements.namedItem(first) : null;
         if (element instanceof HTMLElement) requestAnimationFrame(() => element.focus());
+        return;
+      }
+      if (responseStatus === 403 && result?.code === "BOT_VERIFICATION_FAILED") {
+        setStatus("verification");
+        return;
+      }
+      if (responseStatus === 429) {
+        setStatus("rate-limit");
         return;
       }
       if (responseStatus >= 200 && responseStatus < 300 && result?.ok === true) {
@@ -214,6 +248,8 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
       setStatus(error instanceof Error && error.name === "AbortError" ? "timeout" : "network");
     } finally {
       window.clearTimeout(timeout);
+      turnstileToken.current = null;
+      setTurnstileResetKey(value => value + 1);
       if (submissionState.current === "pending") submissionState.current = "idle";
     }
   };
@@ -224,7 +260,13 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
         <span>01 / OK</span>
         <h3>{t.successThanks}{" "}<span className="form-success-confirmation">{t.successConfirmation}</span></h3>
         <p>{t.successBody}</p>
-        <button type="button" onClick={() => { submissionState.current = "idle"; setStatus("idle"); }}>{t.reset}{" "}<UiArrow /></button>
+        <button type="button" onClick={() => {
+          submissionState.current = "idle";
+          submissionIdentity.current = null;
+          turnstileToken.current = null;
+          setTurnstileResetKey(value => value + 1);
+          setStatus("idle");
+        }}>{t.reset}{" "}<UiArrow /></button>
       </div>
     );
   }
@@ -234,6 +276,8 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
     : status === "server" ? t.server
     : status === "network" ? t.network
     : status === "timeout" ? t.timeout
+    : status === "verification" ? t.verification
+    : status === "rate-limit" ? t.rateLimit
     : "";
 
   return (
@@ -278,10 +322,11 @@ export function ContactForm({ locale, initialService, preselectionKey }: { local
       <label className="contact-honeypot" aria-hidden="true">
         <span>Website</span><input name="website" tabIndex={-1} autoComplete="off" />
       </label>
+      <ContactTurnstile locale={locale} onToken={handleTurnstileToken} resetKey={turnstileResetKey} />
       <div className="form-status" aria-live="assertive" aria-atomic="true" ref={statusRef} role="status" tabIndex={-1}>
         {statusMessage}
       </div>
-      <button type="submit" className="send-button" disabled={status === "loading"} aria-disabled={status === "loading"}>
+      <button type="submit" className="send-button" disabled={status === "loading" || !turnstileConfigured} aria-disabled={status === "loading" || !turnstileConfigured}>
         <span>{status === "loading" ? t.sending : t.send}</span><Arrow />
       </button>
       <div className="form-data-notice">

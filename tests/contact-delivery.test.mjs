@@ -1,292 +1,194 @@
 import assert from "node:assert/strict";
-import test, { after } from "node:test";
-import { fileURLToPath } from "node:url";
+import { readFileSync } from "node:fs";
+import test from "node:test";
+import vm from "node:vm";
+import ts from "typescript";
 
-import { createServer } from "vite";
-
-const root = fileURLToPath(new URL("..", import.meta.url));
-const vite = await createServer({
-  appType: "custom",
-  configFile: false,
-  root,
-  server: { middlewareMode: true, hmr: false, ws: false },
-});
-const { POST } = await vite.ssrLoadModule("/app/api/contact/route.ts");
-const { isFormSubmitAccepted, isFormSubmitEndpoint } = await vite.ssrLoadModule(
-  "/app/contact-delivery.ts",
-);
-
-after(async () => {
-  await vite.close();
-});
-
-const formSubmitEndpoint = "https://formsubmit.co/ajax/byhover.studio@gmail.com";
-const siteOrigin = "https://hover-studio.example";
-
-function validPayload(overrides = {}) {
+const compiled = new Map();
+function load(file, imports, globals) {
+  if (!compiled.has(file)) compiled.set(file, ts.transpileModule(
+    readFileSync(new URL(`../app/${file}`, import.meta.url), "utf8"),
+    { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } },
+  ).outputText);
+  const exports = {};
+  vm.runInNewContext(compiled.get(file), {
+    exports, require(name) { assert.ok(name in imports, `Unexpected import: ${name}`); return imports[name]; },
+    URL, Response, TextDecoder, Error, SyntaxError, AbortController, ...globals,
+  }, { filename: file });
+  return exports;
+}
+const services = load("services.ts", {}, {});
+const schema = load("contact-schema.ts", { "./services": services }, {});
+const origin = "https://byhover.studio";
+const submissionId = "4c7c4dbc-fd90-4d71-9664-31b269055ff6";
+const siteverify = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+const resend = "https://api.resend.com/emails";
+const json = (body, status = 200) => new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
+const acceptedToken = overrides => json({ success: true, hostname: "byhover.studio", action: "contact", ...overrides });
+function payload(overrides = {}) {
   return {
-    locale: "en",
-    name: "Alex Example",
-    email: "alex@example.com",
-    company: "Example Company",
-    serviceId: "landing-pages",
-    budgetId: "tier-1",
-    message: "Please help us launch our new service.",
-    ...overrides,
+    locale: "en", name: "Alex Example", email: "alex@example.com", company: "Example Company",
+    serviceId: "landing-pages", budgetId: "tier-1", message: "Please help us launch our new service.",
+    website: "", turnstileToken: "test-challenge-token", submissionId, ...overrides,
   };
 }
-
-function contactRequest(payload = validPayload(), origin = siteOrigin) {
-  return new Request(`${siteOrigin}/api/contact`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Origin: origin },
-    body: JSON.stringify(payload),
+function request(body = payload(), headers = {}, url = `${origin}/api/contact`) {
+  return new Request(url, {
+    method: "POST", headers: { "Content-Type": "application/json", Origin: new URL(url).origin, ...headers },
+    body: typeof body === "string" ? body : JSON.stringify(body),
   });
 }
-
-function configureDelivery(t, endpoint = formSubmitEndpoint, token) {
-  const previousEndpoint = process.env.HOVER_CONTACT_FORM_ENDPOINT;
-  const previousToken = process.env.HOVER_CONTACT_FORM_TOKEN;
-  if (endpoint === null) delete process.env.HOVER_CONTACT_FORM_ENDPOINT;
-  else process.env.HOVER_CONTACT_FORM_ENDPOINT = endpoint;
-  if (token === undefined) delete process.env.HOVER_CONTACT_FORM_TOKEN;
-  else process.env.HOVER_CONTACT_FORM_TOKEN = token;
-  t.after(() => {
-    if (previousEndpoint === undefined) delete process.env.HOVER_CONTACT_FORM_ENDPOINT;
-    else process.env.HOVER_CONTACT_FORM_ENDPOINT = previousEndpoint;
-    if (previousToken === undefined) delete process.env.HOVER_CONTACT_FORM_TOKEN;
-    else process.env.HOVER_CONTACT_FORM_TOKEN = previousToken;
-  });
+function harness(responses = [], env = {}) {
+  const calls = [], timers = new Map();
+  let timer = 0;
+  const globals = {
+    process: { env: { TURNSTILE_SECRET_KEY: "test-only-secret", RESEND_API_KEY: "test-only-mail-key", ...env } },
+    setTimeout(callback, milliseconds) { timers.set(++timer, { callback, milliseconds }); return timer; },
+    clearTimeout(id) { timers.delete(id); },
+    fetch: async (...args) => {
+      const index = calls.length; calls.push(args);
+      assert.ok(index < responses.length, "Real requests, unexpected endpoints and automatic retries are forbidden");
+      const next = responses[index]; return typeof next === "function" ? next(...args) : next;
+    },
+  };
+  const server = load("contact-server.ts", { "./services": services }, globals);
+  const route = load("api/contact/route.ts", { "../../contact-schema": schema, "../../contact-server": server }, globals);
+  return { ...route, calls, timers };
 }
-
-function jsonResponse(body, status = 200) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { "Content-Type": "application/json" },
-  });
-}
-
-async function assertApiResponse(response, status, body) {
+async function assertResponse(response, status, expected) {
   assert.equal(response.status, status);
   assert.equal(response.headers.get("cache-control"), "no-store");
   assert.match(response.headers.get("content-type"), /application\/json/);
-  assert.deepEqual(await response.json(), body);
+  const body = await response.json(); assert.deepEqual(body, expected);
+  assert.equal("delivery" in body, false, "Provider instructions must never be exposed to the browser");
+  assert.doesNotMatch(JSON.stringify(body), /test-only-secret|test-only-mail-key|api\.resend|formsubmit|test-challenge-token/);
 }
 
-test("cancels an oversized streamed body before consuming the remaining chunks", async (t) => {
-  configureDelivery(t);
-  const fetch = t.mock.method(globalThis, "fetch", async () => {
-    throw new Error("An oversized request must not be delivered");
-  });
-  let chunksRead = 0;
-  let cancelled = false;
-  const totalChunks = 8;
+test("cancels an oversized streamed upload before reading all chunks or contacting a provider", async () => {
+  const app = harness(); let chunksRead = 0, cancelled = false;
   const stream = new ReadableStream({
-    pull(controller) {
-      chunksRead += 1;
-      controller.enqueue(new Uint8Array(8_000).fill(32));
-      if (chunksRead === totalChunks) controller.close();
-    },
+    pull(controller) { chunksRead++; controller.enqueue(new Uint8Array(8000).fill(32)); if (chunksRead === 8) controller.close(); },
     cancel() { cancelled = true; },
   }, { highWaterMark: 0 });
-  const request = new Request(`${siteOrigin}/api/contact`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Origin: siteOrigin },
-    body: stream,
-    duplex: "half",
+  const streamed = new Request(`${origin}/api/contact`, {
+    method: "POST", headers: { "Content-Type": "application/json", Origin: origin }, body: stream, duplex: "half",
   });
-  assert.equal(request.headers.has("content-length"), false);
-
-  await assertApiResponse(await POST(request), 413, { ok: false, code: "PAYLOAD_TOO_LARGE" });
-  assert.equal(cancelled, true);
-  assert.ok(chunksRead < totalChunks, "The server must stop reading before the full upload arrives");
-  assert.equal(fetch.mock.callCount(), 0);
+  await assertResponse(await app.POST(streamed), 413, { ok: false, code: "PAYLOAD_TOO_LARGE" });
+  assert.equal(cancelled, true); assert.ok(chunksRead < 8); assert.equal(app.calls.length, 0);
 });
 
-test("decodes split UTF-8 characters and accepts a valid body at the 20,000-byte limit", async (t) => {
-  configureDelivery(t);
-  const payload = validPayload({
-    locale: "ua",
-    name: "Ім’я О’Браєн",
-    message: "Український текст з апострофом ’ та емодзі ☀️. ".repeat(70),
-  });
-  const encoder = new TextEncoder();
-  const serialized = JSON.stringify(payload);
-  const bytes = encoder.encode(serialized + " ".repeat(20_000 - encoder.encode(serialized).byteLength));
-  assert.equal(bytes.byteLength, 20_000);
-  let offset = 0;
-  let cancelled = false;
-  const stream = new ReadableStream({
-    pull(controller) {
-      if (offset === bytes.byteLength) return controller.close();
-      const end = Math.min(offset + 17, bytes.byteLength);
-      controller.enqueue(bytes.slice(offset, end));
-      offset = end;
-    },
-    cancel() { cancelled = true; },
-  }, { highWaterMark: 0 });
-  const request = new Request(`${siteOrigin}/api/contact`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Origin: siteOrigin },
-    body: stream,
-    duplex: "half",
-  });
-
-  const response = await POST(request);
-  const result = await response.json();
-  assert.equal(response.status, 200);
-  assert.equal(result.code, "BROWSER_DELIVERY_REQUIRED");
-  assert.equal(result.delivery.payload.name, payload.name);
-  assert.equal(result.delivery.payload["Повідомлення / Message"], payload.message.trim());
-  assert.equal(cancelled, false);
+test("accepts a 20,000-byte upload with split UTF-8 characters and sends the normalized plain text", async () => {
+  const app = harness([acceptedToken(), json({ id: "mail-id" })]);
+  const fields = payload({ locale: "ua", name: "Ім’я О’Браєн", message: "Український текст з апострофом ’ та емодзі ☀️. ".repeat(70) });
+  const encoder = new TextEncoder(); const serialized = JSON.stringify(fields);
+  const bytes = encoder.encode(serialized + " ".repeat(20_000 - encoder.encode(serialized).byteLength)); let offset = 0;
+  const stream = new ReadableStream({ pull(controller) {
+    if (offset === bytes.length) return controller.close();
+    const end = Math.min(offset + 17, bytes.length); controller.enqueue(bytes.slice(offset, end)); offset = end;
+  } }, { highWaterMark: 0 });
+  await assertResponse(await app.POST(new Request(`${origin}/api/contact`, {
+    method: "POST", headers: { Origin: origin, "Content-Type": "Application/JSON; charset=utf-8" }, body: stream, duplex: "half",
+  })), 202, { ok: true });
+  assert.equal(app.calls.length, 2); const email = JSON.parse(app.calls[1][1].body);
+  assert.ok(email.text.includes(fields.name)); assert.ok(email.text.includes(fields.message.trim()));
 });
 
-test("rejects a missing request body as invalid JSON without delivery", async (t) => {
-  configureDelivery(t);
-  const fetch = t.mock.method(globalThis, "fetch", async () => {
-    throw new Error("An empty request must not be delivered");
-  });
-  const request = new Request(`${siteOrigin}/api/contact`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Origin: siteOrigin },
-  });
-
-  await assertApiResponse(await POST(request), 400, { ok: false, code: "INVALID_JSON" });
-  assert.equal(fetch.mock.callCount(), 0);
+for (const [label, fields, headers, status, body] of [
+  ["cross-origin", payload(), { Origin: "https://other.example" }, 403, { ok: false, code: "FORBIDDEN" }],
+  ["null origin", payload(), { Origin: "null" }, 403, { ok: false, code: "FORBIDDEN" }],
+  ["wrong content type", payload(), { "Content-Type": "text/plain" }, 415, { ok: false, code: "UNSUPPORTED_MEDIA_TYPE" }],
+  ["lookalike JSON type", payload(), { "Content-Type": "application/json-evil" }, 415, { ok: false, code: "UNSUPPORTED_MEDIA_TYPE" }],
+  ["malformed JSON", "{", {}, 400, { ok: false, code: "INVALID_JSON" }],
+  ["filled honeypot", payload({ website: "spam" }), {}, 422, { ok: false, code: "VALIDATION_ERROR" }],
+  ["non-string honeypot", payload({ website: {} }), {}, 422, { ok: false, code: "VALIDATION_ERROR" }],
+  ["invalid email", payload({ email: "bad" }), {}, 422, { ok: false, code: "VALIDATION_ERROR", fieldErrors: { email: "invalid" } }],
+  ["missing submission UUID", payload({ submissionId: undefined }), {}, 400, { ok: false, code: "INVALID_SUBMISSION_ID" }],
+  ["malformed submission UUID", payload({ submissionId: "not-a-uuid" }), {}, 400, { ok: false, code: "INVALID_SUBMISSION_ID" }],
+  ["missing token", payload({ turnstileToken: undefined }), {}, 403, { ok: false, code: "BOT_VERIFICATION_FAILED" }],
+  ["empty token", payload({ turnstileToken: "  " }), {}, 403, { ok: false, code: "BOT_VERIFICATION_FAILED" }],
+  ["overlong token", payload({ turnstileToken: "a".repeat(2049) }), {}, 403, { ok: false, code: "BOT_VERIFICATION_FAILED" }],
+  ["non-string token", payload({ turnstileToken: {} }), {}, 403, { ok: false, code: "BOT_VERIFICATION_FAILED" }],
+]) test(`${label} is rejected before any provider request`, async () => {
+  const app = harness(); await assertResponse(await app.POST(request(fields, headers)), status, body); assert.equal(app.calls.length, 0);
 });
 
-for (const [label, endpoint] of [
-  ["missing", null],
-  ["empty", "  "],
-  ["insecure", "http://formsubmit.co/ajax/byhover.studio@gmail.com"],
-  ["invalid", "not an endpoint"],
-]) {
-  test(`does not fetch with a ${label} delivery endpoint`, async (t) => {
-    configureDelivery(t, endpoint);
-    const fetch = t.mock.method(globalThis, "fetch", async () => {
-      throw new Error("An unconfigured endpoint must not be contacted");
-    });
+test("missing Origin and missing request body never reach a provider", async () => {
+  const app = harness();
+  await assertResponse(await app.POST(new Request(`${origin}/api/contact`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload()) })), 403, { ok: false, code: "FORBIDDEN" });
+  await assertResponse(await app.POST(new Request(`${origin}/api/contact`, { method: "POST", headers: { Origin: origin, "Content-Type": "application/json" } })), 400, { ok: false, code: "INVALID_JSON" });
+  assert.equal(app.calls.length, 0);
+});
 
-    await assertApiResponse(await POST(contactRequest()), 503, {
-      ok: false,
-      code: "NOT_CONFIGURED",
-    });
-    assert.equal(fetch.mock.callCount(), 0);
+for (const key of ["TURNSTILE_SECRET_KEY", "RESEND_API_KEY"]) for (const value of [undefined, "", "  "]) {
+  test(`missing/empty ${key} fails closed without using legacy delivery`, async () => {
+    const app = harness([], { [key]: value, HOVER_CONTACT_FORM_ENDPOINT: "https://formsubmit.co/ajax/legacy", HOVER_CONTACT_FORM_TOKEN: "legacy-key" });
+    await assertResponse(await app.POST(request()), 503, { ok: false, code: "NOT_CONFIGURED" }); assert.equal(app.calls.length, 0);
   });
 }
 
-for (const [label, payload, origin, status, expected] of [
-  ["another origin", validPayload(), "https://unrelated.example", 403,
-    { ok: false, code: "FORBIDDEN" }],
-  ["a populated honeypot", validPayload({ website: " https://spam.example " }), siteOrigin, 422,
-    { ok: false, code: "VALIDATION_ERROR" }],
-  ["an invalid email", validPayload({ email: "invalid" }), siteOrigin, 422,
-    { ok: false, code: "VALIDATION_ERROR", fieldErrors: { email: "invalid" } }],
-]) {
-  test(`rejects ${label} before fetching`, async (t) => {
-    configureDelivery(t);
-    const fetch = t.mock.method(globalThis, "fetch", async () => {
-      throw new Error("An invalid request must not be delivered");
-    });
-
-    await assertApiResponse(await POST(contactRequest(payload, origin)), status, expected);
-    assert.equal(fetch.mock.callCount(), 0);
-  });
-}
-
-for (const [locale, serviceId, budgetId, serviceLabel, budgetLabel] of [
-  ["en", "landing-pages", "tier-1", "Landing Page", "$850–$1,350"],
-  ["ua", "business-websites", "tier-2", "Бізнес-сайт", "55–80 ТИС. ГРН"],
-  ["en", "not-sure", "not-sure", "Not sure yet", "Not sure yet"],
-  ["ua", "not-sure", "not-sure", "Потрібна консультація", "Ще не визначився"],
-]) {
-  test(`prepares readable ${locale} ${serviceId} fields without sending or claiming receipt`, async (t) => {
-    configureDelivery(t, ` ${formSubmitEndpoint} `, "must-not-leak-to-formsubmit");
-    const fetch = t.mock.method(globalThis, "fetch", async () => {
-      throw new Error("FormSubmit must be contacted only by the browser");
-    });
-    const payload = validPayload({ locale, serviceId, budgetId, company: "", website: "" });
-
-    await assertApiResponse(await POST(contactRequest(payload)), 200, {
-      ok: false,
-      code: "BROWSER_DELIVERY_REQUIRED",
-      delivery: {
-        provider: "formsubmit",
-        endpoint: formSubmitEndpoint,
-        payload: {
-          _subject: `HOVER.STUDIO — Нова заявка / ${serviceLabel}`,
-          _template: "table",
-          _captcha: "false",
-          _url: `${siteOrigin}/ua#contact`,
-          _replyto: payload.email,
-          name: payload.name,
-          email: payload.email,
-          "Компанія / Company": "—",
-          "Послуга / Service": serviceLabel,
-          "Бюджет / Budget": budgetLabel,
-          "Мова / Language": locale.toUpperCase(),
-          "Повідомлення / Message": payload.message,
-        },
-      },
-    });
-    assert.equal(fetch.mock.callCount(), 0);
-  });
-}
-
-for (const [label, error, code] of [
-  ["an abort", new DOMException("The operation was aborted", "AbortError"), "UPSTREAM_TIMEOUT"],
-  ["a network failure", new Error("Network unavailable"), "UPSTREAM_UNAVAILABLE"],
-]) {
-  test(`maps ${label} to a non-successful delivery response`, async (t) => {
-    configureDelivery(t, "https://webhook.example/contact");
-    const fetch = t.mock.method(globalThis, "fetch", async () => { throw error; });
-
-    await assertApiResponse(await POST(contactRequest()), 503, { ok: false, code });
-    assert.equal(fetch.mock.callCount(), 1);
-  });
-}
-
-test("preserves generic HTTPS webhook payloads and bearer token authentication", async (t) => {
-  const endpoint = "https://webhook.example/contact";
-  configureDelivery(t, endpoint, "  secret-token  ");
-  const fetch = t.mock.method(globalThis, "fetch", async () => jsonResponse({ ok: true }));
-  const payload = validPayload({ locale: "ua", serviceId: "business-websites", budgetId: "tier-2" });
-
-  await assertApiResponse(await POST(contactRequest(payload)), 202, { ok: true });
-  assert.equal(fetch.mock.callCount(), 1);
-  const [actualEndpoint, options] = fetch.mock.calls[0].arguments;
-  assert.equal(String(actualEndpoint), endpoint);
-  assert.deepEqual(JSON.parse(options.body), payload);
-  const headers = new Headers(options.headers);
-  assert.equal(headers.get("authorization"), "Bearer secret-token");
-  assert.equal(headers.has("origin"), false);
-  assert.equal(headers.has("referer"), false);
+for (const [label, result] of [
+  ["failed", { success: false }], ["truthy", { success: "true" }],
+  ["wrong action", { action: "login" }], ["missing action", { action: undefined }],
+  ["foreign hostname", { hostname: "evil.example" }], ["lookalike hostname", { hostname: "byhover.studio.evil.example" }],
+  ["localhost", { hostname: "localhost" }], ["preview hostname", { hostname: "hover-studio-preview.vercel.app" }],
+  ["expired or replayed", { success: false, "error-codes": ["timeout-or-duplicate"] }],
+]) test(`a ${label} verification cannot trigger mail delivery`, async () => {
+  const app = harness([acceptedToken(result)]);
+  await assertResponse(await app.POST(request()), 403, { ok: false, code: "BOT_VERIFICATION_FAILED" });
+  assert.equal(app.calls.length, 1); assert.equal(app.calls[0][0], siteverify); assert.equal(app.timers.size, 0);
 });
 
-test("requires the generic webhook's boolean ok contract", async (t) => {
-  configureDelivery(t, "https://webhook.example/contact");
-  t.mock.method(globalThis, "fetch", async () => jsonResponse({ success: "true", ok: "true" }));
-
-  await assertApiResponse(await POST(contactRequest()), 503, {
-    ok: false,
-    code: "UPSTREAM_REJECTED",
-  });
+for (const [label, response] of [
+  ["HTTP error", () => json({ success: true, hostname: "byhover.studio", action: "contact" }, 503)],
+  ["invalid JSON", () => new Response("<html>Unavailable</html>")],
+  ["null body", () => json(null)], ["array body", () => json([])],
+  ["network error", () => { throw new TypeError("No network"); }],
+]) test(`verification ${label} fails closed and exposes no provider detail`, async () => {
+  const app = harness([response]);
+  await assertResponse(await app.POST(request()), 503, { ok: false, code: "VERIFICATION_UNAVAILABLE" });
+  assert.equal(app.calls.length, 1); assert.equal(app.timers.size, 0);
 });
 
-test("does not mistake truthy values or lookalike hosts for FormSubmit acceptance", () => {
-  for (const success of [false, "false", 1, "1", {}, [], undefined]) {
-    assert.equal(isFormSubmitAccepted({ success }), false);
+for (const locale of ["ua", "en"]) test(`${locale} delivers only after verification, with fixed addresses and no browser handoff`, async () => {
+  const app = harness([acceptedToken({ hostname: "www.byhover.studio" }), json({ id: "resend-mail-id" })]);
+  await assertResponse(await app.POST(request(payload({ locale, from: "attacker@example.com", to: "victim@example.com" }))), 202, { ok: true });
+  assert.deepEqual(app.calls.map(([url]) => url), [siteverify, resend]);
+  const [verify, mail] = app.calls.map(([, options]) => options);
+  assert.deepEqual(JSON.parse(verify.body), { secret: "test-only-secret", response: "test-challenge-token" });
+  assert.equal(new Headers(mail.headers).get("authorization"), "Bearer test-only-mail-key");
+  assert.equal(new Headers(mail.headers).get("idempotency-key"), `contact/${submissionId}`);
+  const email = JSON.parse(mail.body);
+  assert.equal(email.from, "HOVER.STUDIO <notifications@forms.byhover.studio>");
+  assert.deepEqual(email.to, ["byhover.studio@gmail.com"]); assert.equal(email.reply_to, payload().email);
+  assert.equal("html" in email, false); assert.equal("turnstileToken" in email, false);
+  assert.doesNotMatch(mail.body, /test-challenge-token|test-only-secret/);
+  for (const options of [verify, mail]) { assert.equal(options.cache, "no-store"); assert.equal(options.redirect, "error"); assert.equal(options.signal.aborted, false); }
+  assert.equal(app.timers.size, 0);
+});
+
+for (const locale of ["ua", "en"]) test(`${locale}: all six service IDs reach the actual protected server mail path`, async () => {
+  for (const service of services.getServices(locale)) {
+    const app = harness([acceptedToken(), json({ id: "accepted-service-mail" })]);
+    await assertResponse(await app.POST(request(payload({ locale, serviceId: service.id }))), 202, { ok: true });
+    assert.deepEqual(app.calls.map(([url]) => url), [siteverify, resend]);
+    const email = JSON.parse(app.calls[1][1].body);
+    assert.ok(email.subject.endsWith(service.formLabel)); assert.ok(email.text.includes(`Послуга / Service: ${service.formLabel}`));
   }
-  assert.equal(isFormSubmitEndpoint(new URL(formSubmitEndpoint)), true);
-  for (const endpoint of [
-    "https://formsubmit.co.attacker.example/ajax/contact",
-    "https://webhook.example/ajax/contact",
-    "https://formsubmit.co/contact",
-    "https://formsubmit.co:8443/ajax/contact",
-    "https://user:password@formsubmit.co/ajax/contact",
-    "https://formsubmit.co/ajax/",
-    "https://formsubmit.co/ajax/contact/another-path",
-  ]) {
-    assert.equal(isFormSubmitEndpoint(new URL(endpoint)), false);
-  }
+});
+
+test("GET returns a no-store method error without fetching", async () => {
+  const app = harness(); await assertResponse(app.GET(), 405, { ok: false, code: "METHOD_NOT_ALLOWED" }); assert.equal(app.calls.length, 0);
+});
+
+test("route holds success until Resend acknowledges the verified enquiry", async () => {
+  let resolveMail; const pendingMail = new Promise(resolve => { resolveMail = resolve; });
+  const app = harness([acceptedToken(), () => pendingMail]); let settled = false;
+  const response = app.POST(request()).then(result => { settled = true; return result; });
+  await new Promise(setImmediate); assert.equal(app.calls.length, 2); assert.equal(settled, false);
+  resolveMail(json({ id: "accepted-id" })); await assertResponse(await response, 202, { ok: true });
+});
+
+test("provider diagnostics and credentials stay inside the server boundary", async () => {
+  const app = harness([acceptedToken(), json({ error: "private provider diagnostic" }, 401)]);
+  await assertResponse(await app.POST(request()), 503, { ok: false, code: "UPSTREAM_REJECTED" }); assert.equal(app.calls.length, 2);
 });

@@ -1,5 +1,5 @@
 import { validateContactPayload } from "../../contact-schema";
-import { formSubmitPayload, isFormSubmitEndpoint } from "../../contact-delivery";
+import { contactServerConfig, contactSubmissionId, contactTurnstileToken, sendContactEmail, verifyContactToken } from "../../contact-server";
 
 const JSON_HEADERS = {
   "Cache-Control": "no-store",
@@ -12,7 +12,6 @@ function response(body: Record<string, unknown>, status: number) {
 
 function isSameOrigin(request: Request) {
   const origin = request.headers.get("origin");
-  if (!origin) return true;
   return origin === new URL(request.url).origin;
 }
 
@@ -42,7 +41,7 @@ async function limitedRequestText(request: Request) {
 
 export async function POST(request: Request) {
   if (!isSameOrigin(request)) return response({ ok: false, code: "FORBIDDEN" }, 403);
-  if (!request.headers.get("content-type")?.toLowerCase().includes("application/json")) {
+  if (request.headers.get("content-type")?.split(";")[0].trim().toLowerCase() !== "application/json") {
     return response({ ok: false, code: "UNSUPPORTED_MEDIA_TYPE" }, 415);
   }
 
@@ -57,7 +56,7 @@ export async function POST(request: Request) {
 
   if (input && typeof input === "object" && !Array.isArray(input)) {
     const honeypot = (input as Record<string, unknown>).website;
-    if (typeof honeypot === "string" && honeypot.trim()) {
+    if (honeypot !== undefined && (typeof honeypot !== "string" || honeypot.trim())) {
       return response({ ok: false, code: "VALIDATION_ERROR" }, 422);
     }
   }
@@ -67,64 +66,24 @@ export async function POST(request: Request) {
     return response({ ok: false, code: "VALIDATION_ERROR", fieldErrors: parsed.fieldErrors }, 422);
   }
 
-  const configuredEndpoint = process.env.HOVER_CONTACT_FORM_ENDPOINT?.trim();
-  if (!configuredEndpoint) {
+  const config = contactServerConfig();
+  if (!config) {
     return response({ ok: false, code: "NOT_CONFIGURED" }, 503);
   }
-
-  let endpoint: URL;
-  try {
-    endpoint = new URL(configuredEndpoint);
-    if (endpoint.protocol !== "https:") throw new Error("Secure endpoint required");
-  } catch {
-    return response({ ok: false, code: "NOT_CONFIGURED" }, 503);
+  const envelope = input as Record<string, unknown>;
+  const submissionId = contactSubmissionId(envelope.submissionId);
+  if (!submissionId) {
+    return response({ ok: false, code: "INVALID_SUBMISSION_ID" }, 400);
   }
-
-  // The shared form uses one canonical URL in both languages, so activation is shared.
-  const formUrl = new URL("/ua#contact", request.url).href;
-  if (isFormSubmitEndpoint(endpoint)) {
-    // FormSubmit's supported AJAX transport sends from the visitor's browser.
-    // This prepares a validated request; only the provider can confirm receipt.
-    return response({
-      ok: false,
-      code: "BROWSER_DELIVERY_REQUIRED",
-      delivery: {
-        provider: "formsubmit",
-        endpoint: endpoint.href,
-        payload: formSubmitPayload(parsed.data, formUrl),
-      },
-    }, 200);
+  const token = contactTurnstileToken(envelope.turnstileToken);
+  if (!token) {
+    return response({ ok: false, code: "BOT_VERIFICATION_FAILED" }, 403);
   }
-
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 12_000);
-  const token = process.env.HOVER_CONTACT_FORM_TOKEN?.trim();
-
-  try {
-    const upstream = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      },
-      body: JSON.stringify(parsed.data),
-      cache: "no-store",
-      signal: controller.signal,
-    });
-    const upstreamBody = await upstream.json().catch(() => null) as { ok?: unknown } | null;
-    if (!upstream.ok || upstreamBody?.ok !== true) {
-      return response({ ok: false, code: "UPSTREAM_REJECTED" }, 503);
-    }
-    return response({ ok: true }, 202);
-  } catch (error) {
-    return response(
-      { ok: false, code: error instanceof Error && error.name === "AbortError" ? "UPSTREAM_TIMEOUT" : "UPSTREAM_UNAVAILABLE" },
-      503,
-    );
-  } finally {
-    clearTimeout(timeout);
-  }
+  const verification = await verifyContactToken(token, config);
+  if (!verification.ok) return response({ ok: false, code: verification.code }, verification.status);
+  const delivery = await sendContactEmail(parsed.data, submissionId, config);
+  if (!delivery.ok) return response({ ok: false, code: delivery.code }, delivery.status);
+  return response({ ok: true }, 202);
 }
 
 export function GET() {

@@ -1,47 +1,64 @@
-# Contact form delivery
+# Contact form delivery and protection
 
-Recipient and public contact email: `byhover.studio@gmail.com`.
+The shared ContactForm covers every UA and EN page. The browser makes one JSON
+POST to /api/contact. It never sends enquiries directly to a mail provider.
+There is no FormSubmit instruction or delivery fallback.
 
-The shared form on UA/EN home, service and project pages posts to `/api/contact`.
-The server validates the payload and prepares the delivery request. The browser
-then sends it directly to FormSubmit over HTTPS using its documented AJAX flow.
-The provider POST uses `URLSearchParams` (form encoding) and only an `Accept`
-header, so it does not need the extra JSON CORS preflight. UA/EN text, readable
-field labels and Reply-To are preserved. The same flow applies at every viewport.
-Preparation is not a success response and does not send an email. The shared
-hosting server does not proxy FormSubmit requests; its requests encountered a
-provider rate limit during setup. There is one browser delivery attempt, with no
-automatic retry or fallback that could duplicate an enquiry.
-The overall client deadline is 45 seconds, including preparation and reading
-the provider response. A slow response after 15 seconds can still succeed.
-Aborted or interrupted response bodies propagate as timeout/network errors;
-only malformed JSON is normalized to a rejected response. An unknown outcome
-does not trigger an automatic resend and does not clear the visitor's entries.
-Only an explicit provider acceptance produces the success state; activation-pending,
-rejected, invalid, timed-out and unavailable upstream responses preserve the form data.
-Acceptance confirms processing by the delivery service, not arrival in the inbox.
+## Production settings
 
-## Runtime configuration
+| Variable | Use | Visibility |
+| --- | --- | --- |
+| NEXT_PUBLIC_TURNSTILE_SITE_KEY | Cloudflare Managed Turnstile sitekey | Public Config |
+| TURNSTILE_SECRET_KEY | Siteverify credential | Server Secret |
+| RESEND_API_KEY | Sending access restricted to forms.byhover.studio | Server Secret |
 
-Set `HOVER_CONTACT_FORM_ENDPOINT` in the hosting environment to:
+Recipient: byhover.studio@gmail.com. Verified sender:
+HOVER.STUDIO <notifications@forms.byhover.studio>. The visitor's validated email
+is Reply-To. Neither address is controlled by the submitted payload.
+The old HOVER_CONTACT_FORM_ENDPOINT and HOVER_CONTACT_FORM_TOKEN are no longer
+read. Never place secrets in public variables, logs or source control.
 
-`https://formsubmit.co/ajax/byhover.studio@gmail.com`
+## Request flow
 
-On Sites, use the runtime environment settings and then publish a saved version.
-For a future Vercel deployment, set the same variable in the Vercel project.
-No Gmail password or API key is required for this FormSubmit transport.
-`HOVER_CONTACT_FORM_TOKEN` is optional for a custom HTTPS webhook; it is not sent to FormSubmit.
+1. Validate same-origin JSON, a maximum 20,000-byte body, honeypot and fields.
+2. Require a UUID submission ID and a nonempty Turnstile token up to 2,048 chars.
+3. Validate Siteverify on the server: strict success, action contact, hostname
+   byhover.studio or www.byhover.studio. Missing/invalid tokens fail closed.
+4. Send plain text through Resend using a private credential. A stable
+   contact/<submission UUID> idempotency key prevents duplicate email delivery
+   when unchanged data is explicitly retried after an uncertain response.
+5. Return 202 and strict ok:true only after Resend accepts and returns an ID.
+   Provider acceptance does not guarantee inbox placement.
+6. Display confirmation and report the configured Google Ads conversion once.
 
-## Recipient activation
+Each request attempt consumes the browser token and refreshes its challenge.
+Errors preserve fields. Verification failure, HTTP 429, missing configuration,
+timeouts and provider errors never show success or report conversions.
+No automatic delivery retry runs. Changed data or NEW ENQUIRY gets a new UUID.
 
-FormSubmit requires the recipient to click **Activate Form** in its email.
-Check Spam if the message is missing. Both language versions share the canonical
-UA contact URL for this registration. A recipient or origin change may require new activation.
+## Platform rate limit
 
-Test with a clearly labelled technical enquiry after activation, then confirm
-receipt in the Gmail inbox. Do not treat an HTTP 200 or an upstream `"success":"false"`
-response as successful delivery.
+All languages use the same endpoint. Scope a Vercel WAF rule to POST AND exact
+path /api/contact. Start with a fixed 600-second window, 20 requests per IP and
+Log. Log does not block. Review matches, test preview enforcement, then publish
+HTTP 429 enforcement and tune against legitimate shared-IP traffic. Vercel
+counters are per region, not a strict global distributed quota.
 
-FormSubmit documentation: https://formsubmit.co/documentation
-Activation help: https://formsubmit.co/help
-AJAX transport: https://formsubmit.co/ajax-documentation
+Firewall configuration is separate from Git deployment. Track reviewed draft
+and manual publication status separately from the application release.
+
+## Verification and migration
+
+Automated tests use isolated fake Siteverify/Resend responses, never production
+success bypasses. Preview without settings fails closed. The production host
+allowlist has no localhost, preview-host or wildcard exception.
+Obtain authorization before real test enquiries or Google Ads conversion
+events. After the new delivery is confirmed, deactivate the old FormSubmit
+form so its previously public endpoint is retired.
+
+References:
+- https://developers.cloudflare.com/turnstile/get-started/server-side-validation/
+- https://resend.com/docs/api-reference/emails/send-email
+- https://resend.com/docs/dashboard/emails/idempotency-keys
+- https://vercel.com/docs/vercel-firewall/vercel-waf/rate-limiting
+- https://formsubmit.co/help
