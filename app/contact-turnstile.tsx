@@ -18,7 +18,6 @@ type WidgetOptions = {
   "unsupported-callback": () => void;
 };
 type TurnstileApi = {
-  ready: (callback: () => void) => void;
   render: (container: HTMLElement, options: WidgetOptions) => string;
   remove: (widgetId: string) => void;
 };
@@ -50,17 +49,14 @@ function loadTurnstile(): Promise<TurnstileApi> {
       reject(new Error("Verification could not load"));
     };
     const loaded = () => {
+      if (settled) return;
       const api = window.turnstile;
-      if (!api) { failed(); return; }
       attemptedApi = api;
-      try {
-        api.ready(() => {
-          if (settled) return;
-          settled = true;
-          cleanup();
-          resolve(api);
-        });
-      } catch { failed(); }
+      if (!api || typeof api.render !== "function") { failed(); return; }
+      // The load event follows API initialization; ready() rejects async/defer scripts.
+      settled = true;
+      cleanup();
+      resolve(api);
     };
     const timeout = window.setTimeout(failed, 15_000);
     script.addEventListener("load", loaded);
