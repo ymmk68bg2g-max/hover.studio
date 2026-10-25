@@ -1,0 +1,314 @@
+.section {
+  padding: 8.75rem 2.5rem;
+  scroll-margin-top: var(--anchor-offset);
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.composition {
+  display: grid;
+  grid-template-columns: minmax(0, 0.38fr) minmax(0, 0.62fr);
+  grid-template-areas: "intro review" "brands review";
+  align-items: start;
+  column-gap: clamp(3rem, 5vw, 6.5rem);
+  row-gap: 2.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.intro { grid-area: intro; min-width: 0; }
+
+.sectionLabel,
+.eyebrow,
+.counter,
+.caseLink,
+.translation {
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: var(--content-meta-size, 0.8125rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+.sectionLabel,
+.eyebrow,
+.counter,
+.translation { color: #686863; }
+
+.sectionLabel,
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 2.25rem 0 1.75rem;
+  font-family: "Inter Tight", "Arial Narrow", Arial, sans-serif;
+  font-size: var(--content-heading-size, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.18;
+}
+
+.subheading {
+  margin: 0 0 1.1rem;
+  font-size: var(--content-subheading-size, 1.375rem);
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+
+.description {
+  margin: 0;
+  max-inline-size: 49ch;
+  font-size: var(--content-body-size, 1.25rem);
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.55;
+}
+
+.review {
+  position: relative;
+  grid-area: review;
+  min-width: 0;
+  padding-left: clamp(2rem, 3vw, 4rem);
+  border-left: 1px solid var(--line);
+}
+
+.reviewHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+.counter { flex: 0 0 auto; font-variant-numeric: tabular-nums; }
+.review[data-has-controls="true"] .reviewHeader {
+  min-height: 3rem;
+  align-items: center;
+  padding-right: 7.5rem;
+}
+
+.record {
+  margin: 0;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.record[data-transition="exit"] {
+  opacity: 0;
+  transform: translateX(calc(-10px * var(--slide-direction, 1)));
+}
+
+.record[data-transition="enter"] {
+  animation: enterReview 150ms ease both;
+}
+
+@keyframes enterReview {
+  from { opacity: 0; transform: translateX(calc(10px * var(--slide-direction, 1))); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.quote {
+  margin: 0;
+  max-inline-size: 55ch;
+  font-family: "Inter Tight", "Arial Narrow", Arial, sans-serif;
+  font-size: 1.625rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.quote p { margin: 0; }
+.quote p + p { margin-top: 1.25rem; }
+
+.attribution {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
+.avatarFrame {
+  display: block;
+  flex: 0 0 3.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #e9e9e4;
+}
+
+.avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portrait { width: 200%; max-width: none; height: 200%; transform: translateX(-25%); }
+.framed { transform: scale(1.5); }
+
+.initials {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 1rem;
+}
+
+.person { display: grid; gap: 0.25rem; min-width: 0; }
+.name { font-size: 1.125rem; font-weight: 500; line-height: 1.3; }
+.company { color: #686863; font-size: 1rem; font-weight: 400; line-height: 1.4; }
+.translation { font-size: 0.6875rem; }
+
+.reviewFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem 2rem;
+  margin-top: 2.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.caseLinks { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; min-width: 0; }
+.caseLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--ink);
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.caseLink:hover,
+.caseLink:focus-visible { color: var(--active); border-color: var(--active); }
+.caseLink:focus-visible,
+.control:focus-visible,
+.logoMark:focus-visible { outline: 2px solid var(--active); outline-offset: 4px; }
+
+.controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+.control {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.control:hover,
+.control:focus-visible { color: var(--active); border-color: var(--active); }
+.control:active { border-color: var(--ink); }
+
+.status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.brands { grid-area: brands; min-width: 0; }
+.logoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 0.75rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.logoItem { position: relative; min-width: 0; padding-bottom: 0.625rem; }
+.logoItem::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--active);
+  opacity: 0;
+  content: "";
+  transition: opacity 150ms ease;
+}
+.logoItem[data-active="true"]::after { opacity: 1; }
+
+.logoMark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 5.25rem;
+  padding: 1.125rem 0.75rem;
+  border: 1px solid var(--line);
+}
+
+.originalBackground { border-color: transparent; }
+.logoImage { display: block; width: auto; height: auto; max-width: 100%; max-height: 2.5rem; object-fit: contain; }
+.wordmark { font-family: Arial, Helvetica, sans-serif; font-size: 1.125rem; font-weight: 700; letter-spacing: -0.025em; line-height: 1; white-space: nowrap; }
+.clientName { font-family: "IBM Plex Mono", Consolas, monospace; font-size: 0.875rem; overflow-wrap: anywhere; }
+
+.withoutReviews .composition { grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "brands"; }
+.withoutReviews .intro { max-width: 60ch; }
+.withoutReviews .brands { max-width: 28rem; }
+
+@media (min-width: 1440px) {
+  .logoGrid:has(> :nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1100px) {
+  .composition { grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "review" "brands"; gap: 3rem; }
+  .intro { max-width: 60ch; }
+  .title { margin-top: 1.75rem; }
+  .description { max-inline-size: 60ch; }
+  .review { padding: 1.5rem 0 0; border-left: 0; border-top: 1px solid var(--line); }
+  .controls { top: 1.5rem; }
+  .reviewHeader { margin-bottom: 1.75rem; }
+  .quote { max-inline-size: 55ch; }
+  .brands { max-width: 37.5rem; }
+  .logoGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .logoGrid:not(:has(> :nth-child(3))) { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 25rem; }
+}
+
+@media (max-width: 760px) {
+  .section { padding: 5rem 1.25rem; }
+  .composition { gap: 2.5rem; }
+  .title { margin: 1.5rem 0 1.5rem; }
+  .subheading { max-width: 30ch; }
+  .quote { font-size: 1.375rem; line-height: 1.45; }
+  .attribution { align-items: flex-start; gap: 0.875rem; margin-top: 1.75rem; }
+  .reviewFooter { gap: 1.25rem; margin-top: 1.75rem; }
+  .caseLinks { gap: 0.75rem 1rem; }
+  .caseLink { font-size: 0.75rem; }
+  .logoGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .logoGrid:not(:has(> :nth-child(3))) { max-width: none; }
+  .logoMark { min-height: 5rem; padding: 1rem 0.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .record,
+  .caseLink,
+  .control,
+  .logoItem::after { transition: none; }
+  .record[data-transition="exit"],
+  .record[data-transition="enter"] { transform: none; animation: none; opacity: 1; }
+}

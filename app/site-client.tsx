@@ -20,7 +20,8 @@ import { FeaturedSolarcity } from "./featured-solarcity";
 import { getServiceHref, getServices, type ServiceSlug } from "./services";
 import { PriceText } from "./price-text";
 import { SiteHeader } from "./site-chrome";
-import { Testimonials } from "./testimonials";
+import { ClientsSection } from "./clients-section";
+import { getClientsContent } from "./client-data";
 import { CapabilityMotionDemo } from "./capability-motion-demo";
 import { CapabilityStrategyDemo } from "./capability-strategy-demo";
 import { CapabilityDesignDemo } from "./capability-design-demo";
@@ -561,7 +562,7 @@ export function HoverSite({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        <Testimonials locale={locale} />
+        <ClientsSection locale={locale} {...getClientsContent(locale)} />
         <Faq locale={locale} />
 
       </main>

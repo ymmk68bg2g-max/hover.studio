@@ -149,7 +149,7 @@ test("every public page inherits one homepage contact section and one shared foo
     assert.equal(occurrences(html, 'id="contact"'), 1, route);
     assert.equal(occurrences(html, 'class="contact-form"'), 1, route);
     const contactLabel = isHome
-      ? locale === "ua" ? "09 / СТАРТ" : "09 / START"
+      ? locale === "ua" ? "10 / СТАРТ" : "10 / START"
       : locale === "ua" ? "ОБГОВОРІМО ПРОЄКТ" : "LET’S DISCUSS YOUR PROJECT";
     assert.ok(html.includes(contactLabel), `${route}: localized contact label`);
     assert.ok(html.indexOf('id="contact"') < html.indexOf('<footer'), `${route}: contact precedes footer`);
