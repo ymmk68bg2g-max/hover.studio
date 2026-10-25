@@ -29,7 +29,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
     title: "Політика конфіденційності",
     updated: "Актуалізовано 25 жовтня 2026 року.",
     intro:
-      "Ця політика пояснює, як обробляються персональні дані, отримані через сайт HOVER та під час обговорення співпраці. Для передавання звернень із контактної форми використовується серверна доставка через Resend, для захисту від автоматичних відправлень — Cloudflare Turnstile, а для робочої пошти — Google/Gmail. На всіх мовних версіях сайту встановлено Google tag для Google Ads з ідентифікатором AW-18530491505 для вимірювання ефективності реклами. Точні країни обробки, місця зберігання, строки зберігання технічних журналів і резервних копій та умови міжнародної передачі ще перевіряються.",
+      "Ця політика пояснює, як обробляються персональні дані, отримані через сайт HOVER та під час обговорення співпраці. Для передавання звернень із контактної форми використовується серверна доставка через Resend, для захисту від автоматичних відправлень — Cloudflare Turnstile, а для робочої пошти — Google/Gmail. На всіх мовних версіях сайту встановлено Google tag для Google Ads з ідентифікатором AW-18530491505 і Meta Pixel з ідентифікатором 1118365304509487 для вимірювання ефективності реклами. Meta Pixel передає подію перегляду сторінки PageView для реклами у Facebook та Instagram. Точні країни обробки, місця зберігання, строки зберігання технічних журналів і резервних копій та умови міжнародної передачі ще перевіряються.",
     sections: [
       {
         id: "controller",
@@ -58,6 +58,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "Під час відвідування сайту хостингова й захисна інфраструктура може обробляти технічні відомості, необхідні для передавання та захисту сторінок: зокрема IP-адресу, тип браузера, заголовки запиту, адресу запитаної сторінки, дату й час запиту.",
               "Cloudflare Turnstile обробляє технічні відомості про браузер і пристрій та результат перевірки для захисту контактної форми від автоматичних відправлень. Сервер перевіряє одноразовий токен перед доставкою звернення.",
               "Під час завантаження будь-якої мовної версії сайту Google tag може передавати Google URL відвіданої сторінки, IP-адресу, відомості про браузер, пристрій і час запиту, а також ідентифікатори cookies та переходів із реклами. Конкретний склад даних залежить від налаштувань Google, браузера та взаємодії з рекламою.",
+              "Meta Pixel передає Meta подію PageView і технічні відомості про відвідування, які можуть включати URL сторінки, IP-адресу, відомості про браузер і пристрій, час події, ідентифікатори cookies та переходів із реклами. У коді сайту не налаштовано окреме передавання полів контактної форми як параметрів зіставлення Meta Pixel; конкретний склад даних також залежить від налаштувань Meta та браузера.",
             ],
           },
         ],
@@ -73,6 +74,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "Щоб вести погоджений проєкт.",
               "Щоб забезпечити роботу й захист контактної форми та запобігати зловживанням.",
               "Щоб оцінювати ефективність реклами та пов’язувати відвідування сайту в усіх мовних версіях з рекламними переходами за допомогою Google Ads.",
+              "Щоб вимірювати перегляди сторінок в усіх мовних версіях та ефективність реклами у Facebook та Instagram за допомогою Meta Pixel.",
               "Щоб виконати конкретний юридичний обов’язок, якщо він виникає.",
             ],
           },
@@ -114,6 +116,10 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
+            text: "Meta отримує дані про перегляди сторінок через Meta Pixel в усіх мовних версіях сайту. Відомості про обробку даних Meta та доступні налаштування наведено в політиці конфіденційності: https://www.facebook.com/privacy/policy/.",
+          },
+          {
+            type: "paragraph",
             text: `Після серверної перевірки даних і токена Cloudflare Turnstile сервер Vercel передає дані контактної форми Resend через HTTPS для доставки на робочу адресу ${contactEmail}.`,
           },
           {
@@ -139,6 +145,10 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
             text: "Зберігання даних Google залежить від їх виду, мети обробки та налаштувань сервісів і користувача. Точні строки зберігання даних Google Ads і рекламних cookies для фактичної конфігурації сайту ще не підтверджені. Правило 14 днів для листування на них не поширюється.",
           },
           {
+            type: "paragraph",
+            text: "Строки зберігання даних Meta Pixel і пов’язаних cookies залежать від умов Meta та фактичних налаштувань сервісу й браузера. Точні строки для конфігурації сайту ще не підтверджені; правило 14 днів для листування на них не поширюється.",
+          },
+          {
             type: "list",
             items: [
               "Це правило 14 днів після останнього повідомлення не поширюється автоматично на листування за чинними проєктами, договори, розрахункові документи або дані, для яких існує окрема обґрунтована потреба чи законодавча вимога зберігання.",
@@ -158,7 +168,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
-            text: "Точні країни обробки та застосовні механізми захисту ще не підтверджені для Resend, Cloudflare Turnstile, Google/Gmail, Google Ads та фактичної конфігурації хостингу. Якщо до конкретної передачі застосовуються вимоги законодавства про захист даних, вона має здійснюватися на передбаченій ним підставі та із відповідними гарантіями.",
+            text: "Точні країни обробки та застосовні механізми захисту ще не підтверджені для Resend, Cloudflare Turnstile, Google/Gmail, Google Ads, Meta Pixel та фактичної конфігурації хостингу. Дані Meta Pixel також можуть оброблятися за межами України. Якщо до конкретної передачі застосовуються вимоги законодавства про захист даних, вона має здійснюватися на передбаченій ним підставі та із відповідними гарантіями.",
           },
         ],
       },
@@ -174,6 +184,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "Шрифти завантажуються з Google Fonts, тому браузер надсилає цьому сервісу окремий технічний запит.",
               "На всіх мовних версіях сайту встановлено Google tag для Google Ads з ідентифікатором AW-18530491505. Він завантажується під час відкриття сторінок сайту будь-якою мовою і може встановлювати або зчитувати рекламні та вимірювальні cookies, зокрема для пов’язування відвідування з переходом із реклами.",
               "Google може використовувати отримані від сайтів дані для вимірювання ефективності реклами та, залежно від налаштувань, її персоналізації. Керувати cookies можна в налаштуваннях браузера, а параметрами персоналізації реклами — у налаштуваннях Google.",
+              "Meta Pixel з ідентифікатором 1118365304509487 завантажується на всіх сторінках UA та EN і передає подію PageView. Він може встановлювати або зчитувати рекламні та вимірювальні cookies. Коли JavaScript вимкнено, запит зображення noscript також передає Meta подію PageView. Керувати cookies можна в налаштуваннях браузера, а рекламними вподобаннями — у налаштуваннях Meta.",
               "Хостингова або захисна платформа може встановлювати суворо необхідні cookies, якщо відповідні функції захисту ввімкнені. Фактичну конфігурацію та строки зберігання таких cookies ще потрібно перевірити.",
             ],
           },
@@ -234,7 +245,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
     title: "Privacy Policy",
     updated: "Last updated: 25 October 2026.",
     intro:
-      "This policy explains how personal data received through the HOVER website and during project discussions is processed. Contact-form enquiries are delivered by the server through Resend, Cloudflare Turnstile protects against automated submissions, and Google/Gmail is used for working email. The Google tag for Google Ads, with the identifier AW-18530491505, is installed across all language versions of the website to measure advertising effectiveness. Exact processing countries, storage locations, retention of technical logs and backups, and the conditions of any international transfers are still being verified.",
+      "This policy explains how personal data received through the HOVER website and during project discussions is processed. Contact-form enquiries are delivered by the server through Resend, Cloudflare Turnstile protects against automated submissions, and Google/Gmail is used for working email. The Google tag for Google Ads, with the identifier AW-18530491505, and Meta Pixel, with the identifier 1118365304509487, are installed across all language versions of the website to measure advertising effectiveness. Meta Pixel sends the PageView page-view event for Facebook and Instagram advertising. Exact processing countries, storage locations, retention of technical logs and backups, and the conditions of any international transfers are still being verified.",
     sections: [
       {
         id: "controller",
@@ -263,6 +274,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "When the website is visited, hosting and security infrastructure may process technical information needed to deliver and protect the pages, including the IP address, browser type, request headers, requested page, and request date and time.",
               "Cloudflare Turnstile processes technical browser and device information and verification results to protect the contact form against automated submissions. The server validates a single-use token before delivering the enquiry.",
               "When any language version of the website loads, the Google tag may send Google the URL of the page visited, IP address, browser and device information, request time, and cookie and advertising-click identifiers. The exact data depends on Google settings, the browser, and interaction with advertising.",
+              "Meta Pixel sends Meta a PageView event and technical visit information, which may include the page URL, IP address, browser and device information, event time, and cookie and advertising-click identifiers. The website code does not configure explicit sharing of contact-form fields as Meta Pixel matching parameters; the exact data also depends on Meta and browser settings.",
             ],
           },
         ],
@@ -278,6 +290,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "Managing an agreed project.",
               "Operating and protecting the contact form and preventing misuse.",
               "Measuring advertising effectiveness and associating visits to all language versions of the website with advertising clicks through Google Ads.",
+              "Measuring page views across all language versions and the effectiveness of Facebook and Instagram advertising through Meta Pixel.",
               "Complying with a specific legal obligation where one arises.",
             ],
           },
@@ -319,6 +332,10 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
+            text: "Meta receives page-view data through Meta Pixel across all language versions of the website. Information about Meta’s data processing and available settings is provided in its privacy policy: https://www.facebook.com/privacy/policy/.",
+          },
+          {
+            type: "paragraph",
             text: `After validating the form data and Cloudflare Turnstile token, the Vercel server sends contact-form data to Resend over HTTPS for delivery to the working address ${contactEmail}.`,
           },
           {
@@ -344,6 +361,10 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
             text: "Google data retention depends on the type of data, the processing purpose, and the settings of its services and the user. Exact retention periods for Google Ads data and advertising cookies in the website’s actual configuration have not yet been confirmed. The 14-day rule for correspondence does not apply to them.",
           },
           {
+            type: "paragraph",
+            text: "Retention of Meta Pixel data and related cookies depends on Meta’s terms and the actual service and browser settings. Exact periods for the website’s configuration have not yet been confirmed; the 14-day rule for correspondence does not apply to them.",
+          },
+          {
             type: "list",
             items: [
               "This 14-day rule measured from the last message does not automatically apply to correspondence for active projects, contracts, payment records, or data retained for a separate justified need or legal requirement.",
@@ -363,7 +384,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
           },
           {
             type: "paragraph",
-            text: "The exact processing countries and applicable safeguards have not yet been confirmed for Resend, Cloudflare Turnstile, Google/Gmail, Google Ads, and the actual hosting configuration. Where data-protection law imposes requirements on a particular transfer, it must be made on a basis and with safeguards provided by that law.",
+            text: "The exact processing countries and applicable safeguards have not yet been confirmed for Resend, Cloudflare Turnstile, Google/Gmail, Google Ads, Meta Pixel, and the actual hosting configuration. Meta Pixel data may also be processed outside Ukraine. Where data-protection law imposes requirements on a particular transfer, it must be made on a basis and with safeguards provided by that law.",
           },
         ],
       },
@@ -379,6 +400,7 @@ const privacyCopy: Record<PrivacyLocale, PrivacyCopy> = {
               "Fonts are loaded from Google Fonts, which causes the browser to make a separate technical request to that service.",
               "The Google tag for Google Ads, with the identifier AW-18530491505, is installed across all language versions of the website. It loads when pages are opened in any language and may set or read advertising and measurement cookies, including to associate visits with advertising clicks.",
               "Google may use data received from websites to measure advertising effectiveness and, depending on settings, to personalise advertising. Cookies can be managed in browser settings, and advertising-personalisation preferences can be managed in Google settings.",
+              "Meta Pixel, with the identifier 1118365304509487, loads on all UA and EN pages and sends the PageView event. It may set or read advertising and measurement cookies. When JavaScript is disabled, a noscript image request also sends Meta a PageView event. Cookies can be managed in browser settings, and advertising preferences can be managed in Meta settings.",
               "The hosting or security platform may set strictly necessary cookies if the relevant protection features are enabled. The actual configuration and retention of any such cookies still need to be verified.",
             ],
           },

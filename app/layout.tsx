@@ -5,6 +5,8 @@ import { SitePageEnd } from "./site-page-end";
 import { getRequestIndexing, getRequestLocale } from "./request-locale";
 import { SITE_ORIGIN } from "./site-config";
 import { FloatingTelegram } from "./floating-telegram";
+import { META_PIXEL_BOOTSTRAP, META_PIXEL_NOSCRIPT } from "./meta-pixel-config";
+import { MetaPixelPageViews } from "./meta-pixel";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -44,8 +46,11 @@ gtag('js', new Date());
 gtag('config', 'AW-18530491505');`,
           }}
         />
+        <script id="meta-pixel-tag" dangerouslySetInnerHTML={{ __html: META_PIXEL_BOOTSTRAP }} />
       </head>
       <body className="antialiased">
+        <noscript dangerouslySetInnerHTML={{ __html: META_PIXEL_NOSCRIPT }} />
+        <MetaPixelPageViews />
         <ScrollRestoration />
         {children}
         <SitePageEnd fallbackLocale={fallbackLocale} />
