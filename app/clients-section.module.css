@@ -71,6 +71,7 @@
 .review {
   position: relative;
   grid-area: review;
+  align-self: stretch;
   min-width: 0;
   padding-left: clamp(2rem, 3vw, 4rem);
   border-left: 1px solid var(--line);
@@ -232,20 +233,8 @@
   list-style: none;
 }
 
-.logoItem { position: relative; min-width: 0; padding-bottom: 0.625rem; }
+.logoItem { min-width: 0; }
 .wideLogoItem { grid-column: 1 / -1; }
-.logoItem::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background: var(--active);
-  opacity: 0;
-  content: "";
-  transition: opacity 150ms ease;
-}
-.logoItem[data-active="true"]::after { opacity: 1; }
 
 .logoMark {
   display: flex;
@@ -298,8 +287,7 @@
 @media (prefers-reduced-motion: reduce) {
   .record,
   .caseLink,
-  .control,
-  .logoItem::after { transition: none; }
+  .control { transition: none; }
   .record[data-transition="exit"],
   .record[data-transition="enter"] { transform: none; animation: none; opacity: 1; }
 }
