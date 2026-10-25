@@ -1,5 +1,5 @@
 .section {
-  padding: 8.75rem 2.5rem;
+  padding: 8.75rem 2.5rem 6rem;
   scroll-margin-top: var(--anchor-offset);
   color: var(--ink);
   background: var(--paper);
@@ -85,11 +85,6 @@
 }
 
 .counter { flex: 0 0 auto; font-variant-numeric: tabular-nums; }
-.review[data-has-controls="true"] .reviewHeader {
-  min-height: 3rem;
-  align-items: center;
-  padding-right: 7.5rem;
-}
 
 .record {
   margin: 0;
@@ -194,10 +189,9 @@
 .logoMark:focus-visible { outline: 2px solid var(--active); outline-offset: 4px; }
 
 .controls {
-  position: absolute;
-  top: 0;
-  right: 0;
   display: flex;
+  flex: 0 0 auto;
+  margin-left: auto;
   gap: 0.5rem;
 }
 .control {
@@ -281,7 +275,6 @@
   .title { margin-top: 1.75rem; }
   .description { max-inline-size: 60ch; }
   .review { padding: 1.5rem 0 0; border-left: 0; border-top: 1px solid var(--line); }
-  .controls { top: 1.5rem; }
   .reviewHeader { margin-bottom: 1.75rem; }
   .quote { max-inline-size: 55ch; }
   .brands { max-width: 37.5rem; }

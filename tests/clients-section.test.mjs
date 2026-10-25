@@ -82,10 +82,10 @@ function serverRender(props) {
 
 // Run the component's actual hooks and callbacks against deterministic timers.
 // There is no browser, network, analytics API, or form submission in this suite.
-function fixture({ locale = "ua", testimonials = reviews, logos = clients, reduced = false } = {}) {
+function fixture({ locale = "ua", testimonials = reviews, logos = clients, reduced = false, repeatSingleReview = false } = {}) {
   const slots = [], timers = new Map(), frames = new Map(), listeners = new Map();
   let hookIndex = 0, dirty = false, effects = [], tree, timerSequence = 0, now = 0;
-  const props = { locale, testimonials, clients: logos };
+  const props = { locale, testimonials, clients: logos, repeatSingleReview };
   const media = {
     matches: reduced,
     addEventListener(type, callback) { listeners.set(callback, type); },
@@ -154,6 +154,7 @@ function fixture({ locale = "ua", testimonials = reviews, logos = clients, reduc
   };
   const instance = {
     get tree() { return tree; },
+    get elapsed() { return now; },
     get pendingTimers() { return timers.size + frames.size; },
     get controls() { return controls(); },
     render,
@@ -208,13 +209,23 @@ function assertRecord(tree, expected, all = reviews) {
     assert.ok(!content.includes(other.quote), "Inactive quote is absent from DOM");
     assert.ok(!content.includes(other.name), "Inactive attribution is absent from DOM");
   }
-  const avatars = byType(tree, "img").filter(node => String(node.props.src).includes("avatar-"));
+  const avatars = byType(tree, "img").filter(node => String(node.props.className).split(" ").includes("avatar"));
   assert.equal(avatars.length, expected.avatarSrc ? 1 : 0);
   if (expected.avatarSrc) {
     assert.equal(avatars[0].props.src, expected.avatarSrc);
     assert.equal(avatars[0].props.alt, "", "The visible author already names a decorative avatar");
     assert.ok(avatars[0].props.width > 0 && avatars[0].props.height > 0);
   }
+}
+
+function assertPosition(tree, position, total, record) {
+  const figures = byData(tree, "data-testimonial-id");
+  assert.equal(figures.length, 1, "Only the active view is rendered");
+  assert.equal(figures[0].props["data-testimonial-id"], record.id, "A view position keeps the genuine approved record ID");
+  assert.equal(String(figures[0].props["data-testimonial-position"]), String(position));
+  const counters = walk(tree, node => node.props?.className === "counter");
+  assert.equal(counters.length, 1);
+  assert.equal(text(counters[0]).trim(), `${String(position).padStart(2, "0")} / ${String(total).padStart(2, "0")}`);
 }
 
 for (const locale of ["ua", "en"]) {
@@ -239,6 +250,52 @@ for (const locale of ["ua", "en"]) {
     }
   });
 
+  test(`${locale}: the optional two-position view renders the one approved review with localized controls`, () => {
+    const { getClientsContent } = loadModule("client-data.ts");
+    const data = getClientsContent(locale);
+    const approved = data.testimonials[0];
+    const before = JSON.stringify(data.testimonials);
+    const html = serverRender({ locale, ...data, repeatSingleReview: true });
+    assert.equal((html.match(/<blockquote\b/g) ?? []).length, 1);
+    assert.equal((html.match(/<button\b/g) ?? []).length, 2);
+    assert.match(html, /01\s*\/\s*02/);
+    assert.match(html, /data-testimonial-id="oleksandr-kastronov"/);
+    assert.match(html, /data-testimonial-position="1"/);
+    assert.ok(html.includes(approved.quote));
+    assert.ok(html.includes(approved.name));
+    assert.equal((html.match(new RegExp(`src="${approved.avatarSrc}"`, "g")) ?? []).length, 1);
+    assert.ok(html.includes(locale === "ua" ? 'aria-label="Попередній відгук"' : 'aria-label="Previous testimonial"'));
+    assert.ok(html.includes(locale === "ua" ? 'aria-label="Наступний відгук"' : 'aria-label="Next testimonial"'));
+    assert.equal(JSON.stringify(data.testimonials), before, "Creating view positions never duplicates or mutates published data");
+    assert.equal(data.testimonials.length, 1);
+  });
+
+  test(`${locale}: both manual positions preserve Oleksandr's approved quote, author, portrait and case links`, () => {
+    const { getClientsContent } = loadModule("client-data.ts");
+    const data = getClientsContent(locale);
+    const approved = data.testimonials[0];
+    const p = fixture({ locale, testimonials: data.testimonials, logos: data.clients, repeatSingleReview: true });
+    const assertApprovedView = position => {
+      assertRecord(p.tree, approved, data.testimonials);
+      assertPosition(p.tree, position, 2, approved);
+      const links = byType(p.tree, "a").filter(node => node.props.className === "caseLink");
+      assert.deepEqual(links.map(node => node.props.href), Array.from(approved.caseLinks, item => item.href));
+      const activeIds = byData(p.tree, "data-client-id").filter(node => node.props["data-active"])
+        .map(node => node.props["data-client-id"]);
+      assert.deepEqual(activeIds, Array.from(approved.relatedClientIds));
+    };
+    assertApprovedView(1);
+    assert.equal(p.controls.length, 2);
+    assert.equal(p.pendingTimers, 0, "The repeated view waits for a manual action");
+    for (const [direction, position] of [[1, 2], [1, 1], [-1, 2], [-1, 1]]) {
+      p.click(direction); p.settle();
+      assertApprovedView(position);
+      assert.equal(p.pendingTimers, 0, "Settled view never schedules autoplay");
+    }
+    assert.equal(data.testimonials.length, 1, "Two view positions still come from one published review");
+    p.unmount();
+  });
+
   test(`${locale}: multiple testimonials have localized vector buttons, one short polite announcement and no autoplay`, () => {
     const p = fixture({ locale });
     assertRecord(p.tree, reviews[0]);
@@ -258,6 +315,86 @@ for (const locale of ["ua", "en"]) {
     p.unmount();
   });
 }
+
+test("a repeated single review changes position in a complete 300 ms manual transition", () => {
+  const p = fixture({ testimonials: [reviews[0]], repeatSingleReview: true });
+  const phase = () => byData(p.tree, "data-transition")[0].props["data-transition"];
+  p.click(1);
+  assert.equal(phase(), "exit");
+  assertPosition(p.tree, 1, 2, reviews[0]);
+  p.advance();
+  assert.equal(p.elapsed, 150);
+  assert.equal(phase(), "enter");
+  assertPosition(p.tree, 2, 2, reviews[0]);
+  assertRecord(p.tree, reviews[0]);
+  p.advance();
+  assert.equal(p.elapsed, 300);
+  assert.equal(phase(), "idle");
+  assert.equal(p.pendingTimers, 0);
+  p.unmount();
+});
+
+test("rapid and batched actions switch repeat positions without changing or duplicating the approved record", () => {
+  const { getClientsContent } = loadModule("client-data.ts");
+  const data = getClientsContent("ua");
+  const approved = data.testimonials[0];
+  const p = fixture({ testimonials: data.testimonials, logos: data.clients, repeatSingleReview: true });
+  for (const [directions, position] of [[[1, 1, 1], 2], [[-1, -1, -1], 1], [[1, -1], 1]]) {
+    p.batch(directions);
+    assertRecord(p.tree, approved, data.testimonials);
+    p.settle();
+    assertPosition(p.tree, position, 2, approved);
+    assert.equal(p.pendingTimers, 0);
+  }
+  for (const direction of [1, 1, -1, 1, -1, -1, 1]) {
+    p.click(direction);
+    assertRecord(p.tree, approved, data.testimonials);
+    p.advance();
+    assertRecord(p.tree, approved, data.testimonials);
+  }
+  p.settle();
+  const previousPosition = Number(byData(p.tree, "data-testimonial-position")[0].props["data-testimonial-position"]);
+  p.click(1); p.settle();
+  assertPosition(p.tree, previousPosition === 1 ? 2 : 1, 2, approved);
+  assertRecord(p.tree, approved, data.testimonials);
+  assert.equal(p.pendingTimers, 0);
+  p.unmount();
+});
+
+test("repeat mode stays empty for zero or draft-only records and removes an active repeated view safely", () => {
+  const draft = { ...reviews[1], status: "draft" };
+  for (const testimonials of [[], [draft]]) {
+    const html = serverRender({ locale: "ua", clients, testimonials, repeatSingleReview: true });
+    assert.doesNotMatch(html, /<blockquote|<button|Fixture quote|Fixture author|01\s*\/\s*0/);
+    const p = fixture({ testimonials, repeatSingleReview: true });
+    assert.equal(byType(p.tree, "blockquote").length, 0);
+    assert.equal(p.controls.length, 0);
+    assert.equal(p.pendingTimers, 0);
+    p.update([draft, reviews[0]]);
+    assertRecord(p.tree, reviews[0]);
+    assertPosition(p.tree, 1, 2, reviews[0]);
+    p.click(1);
+    p.update([draft]); p.settle();
+    assert.equal(byType(p.tree, "blockquote").length, 0);
+    assert.equal(p.controls.length, 0);
+    assert.equal(p.pendingTimers, 0);
+    assert.doesNotMatch(text(p.tree), /Fixture quote|Fixture author/);
+    p.unmount();
+  }
+});
+
+test("repeat mode does not add positions when multiple published reviews already exist", () => {
+  const p = fixture({ repeatSingleReview: true });
+  assert.equal(p.pendingTimers, 0);
+  assertPosition(p.tree, 1, 3, reviews[0]);
+  for (const [direction, index] of [[1, 1], [1, 2], [1, 0], [-1, 2]]) {
+    p.click(direction); p.settle();
+    assertRecord(p.tree, reviews[index]);
+    assertPosition(p.tree, index + 1, 3, reviews[index]);
+    assert.equal(p.pendingTimers, 0);
+  }
+  p.unmount();
+});
 
 test("next and previous navigation cycle through complete records in both directions", () => {
   const p = fixture();
@@ -468,6 +605,13 @@ for (const locale of ["ua", "en"]) {
     assert.equal(ids[ids.indexOf("clients") - 1], "care", "Other sections retain their established order");
     assert.doesNotMatch(html, /id="testimonials"|demo-profile|Демонстраційний відгук|Demo testimonial/);
     assert.equal((html.match(/<blockquote\b/g) ?? []).length, 1);
+    const clientsHtml = html.slice(html.indexOf('id="clients"'), html.indexOf('id="faq"'));
+    assert.equal((clientsHtml.match(/<button\b/g) ?? []).length, 2, "The homepage opts into two manually navigable positions");
+    assert.match(clientsHtml, /01\s*\/\s*02/);
+    assert.match(clientsHtml, /data-testimonial-id="oleksandr-kastronov"/);
+    assert.match(clientsHtml, /data-testimonial-position="1"/);
+    assert.ok(clientsHtml.includes(locale === "ua" ? 'aria-label="Попередній відгук"' : 'aria-label="Previous testimonial"'));
+    assert.ok(clientsHtml.includes(locale === "ua" ? 'aria-label="Наступний відгук"' : 'aria-label="Next testimonial"'));
   });
 }
 

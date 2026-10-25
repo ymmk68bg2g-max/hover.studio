@@ -19,6 +19,7 @@ const copy = {
     next: "Наступний відгук",
     translated: "Переклад з української",
     status: (current: number, total: number) => `Відгук ${current} із ${total}`,
+    positionStatus: (current: number, total: number) => `Позиція ${current} із ${total}. Повтор того самого відгуку.`,
   },
   en: {
     title: "Our clients",
@@ -30,6 +31,7 @@ const copy = {
     next: "Next testimonial",
     translated: "Translated from Ukrainian",
     status: (current: number, total: number) => `Testimonial ${current} of ${total}`,
+    positionStatus: (current: number, total: number) => `Position ${current} of ${total}. The same testimonial is repeated.`,
   },
 } as const;
 
@@ -46,6 +48,7 @@ type ClientsSectionProps = {
   locale: ClientLocale;
   clients: readonly ClientLogo[];
   testimonials: readonly ClientTestimonial[];
+  repeatSingleReview?: boolean;
 };
 
 function initials(name: string) {
@@ -82,15 +85,21 @@ function ClientMark({ client }: { client: ClientLogo }) {
   );
 }
 
-export function ClientsSection({ locale, clients, testimonials }: ClientsSectionProps) {
+export function ClientsSection({ locale, clients, testimonials, repeatSingleReview = false }: ClientsSectionProps) {
   const text = copy[locale];
   // The published entry point supplies approved data only; keep the component
   // safe when it is reused with an editorial or test collection as well.
   const published = testimonials.filter((item) => item.status === "published");
-  const itemIds = published.map((item) => item.id);
+  // The owner requested two temporary positions for the same approved quote.
+  // Keep one authentic data record; only the presentation slots are repeated.
+  const repeatsSingle = repeatSingleReview && published.length === 1;
+  const slides = repeatsSingle
+    ? [1, 2].map((position) => ({ id: `${published[0].id}:position-${position}`, review: published[0] }))
+    : published.map((review) => ({ id: review.id, review }));
+  const itemIds = slides.map((item) => item.id);
   const itemsKey = JSON.stringify(itemIds);
   const [transition, setTransition] = useState<TransitionState>(() => ({
-    activeId: published[0]?.id ?? null,
+    activeId: slides[0]?.id ?? null,
     nextId: null,
     phase: "idle",
     direction: 1,
@@ -98,9 +107,10 @@ export function ClientsSection({ locale, clients, testimonials }: ClientsSection
     hasChanged: false,
   }));
 
-  const active = published.find((item) => item.id === transition.activeId) ?? published[0];
-  const activeIndex = active ? published.findIndex((item) => item.id === active.id) : -1;
-  const hasControls = published.length > 1;
+  const activeSlide = slides.find((item) => item.id === transition.activeId) ?? slides[0];
+  const active = activeSlide?.review;
+  const activeIndex = activeSlide ? slides.findIndex((item) => item.id === activeSlide.id) : -1;
+  const hasControls = slides.length > 1;
 
   useEffect(() => {
     if (transition.phase === "idle") return;
@@ -159,12 +169,13 @@ export function ClientsSection({ locale, clients, testimonials }: ClientsSection
           <div className={styles.review} data-has-controls={hasControls}>
             <div className={styles.reviewHeader}>
               <p className={styles.eyebrow}>{text.testimonial}</p>
-              {hasControls ? <span className={styles.counter} aria-hidden="true">{String(activeIndex + 1).padStart(2, "0")} / {String(published.length).padStart(2, "0")}</span> : null}
+              {hasControls ? <span className={styles.counter} aria-hidden="true">{String(activeIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}</span> : null}
             </div>
 
             <figure
               className={styles.record}
               data-testimonial-id={active.id}
+              data-testimonial-position={String(activeIndex + 1)}
               data-transition={hasControls ? transition.phase : "idle"}
               style={{ "--slide-direction": transition.direction } as CSSProperties}
             >
@@ -193,22 +204,22 @@ export function ClientsSection({ locale, clients, testimonials }: ClientsSection
               </figcaption>
             </figure>
 
-            {active.caseLinks?.length ? (
+            {active.caseLinks?.length || hasControls ? (
               <div className={styles.reviewFooter}>
                 <div className={styles.caseLinks}>
                   {active.caseLinks?.map((project) => (
                     <Link className={styles.caseLink} href={project.href} key={project.href}>{project.label}<UiArrow /></Link>
                   ))}
                 </div>
+                {hasControls ? (
+                  <div className={styles.controls}>
+                    <button className={styles.control} type="button" aria-label={text.previous} onClick={() => changeTestimonial(-1)}><UiArrow direction="left" /></button>
+                    <button className={styles.control} type="button" aria-label={text.next} onClick={() => changeTestimonial(1)}><UiArrow direction="right" /></button>
+                  </div>
+                ) : null}
               </div>
             ) : null}
-            {hasControls ? (
-              <div className={styles.controls}>
-                <button className={styles.control} type="button" aria-label={text.previous} onClick={() => changeTestimonial(-1)}><UiArrow direction="left" /></button>
-                <button className={styles.control} type="button" aria-label={text.next} onClick={() => changeTestimonial(1)}><UiArrow direction="right" /></button>
-              </div>
-            ) : null}
-            {hasControls ? <p className={styles.status} role="status" aria-live="polite" aria-atomic="true">{transition.hasChanged ? text.status(activeIndex + 1, published.length) : ""}</p> : null}
+            {hasControls ? <p className={styles.status} role="status" aria-live="polite" aria-atomic="true">{transition.hasChanged ? (repeatsSingle ? text.positionStatus : text.status)(activeIndex + 1, slides.length) : ""}</p> : null}
           </div>
         ) : null}
 

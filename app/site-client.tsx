@@ -562,7 +562,7 @@ export function HoverSite({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        <ClientsSection locale={locale} {...getClientsContent(locale)} />
+        <ClientsSection locale={locale} {...getClientsContent(locale)} repeatSingleReview />
         <Faq locale={locale} />
 
       </main>
