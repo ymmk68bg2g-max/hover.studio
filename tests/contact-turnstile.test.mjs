@@ -28,8 +28,7 @@ function textContent(tree) {
 function createEnvironment({ configured = true } = {}) {
   const scripts = [], timers = new Map(), observers = new Set();
   const rendered = [], removed = [], widgets = new Map();
-  const queuedReady = [];
-  let readyMode = "immediate";
+  let readyCalls = 0;
   let timerId = 0, widgetSequence = 0, instanceSequence = 0, activeInstance;
   class Script {
     listeners = new Map();
@@ -48,10 +47,9 @@ function createEnvironment({ configured = true } = {}) {
     disconnect() { observers.delete(this); }
   }
   const api = {
-    ready(callback) {
-      if (readyMode === "throw") throw new Error("Partially initialized verification API");
-      if (readyMode === "blocked") queuedReady.push(callback);
-      else callback();
+    ready() {
+      readyCalls += 1;
+      throw Object.assign(new Error("Remove async/defer before using turnstile.ready()."), { code: 3857 });
     },
     render(container, options) {
       const id = `widget-${++widgetSequence}`;
@@ -152,11 +150,11 @@ function createEnvironment({ configured = true } = {}) {
   }
   return {
     scripts, rendered, removed, widgets, mount,
-    installApi(mode) { readyMode = mode; window.turnstile = api; },
-    allowReady() { readyMode = "immediate"; },
-    flushOldReady() { for (const callback of queuedReady.splice(0)) callback(); },
-    async load() {
-      window.turnstile = api;
+    get readyCalls() { return readyCalls; },
+    get hasApi() { return Boolean(window.turnstile); },
+    installApi({ malformed = false } = {}) { window.turnstile = malformed ? { ready: api.ready } : api; },
+    async load({ malformed = false } = {}) {
+      window.turnstile = malformed ? { ready: api.ready } : api;
       const script = scripts.find(script => !script.removed);
       assert.ok(script);
       script.dispatch("load");
@@ -257,36 +255,47 @@ for (const mode of ["error", "timeout"]) test(`loader ${mode} can be retried ins
   assert.equal(form.tokens.at(-1), "recovered-token");
 });
 
-test("an existing API whose ready callback stalls times out and can be reloaded by Retry", async () => {
+for (const existing of [false, true]) test(`an ${existing ? "existing" : "async-loaded"} API renders without calling Cloudflare's forbidden ready method`, async () => {
   const environment = createEnvironment();
-  environment.installApi("blocked");
+  if (existing) environment.installApi();
   const form = environment.mount({ locale: "en" });
-  assert.equal(environment.scripts.length, 0, "An existing API is checked before adding another script");
+  if (existing) {
+    await tick();
+    assert.equal(environment.scripts.length, 0, "An existing API must not cause a duplicate script");
+  } else {
+    assert.equal(environment.scripts[0].async, true);
+    assert.equal(environment.scripts[0].defer, true);
+    await environment.load();
+    assert.equal(environment.scripts[0].removed, false);
+  }
+  assert.equal(environment.readyCalls, 0, "The actual Cloudflare ready() contract throws 3857 for async/defer scripts");
+  assert.equal(environment.rendered.length, 1);
+  form.widget().options.callback("verified-token");
+  assert.equal(form.tokens.at(-1), "verified-token");
+  assert.match(textContent(form.render()), /Verification complete/);
   await environment.failLoading("timeout");
-  assert.match(textContent(form.render()), /Retry verification/);
-  environment.allowReady();
-  form.retry();
-  assert.equal(environment.scripts.length, 1, "The stalled API must not trap Retry in another unbounded wait");
-  await environment.load();
-  form.widget().options.callback("recovered-token");
-  assert.equal(form.tokens.at(-1), "recovered-token");
-  environment.flushOldReady();
-  await tick();
-  assert.equal(environment.rendered.length, 1, "Late readiness from the timed-out API cannot create a second widget");
+  assert.equal(environment.rendered.length, 1, "Successful load must clear its failure deadline");
+  assert.match(textContent(form.render()), /Verification complete/);
 });
 
-test("an existing API throwing synchronously from ready does not poison the shared retry promise", async () => {
+for (const existing of [false, true]) test(`a malformed ${existing ? "existing" : "loaded"} API without render fails closed and permits a fresh script retry`, async () => {
   const environment = createEnvironment();
-  environment.installApi("throw");
+  if (existing) environment.installApi({ malformed: true });
   const form = environment.mount({ locale: "en" });
-  await tick();
+  if (existing) await tick();
+  else await environment.load({ malformed: true });
+  assert.equal(environment.rendered.length, 0);
+  assert.equal(environment.hasApi, false, "Retry must not reuse the malformed API");
   assert.match(textContent(form.render()), /Retry verification/);
-  environment.allowReady();
+  assert.ok(!form.tokens.some(Boolean), "A malformed API must never verify the form");
+  assert.equal(environment.scripts.filter(script => !script.removed).length, 0);
   form.retry();
-  assert.equal(environment.scripts.length, 1);
+  assert.equal(environment.scripts.filter(script => !script.removed).length, 1);
   await environment.load();
   form.widget().options.callback("fresh-token");
   assert.equal(form.tokens.at(-1), "fresh-token");
+  assert.equal(environment.rendered.length, 1);
+  assert.equal(environment.readyCalls, 0);
 });
 
 test("resetKey clears a consumed token, replaces the widget, and rejects old callbacks", async () => {
