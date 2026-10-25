@@ -6,6 +6,7 @@ export type ClientLogo = {
   logoSrc?: string;
   logoWidth?: number;
   logoHeight?: number;
+  logoCrop?: { x: number; y: number; width: number; height: number };
   logoBackground?: string;
   wordmark?: readonly { text: string; color?: string }[];
   caseHref?: string;
@@ -52,6 +53,14 @@ const publishedContent: Record<ClientLocale, ClientsContent> = {
         "logoBackground": "#061120",
         "wordmark": [{ "text": "SOLAR", "color": "#f3f6f8" }, { "text": "CITY", "color": "#35d6e4" }],
         "caseHref": "/ua/work/solarcity"
+      },
+      {
+        "id": "yamamoto-dental-group",
+        "name": "Yamamoto Dental Group",
+        "logoSrc": "/clients/yamamoto-dental-group.png",
+        "logoWidth": 1200,
+        "logoHeight": 800,
+        "logoCrop": { "x": 101, "y": 355, "width": 997, "height": 90 }
       }
     ],
     "testimonials": [
@@ -98,6 +107,14 @@ const publishedContent: Record<ClientLocale, ClientsContent> = {
         "logoBackground": "#061120",
         "wordmark": [{ "text": "SOLAR", "color": "#f3f6f8" }, { "text": "CITY", "color": "#35d6e4" }],
         "caseHref": "/en/work/solarcity"
+      },
+      {
+        "id": "yamamoto-dental-group",
+        "name": "Yamamoto Dental Group",
+        "logoSrc": "/clients/yamamoto-dental-group.png",
+        "logoWidth": 1200,
+        "logoHeight": 800,
+        "logoCrop": { "x": 101, "y": 355, "width": 997, "height": 90 }
       }
     ],
     "testimonials": [

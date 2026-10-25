@@ -56,15 +56,23 @@ function initials(name: string) {
 }
 
 function ClientMark({ client }: { client: ClientLogo }) {
+  const crop = client.logoCrop;
   const mark = client.logoSrc ? (
+    <span className={crop ? styles.logoViewport : styles.logoCanvas} style={crop ? { aspectRatio: `${crop.width} / ${crop.height}` } : undefined}>
     <img
       alt={client.name}
-      className={styles.logoImage}
+      className={crop ? styles.croppedLogoImage : styles.logoImage}
+      style={crop ? {
+        width: `${((client.logoWidth ?? crop.width) / crop.width) * 100}%`,
+        left: `${(-crop.x / crop.width) * 100}%`,
+        top: `${(-crop.y / crop.height) * 100}%`,
+      } : undefined}
       width={client.logoWidth ?? 180}
       height={client.logoHeight ?? 48}
       loading="lazy"
       src={client.logoSrc}
     />
+    </span>
   ) : client.wordmark?.length ? (
     <span className={styles.wordmark} aria-label={client.name}>
       {client.wordmark.map((part, index) => (
@@ -228,7 +236,7 @@ export function ClientsSection({ locale, clients, testimonials, repeatSingleRevi
             <p className={styles.eyebrow}>{text.clients}</p>
             <ul className={styles.logoGrid}>
               {clients.map((client) => (
-                <li className={styles.logoItem} key={client.id} data-client-id={client.id} data-active={active?.relatedClientIds.includes(client.id) ?? false}>
+                <li className={`${styles.logoItem}${client.logoCrop ? ` ${styles.wideLogoItem}` : ""}`} key={client.id} data-client-id={client.id} data-active={active?.relatedClientIds.includes(client.id) ?? false}>
                   <ClientMark client={client} />
                 </li>
               ))}

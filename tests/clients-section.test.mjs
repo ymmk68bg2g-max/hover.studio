@@ -557,7 +557,7 @@ test("only the owner-confirmed review is public, with stable cross-language IDs 
       for (const link of item.caseLinks ?? []) assert.ok(link.href.startsWith(`/${locale}/work/`));
     }
     for (const client of data.clients) {
-      assert.ok(client.caseHref.startsWith(`/${locale}/work/`));
+      if (client.caseHref) assert.ok(client.caseHref.startsWith(`/${locale}/work/`));
       if (client.logoSrc) {
         assert.ok(existsSync(new URL(`../public${client.logoSrc}`, import.meta.url)), "Local confirmed logo is present");
         assert.ok(client.logoWidth > 0 && client.logoHeight > 0);
@@ -570,6 +570,31 @@ test("only the owner-confirmed review is public, with stable cross-language IDs 
     assert.ok(links.length > 0);
     assert.ok(links.every(href => href.startsWith(`/${locale}/work/`)), "Every client and testimonial case link retains the current language");
     if (locale === "en") assert.match(html, /[Tt]ranslat/);
+  }
+});
+
+test("the supplied Yamamoto mark is present in both languages without a fake case or unrelated review marker", () => {
+  const { getClientsContent } = loadModule("client-data.ts");
+  for (const locale of ["ua", "en"]) {
+    const data = getClientsContent(locale);
+    assert.deepEqual(Array.from(data.clients, item => item.id), ["solarfamily", "solarcity", "yamamoto-dental-group"]);
+    const logo = data.clients.find(item => item.id === "yamamoto-dental-group");
+    assert.equal(logo.caseHref, undefined);
+    assert.ok(logo.logoCrop.x >= 0 && logo.logoCrop.x + logo.logoCrop.width <= logo.logoWidth);
+    assert.ok(logo.logoCrop.y >= 0 && logo.logoCrop.y + logo.logoCrop.height <= logo.logoHeight);
+    const p = fixture({ locale, logos: data.clients, testimonials: data.testimonials, repeatSingleReview: true });
+    for (const direction of [1, -1]) {
+      p.click(direction); p.settle();
+      const yamamoto = byData(p.tree, "data-client-id").find(node => node.props["data-client-id"] === logo.id);
+      assert.equal(yamamoto.props["data-active"], false, "Oleksandr's quote relates only to the two Solar brands");
+      assert.equal(byType(yamamoto, "a").length, 0, "A client without a published case is a static mark");
+      const image = byType(yamamoto, "img")[0];
+      assert.equal(image.props.src, logo.logoSrc);
+      assert.equal(image.props.alt, logo.name);
+      assert.equal(image.props.width, 1200);
+      assert.equal(image.props.height, 800);
+    }
+    p.unmount();
   }
 });
 
