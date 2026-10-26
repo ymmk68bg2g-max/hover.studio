@@ -82,10 +82,10 @@ function serverRender(props) {
 
 // Run the component's actual hooks and callbacks against deterministic timers.
 // There is no browser, network, analytics API, or form submission in this suite.
-function fixture({ locale = "ua", testimonials = reviews, logos = clients, reduced = false, repeatSingleReview = false } = {}) {
+function fixture({ locale = "ua", testimonials = reviews, logos = clients, reduced = false } = {}) {
   const slots = [], timers = new Map(), frames = new Map(), listeners = new Map();
   let hookIndex = 0, dirty = false, effects = [], tree, timerSequence = 0, now = 0;
-  const props = { locale, testimonials, clients: logos, repeatSingleReview };
+  const props = { locale, testimonials, clients: logos };
   const media = {
     matches: reduced,
     addEventListener(type, callback) { listeners.set(callback, type); },
@@ -200,7 +200,7 @@ function fixture({ locale = "ua", testimonials = reviews, logos = clients, reduc
 function assertRecord(tree, expected, all = reviews) {
   const quotes = byType(tree, "blockquote");
   assert.equal(quotes.length, 1, "Exactly one quote is rendered, with no hidden duplicate slides");
-  assert.equal(text(quotes[0]).trim(), expected.quote);
+  assert.equal(byType(quotes[0], "p").map(paragraph => text(paragraph)).join("\n\n").trim(), expected.quote);
   const content = text(tree);
   assert.ok(content.includes(expected.name), "The quote has its matching author");
   if (expected.role) assert.ok(content.includes(expected.role));
@@ -250,12 +250,12 @@ for (const locale of ["ua", "en"]) {
     }
   });
 
-  test(`${locale}: the optional two-position view renders the one approved review with localized controls`, () => {
+  test(`${locale}: the two approved reviews render with localized controls and one active record`, () => {
     const { getClientsContent } = loadModule("client-data.ts");
     const data = getClientsContent(locale);
     const approved = data.testimonials[0];
     const before = JSON.stringify(data.testimonials);
-    const html = serverRender({ locale, ...data, repeatSingleReview: true });
+    const html = serverRender({ locale, ...data });
     assert.equal((html.match(/<blockquote\b/g) ?? []).length, 1);
     assert.equal((html.match(/<button\b/g) ?? []).length, 2);
     assert.match(html, /01\s*\/\s*02/);
@@ -266,33 +266,31 @@ for (const locale of ["ua", "en"]) {
     assert.equal((html.match(new RegExp(`src="${approved.avatarSrc}"`, "g")) ?? []).length, 1);
     assert.ok(html.includes(locale === "ua" ? 'aria-label="Попередній відгук"' : 'aria-label="Previous testimonial"'));
     assert.ok(html.includes(locale === "ua" ? 'aria-label="Наступний відгук"' : 'aria-label="Next testimonial"'));
-    assert.equal(JSON.stringify(data.testimonials), before, "Creating view positions never duplicates or mutates published data");
-    assert.equal(data.testimonials.length, 1);
+    assert.equal(JSON.stringify(data.testimonials), before, "Rendering never duplicates or mutates approved data");
+    assert.equal(data.testimonials.length, 2);
   });
 
-  test(`${locale}: both manual positions preserve Oleksandr's approved quote, author, portrait and case links`, () => {
+  test(`${locale}: manual navigation switches the full approved quote, author, portrait, case links and related client together`, () => {
     const { getClientsContent } = loadModule("client-data.ts");
     const data = getClientsContent(locale);
-    const approved = data.testimonials[0];
-    const p = fixture({ locale, testimonials: data.testimonials, logos: data.clients, repeatSingleReview: true });
-    const assertApprovedView = position => {
+    const p = fixture({ locale, testimonials: data.testimonials, logos: data.clients });
+    const assertApprovedView = index => {
+      const approved = data.testimonials[index];
       assertRecord(p.tree, approved, data.testimonials);
-      assertPosition(p.tree, position, 2, approved);
+      assertPosition(p.tree, index + 1, 2, approved);
       const links = byType(p.tree, "a").filter(node => node.props.className === "caseLink");
       assert.deepEqual(links.map(node => node.props.href), Array.from(approved.caseLinks, item => item.href));
       const activeIds = byData(p.tree, "data-client-id").filter(node => node.props["data-active"])
         .map(node => node.props["data-client-id"]);
       assert.deepEqual(activeIds, Array.from(approved.relatedClientIds));
+      assert.equal(p.pendingTimers, 0, "A settled view never schedules autoplay");
     };
-    assertApprovedView(1);
+    assertApprovedView(0);
     assert.equal(p.controls.length, 2);
-    assert.equal(p.pendingTimers, 0, "The repeated view waits for a manual action");
-    for (const [direction, position] of [[1, 2], [1, 1], [-1, 2], [-1, 1]]) {
+    for (const [direction, index] of [[1, 1], [1, 0], [-1, 1], [-1, 0]]) {
       p.click(direction); p.settle();
-      assertApprovedView(position);
-      assert.equal(p.pendingTimers, 0, "Settled view never schedules autoplay");
+      assertApprovedView(index);
     }
-    assert.equal(data.testimonials.length, 1, "Two view positions still come from one published review");
     p.unmount();
   });
 
@@ -316,17 +314,18 @@ for (const locale of ["ua", "en"]) {
   });
 }
 
-test("a repeated single review changes position in a complete 300 ms manual transition", () => {
-  const p = fixture({ testimonials: [reviews[0]], repeatSingleReview: true });
+test("a manual transition switches complete records in 300 ms without exposing two quotes", () => {
+  const p = fixture({ testimonials: reviews.slice(0, 2) });
   const phase = () => byData(p.tree, "data-transition")[0].props["data-transition"];
   p.click(1);
   assert.equal(phase(), "exit");
   assertPosition(p.tree, 1, 2, reviews[0]);
+  assertRecord(p.tree, reviews[0]);
   p.advance();
   assert.equal(p.elapsed, 150);
   assert.equal(phase(), "enter");
-  assertPosition(p.tree, 2, 2, reviews[0]);
-  assertRecord(p.tree, reviews[0]);
+  assertPosition(p.tree, 2, 2, reviews[1]);
+  assertRecord(p.tree, reviews[1]);
   p.advance();
   assert.equal(p.elapsed, 300);
   assert.equal(phase(), "idle");
@@ -334,65 +333,22 @@ test("a repeated single review changes position in a complete 300 ms manual tran
   p.unmount();
 });
 
-test("rapid and batched actions switch repeat positions without changing or duplicating the approved record", () => {
+test("rapid batched navigation resolves to the correct approved record without creating repeat slots", () => {
   const { getClientsContent } = loadModule("client-data.ts");
   const data = getClientsContent("ua");
-  const approved = data.testimonials[0];
-  const p = fixture({ testimonials: data.testimonials, logos: data.clients, repeatSingleReview: true });
-  for (const [directions, position] of [[[1, 1, 1], 2], [[-1, -1, -1], 1], [[1, -1], 1]]) {
+  const p = fixture({ testimonials: data.testimonials, logos: data.clients });
+  let current = 0;
+  for (const directions of [[1, 1, 1], [-1, -1, -1], [1, -1], [1, 1], [-1]]) {
     p.batch(directions);
-    assertRecord(p.tree, approved, data.testimonials);
+    assertRecord(p.tree, data.testimonials[current], data.testimonials);
+    current = (current + directions.reduce((sum, direction) => sum + direction, 0) + data.testimonials.length * directions.length) % data.testimonials.length;
     p.settle();
-    assertPosition(p.tree, position, 2, approved);
+    assertPosition(p.tree, current + 1, 2, data.testimonials[current]);
+    assertRecord(p.tree, data.testimonials[current], data.testimonials);
     assert.equal(p.pendingTimers, 0);
   }
-  for (const direction of [1, 1, -1, 1, -1, -1, 1]) {
-    p.click(direction);
-    assertRecord(p.tree, approved, data.testimonials);
-    p.advance();
-    assertRecord(p.tree, approved, data.testimonials);
-  }
-  p.settle();
-  const previousPosition = Number(byData(p.tree, "data-testimonial-position")[0].props["data-testimonial-position"]);
-  p.click(1); p.settle();
-  assertPosition(p.tree, previousPosition === 1 ? 2 : 1, 2, approved);
-  assertRecord(p.tree, approved, data.testimonials);
-  assert.equal(p.pendingTimers, 0);
-  p.unmount();
-});
-
-test("repeat mode stays empty for zero or draft-only records and removes an active repeated view safely", () => {
-  const draft = { ...reviews[1], status: "draft" };
-  for (const testimonials of [[], [draft]]) {
-    const html = serverRender({ locale: "ua", clients, testimonials, repeatSingleReview: true });
-    assert.doesNotMatch(html, /<blockquote|<button|Fixture quote|Fixture author|01\s*\/\s*0/);
-    const p = fixture({ testimonials, repeatSingleReview: true });
-    assert.equal(byType(p.tree, "blockquote").length, 0);
-    assert.equal(p.controls.length, 0);
-    assert.equal(p.pendingTimers, 0);
-    p.update([draft, reviews[0]]);
-    assertRecord(p.tree, reviews[0]);
-    assertPosition(p.tree, 1, 2, reviews[0]);
-    p.click(1);
-    p.update([draft]); p.settle();
-    assert.equal(byType(p.tree, "blockquote").length, 0);
-    assert.equal(p.controls.length, 0);
-    assert.equal(p.pendingTimers, 0);
-    assert.doesNotMatch(text(p.tree), /Fixture quote|Fixture author/);
-    p.unmount();
-  }
-});
-
-test("repeat mode does not add positions when multiple published reviews already exist", () => {
-  const p = fixture({ repeatSingleReview: true });
-  assert.equal(p.pendingTimers, 0);
-  assertPosition(p.tree, 1, 3, reviews[0]);
-  for (const [direction, index] of [[1, 1], [1, 2], [1, 0], [-1, 2]]) {
-    p.click(direction); p.settle();
-    assertRecord(p.tree, reviews[index]);
-    assertPosition(p.tree, index + 1, 3, reviews[index]);
-    assert.equal(p.pendingTimers, 0);
-  }
+  assert.doesNotMatch(appSource("clients-section.tsx"), /repeatSingleReview|positionStatus|:position-/);
+  assert.doesNotMatch(appSource("site-client.tsx"), /repeatSingleReview/);
   p.unmount();
 });
 
@@ -537,24 +493,27 @@ test("the focused stylesheet protects readable full quotes, visible focus and re
   assert.match(css, /grid-template-areas:\s*"intro"\s*"review"\s*"brands"/);
 });
 
-test("only the owner-confirmed review is public, with stable cross-language IDs and real local assets", () => {
+test("only the two owner-confirmed reviews are public, with stable cross-language IDs and real local assets", () => {
   const { getClientsContent } = loadModule("client-data.ts");
   const ua = getClientsContent("ua"), en = getClientsContent("en");
-  assert.deepEqual(Array.from(ua.testimonials, item => item.id), ["oleksandr-kastronov"]);
-  assert.deepEqual(Array.from(en.testimonials, item => item.id), ["oleksandr-kastronov"]);
+  assert.deepEqual(Array.from(ua.testimonials, item => item.id), ["oleksandr-kastronov", "vladyslav-isakov"]);
+  assert.deepEqual(Array.from(en.testimonials, item => item.id), ["oleksandr-kastronov", "vladyslav-isakov"]);
   assert.deepEqual(Array.from(ua.clients, item => item.id), Array.from(en.clients, item => item.id));
   for (const locale of ["ua", "en"]) {
     const data = getClientsContent(locale);
     const publicData = JSON.stringify(data);
     assert.doesNotMatch(publicData, /ivan-tokmachov|Іван Токмачов|Ivan Tokmachov|demo-profile|Fixture|YevAI|AI Commercial Blueprint/);
-    assert.equal(data.testimonials[0].status, "published");
-    assert.ok(data.testimonials[0].quote.length > 300, "The full supplied quote remains in public data");
-    assert.equal(data.testimonials[0].isTranslation === true, locale === "en");
     const validClientIds = new Set(Array.from(data.clients, item => item.id));
     for (const item of data.testimonials) {
+      assert.equal(item.status, "published");
+      assert.ok(item.quote.length > 300, "The full supplied quote remains in public data");
+      assert.equal(item.isTranslation === true, locale === "en");
       for (const id of item.relatedClientIds) assert.ok(validClientIds.has(id));
       assert.ok(existsSync(new URL(`../public${item.avatarSrc}`, import.meta.url)), "Approved portrait is present");
-      for (const link of item.caseLinks ?? []) assert.ok(link.href.startsWith(`/${locale}/work/`));
+      for (const link of item.caseLinks ?? []) {
+        if (item.id === "vladyslav-isakov") assert.equal(link.href, "https://roland.dental/");
+        else assert.ok(link.href.startsWith(`/${locale}/work/`));
+      }
     }
     for (const client of data.clients) {
       if (client.caseHref) assert.ok(client.caseHref.startsWith(`/${locale}/work/`));
@@ -565,7 +524,8 @@ test("only the owner-confirmed review is public, with stable cross-language IDs 
     }
     const html = serverRender({ locale, ...data });
     assert.equal((html.match(/<blockquote\b/g) ?? []).length, 1);
-    assert.doesNotMatch(html, /<button|01\s*\/\s*01|href="#"/);
+    assert.doesNotMatch(html, /01\s*\/\s*01|href="#"/);
+    assert.equal((html.match(/<button\b/g) ?? []).length, 2);
     const links = [...html.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(match => match[1]);
     assert.ok(links.length > 0);
     assert.ok(links.every(href => href.startsWith(`/${locale}/work/`)), "Every client and testimonial case link retains the current language");
@@ -573,7 +533,46 @@ test("only the owner-confirmed review is public, with stable cross-language IDs 
   }
 });
 
-test("the supplied Yamamoto mark is present in both languages without a fake case or unrelated review marker", () => {
+test("Vladyslav's supplied three-paragraph review remains complete with its own portrait and Roland link", () => {
+  const { getClientsContent } = loadModule("client-data.ts");
+  const suppliedUa = [
+    "Наша компанія представляє низку брендів, кожен із яких має свою аудиторію, асортимент і специфіку. Тому нам не підходить підхід, коли один сайт просто копіюють і змінюють логотип. Важливо, щоб кожен проєкт мав власний характер, враховував особливості обладнання та зрозуміло представляв конкретну пропозицію.",
+    "З HOVER працюємо над серією сайтів, зокрема над сайтом нашого напряму обладнання Roland. Співпрацю вибудовуємо з розрахунком на довгострокове партнерство: для нас важливо, щоб студія розуміла специфіку компанії та враховувала її в наступних проєктах. При цьому кожен сайт розглядаємо окремо — зі своєю структурою, візуальною подачею та завданнями, а не як чергову версію попереднього.",
+    "За такого обсягу роботи для нас особливо важливі узгоджені строки, зрозумілі етапи та своєчасна комунікація. Потрібно бачити, на якому етапі перебуває кожен проєкт, що потребує погодження та які кроки наступні. Саме на цих принципах будуємо роботу з HOVER: індивідуальна увага до кожного сайту та послідовний підхід до всієї серії.",
+  ].join("\n\n");
+  assert.equal(getClientsContent("ua").testimonials.find(item => item.id === "vladyslav-isakov").quote, suppliedUa);
+  for (const locale of ["ua", "en"]) {
+    const data = getClientsContent(locale);
+    const approved = data.testimonials.find(item => item.id === "vladyslav-isakov");
+    assert.equal(approved.name, locale === "ua" ? "Владислав Ісаков" : "Vladyslav Isakov");
+    assert.equal(approved.role, locale === "ua" ? "Засновник" : "Founder");
+    assert.equal(approved.company, "Yamamoto Dental Group");
+    assert.equal(approved.avatarSrc, "/testimonials/vladyslav-isakov.jpg");
+    assert.equal(approved.avatarCrop, undefined, "The square owner-supplied portrait requires no invented crop");
+    assert.equal(approved.quote.split("\n\n").length, 3);
+    assert.deepEqual(Array.from(approved.caseLinks, link => ({ ...link })), [{
+      href: "https://roland.dental/", label: locale === "ua" ? "Сайт Roland" : "Roland website",
+    }]);
+    const p = fixture({ locale, testimonials: data.testimonials, logos: data.clients });
+    p.click(1); p.settle();
+    assertRecord(p.tree, approved, data.testimonials);
+    const paragraphs = byType(byType(p.tree, "blockquote")[0], "p");
+    assert.deepEqual(paragraphs.map(paragraph => text(paragraph)), Array.from(approved.quote.split("\n\n")));
+    const avatar = byType(p.tree, "img").find(node => node.props.src === approved.avatarSrc);
+    assert.equal(avatar.props.width, 56);
+    assert.equal(avatar.props.height, 56);
+    const caseLinks = byType(p.tree, "a").filter(node => node.props.className === "caseLink");
+    assert.equal(caseLinks.length, 1);
+    assert.equal(caseLinks[0].props.href, "https://roland.dental/");
+    assert.equal(text(caseLinks[0]), locale === "ua" ? "Сайт Roland" : "Roland website");
+    p.click(-1); p.settle();
+    assertRecord(p.tree, data.testimonials[0], data.testimonials);
+    assert.equal(byType(p.tree, "a").filter(node => node.props.className === "caseLink" && node.props.href === "https://roland.dental/").length, 0);
+    p.unmount();
+  }
+});
+
+test("the supplied Yamamoto mark remains static and relates only to Vladyslav’s review", () => {
   const { getClientsContent } = loadModule("client-data.ts");
   for (const locale of ["ua", "en"]) {
     const data = getClientsContent(locale);
@@ -582,11 +581,11 @@ test("the supplied Yamamoto mark is present in both languages without a fake cas
     assert.equal(logo.caseHref, undefined);
     assert.ok(logo.logoCrop.x >= 0 && logo.logoCrop.x + logo.logoCrop.width <= logo.logoWidth);
     assert.ok(logo.logoCrop.y >= 0 && logo.logoCrop.y + logo.logoCrop.height <= logo.logoHeight);
-    const p = fixture({ locale, logos: data.clients, testimonials: data.testimonials, repeatSingleReview: true });
-    for (const direction of [1, -1]) {
+    const p = fixture({ locale, logos: data.clients, testimonials: data.testimonials });
+    for (const [direction, expectedActive] of [[1, true], [-1, false]]) {
       p.click(direction); p.settle();
       const yamamoto = byData(p.tree, "data-client-id").find(node => node.props["data-client-id"] === logo.id);
-      assert.equal(yamamoto.props["data-active"], false, "Oleksandr's quote relates only to the two Solar brands");
+      assert.equal(yamamoto.props["data-active"], expectedActive, "Only Vladyslav relates to Yamamoto; Oleksandr relates to the Solar brands");
       assert.equal(byType(yamamoto, "a").length, 0, "A client without a published case is a static mark");
       const image = byType(yamamoto, "img")[0];
       assert.equal(image.props.src, logo.logoSrc);
@@ -631,7 +630,7 @@ for (const locale of ["ua", "en"]) {
     assert.doesNotMatch(html, /id="testimonials"|demo-profile|Демонстраційний відгук|Demo testimonial/);
     assert.equal((html.match(/<blockquote\b/g) ?? []).length, 1);
     const clientsHtml = html.slice(html.indexOf('id="clients"'), html.indexOf('id="faq"'));
-    assert.equal((clientsHtml.match(/<button\b/g) ?? []).length, 2, "The homepage opts into two manually navigable positions");
+    assert.equal((clientsHtml.match(/<button\b/g) ?? []).length, 2, "The homepage renders two genuinely distinct approved reviews");
     assert.match(clientsHtml, /01\s*\/\s*02/);
     assert.match(clientsHtml, /data-testimonial-id="oleksandr-kastronov"/);
     assert.match(clientsHtml, /data-testimonial-position="1"/);

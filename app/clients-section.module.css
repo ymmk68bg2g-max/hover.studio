@@ -8,6 +8,7 @@
 .composition {
   display: grid;
   grid-template-columns: minmax(0, 0.38fr) minmax(0, 0.62fr);
+  grid-template-rows: auto 1fr;
   grid-template-areas: "intro review" "brands review";
   align-items: start;
   column-gap: clamp(3rem, 5vw, 6.5rem);
@@ -254,12 +255,12 @@
 .wordmark { font-family: Arial, Helvetica, sans-serif; font-size: 1.125rem; font-weight: 700; letter-spacing: -0.025em; line-height: 1; white-space: nowrap; }
 .clientName { font-family: "IBM Plex Mono", Consolas, monospace; font-size: 0.875rem; overflow-wrap: anywhere; }
 
-.withoutReviews .composition { grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "brands"; }
+.withoutReviews .composition { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "intro" "brands"; }
 .withoutReviews .intro { max-width: 60ch; }
 .withoutReviews .brands { max-width: 28rem; }
 
 @media (max-width: 1100px) {
-  .composition { grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "review" "brands"; gap: 3rem; }
+  .composition { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "intro" "review" "brands"; gap: 3rem; }
   .intro { max-width: 60ch; }
   .title { margin-top: 1.75rem; }
   .description { max-inline-size: 60ch; }

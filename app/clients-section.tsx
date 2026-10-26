@@ -19,7 +19,6 @@ const copy = {
     next: "Наступний відгук",
     translated: "Переклад з української",
     status: (current: number, total: number) => `Відгук ${current} із ${total}`,
-    positionStatus: (current: number, total: number) => `Позиція ${current} із ${total}. Повтор того самого відгуку.`,
   },
   en: {
     title: "Our clients",
@@ -31,7 +30,6 @@ const copy = {
     next: "Next testimonial",
     translated: "Translated from Ukrainian",
     status: (current: number, total: number) => `Testimonial ${current} of ${total}`,
-    positionStatus: (current: number, total: number) => `Position ${current} of ${total}. The same testimonial is repeated.`,
   },
 } as const;
 
@@ -48,7 +46,6 @@ type ClientsSectionProps = {
   locale: ClientLocale;
   clients: readonly ClientLogo[];
   testimonials: readonly ClientTestimonial[];
-  repeatSingleReview?: boolean;
 };
 
 function initials(name: string) {
@@ -93,17 +90,12 @@ function ClientMark({ client }: { client: ClientLogo }) {
   );
 }
 
-export function ClientsSection({ locale, clients, testimonials, repeatSingleReview = false }: ClientsSectionProps) {
+export function ClientsSection({ locale, clients, testimonials }: ClientsSectionProps) {
   const text = copy[locale];
   // The published entry point supplies approved data only; keep the component
   // safe when it is reused with an editorial or test collection as well.
   const published = testimonials.filter((item) => item.status === "published");
-  // The owner requested two temporary positions for the same approved quote.
-  // Keep one authentic data record; only the presentation slots are repeated.
-  const repeatsSingle = repeatSingleReview && published.length === 1;
-  const slides = repeatsSingle
-    ? [1, 2].map((position) => ({ id: `${published[0].id}:position-${position}`, review: published[0] }))
-    : published.map((review) => ({ id: review.id, review }));
+  const slides = published.map((review) => ({ id: review.id, review }));
   const itemIds = slides.map((item) => item.id);
   const itemsKey = JSON.stringify(itemIds);
   const [transition, setTransition] = useState<TransitionState>(() => ({
@@ -227,7 +219,7 @@ export function ClientsSection({ locale, clients, testimonials, repeatSingleRevi
                 ) : null}
               </div>
             ) : null}
-            {hasControls ? <p className={styles.status} role="status" aria-live="polite" aria-atomic="true">{transition.hasChanged ? (repeatsSingle ? text.positionStatus : text.status)(activeIndex + 1, slides.length) : ""}</p> : null}
+            {hasControls ? <p className={styles.status} role="status" aria-live="polite" aria-atomic="true">{transition.hasChanged ? text.status(activeIndex + 1, slides.length) : ""}</p> : null}
           </div>
         ) : null}
 

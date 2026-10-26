@@ -33,6 +33,8 @@ type ClientsContent = {
 
 // Oleksandr Kastronov's existing quote, attribution and portrait were explicitly
 // confirmed by the owner on 25 October 2026. EN preserves the supplied translation.
+// Vladyslav Isakov's quote, portrait and Roland link were supplied by the owner
+// on 26 October 2026; EN is a faithful translation of that Ukrainian original.
 // Only publication-approved records belong here. Unconfirmed material stays in
 // docs/clients-unpublished.md, outside the page's client dependency graph.
 const publishedContent: Record<ClientLocale, ClientsContent> = {
@@ -87,6 +89,17 @@ const publishedContent: Record<ClientLocale, ClientsContent> = {
             "label": "Кейс SOLARFAMILY"
           }
         ]
+      },
+      {
+        "id": "vladyslav-isakov",
+        "status": "published",
+        "quote": "Наша компанія представляє низку брендів, кожен із яких має свою аудиторію, асортимент і специфіку. Тому нам не підходить підхід, коли один сайт просто копіюють і змінюють логотип. Важливо, щоб кожен проєкт мав власний характер, враховував особливості обладнання та зрозуміло представляв конкретну пропозицію.\n\nЗ HOVER працюємо над серією сайтів, зокрема над сайтом нашого напряму обладнання Roland. Співпрацю вибудовуємо з розрахунком на довгострокове партнерство: для нас важливо, щоб студія розуміла специфіку компанії та враховувала її в наступних проєктах. При цьому кожен сайт розглядаємо окремо — зі своєю структурою, візуальною подачею та завданнями, а не як чергову версію попереднього.\n\nЗа такого обсягу роботи для нас особливо важливі узгоджені строки, зрозумілі етапи та своєчасна комунікація. Потрібно бачити, на якому етапі перебуває кожен проєкт, що потребує погодження та які кроки наступні. Саме на цих принципах будуємо роботу з HOVER: індивідуальна увага до кожного сайту та послідовний підхід до всієї серії.",
+        "name": "Владислав Ісаков",
+        "role": "Засновник",
+        "company": "Yamamoto Dental Group",
+        "avatarSrc": "/testimonials/vladyslav-isakov.jpg",
+        "relatedClientIds": ["yamamoto-dental-group"],
+        "caseLinks": [{ "href": "https://roland.dental/", "label": "Сайт Roland" }]
       }
     ]
   },
@@ -141,6 +154,18 @@ const publishedContent: Record<ClientLocale, ClientsContent> = {
             "label": "SOLARFAMILY case"
           }
         ],
+        "isTranslation": true
+      },
+      {
+        "id": "vladyslav-isakov",
+        "status": "published",
+        "quote": "Our company represents several brands, each with its own audience, product range and specific requirements. Simply copying a website and changing the logo does not work for us. Each project needs its own character, must reflect the particular features of the equipment and clearly communicate the specific offering.\n\nWe are working with HOVER on a series of websites, including a website for our Roland equipment business. We are building this collaboration with a long-term partnership in mind: it matters to us that the studio understands our company and carries that understanding into future projects. At the same time, we approach each website individually — with its own structure, visual presentation and objectives, rather than treating it as another version of the previous one.\n\nWith this volume of work, agreed timelines, clear stages and timely communication are especially important to us. We need to see where each project stands, what requires approval and what comes next. These are the principles on which we are building our work with HOVER: individual attention to each website and a consistent approach to the entire series.",
+        "name": "Vladyslav Isakov",
+        "role": "Founder",
+        "company": "Yamamoto Dental Group",
+        "avatarSrc": "/testimonials/vladyslav-isakov.jpg",
+        "relatedClientIds": ["yamamoto-dental-group"],
+        "caseLinks": [{ "href": "https://roland.dental/", "label": "Roland website" }],
         "isTranslation": true
       }
     ]
