@@ -9,14 +9,14 @@ import { SiteFooter, type SiteLocale, type SitePageKind } from "./site-chrome";
 
 const copy = {
   en: {
-    label: "09 / START",
+    label: "10 / START",
     interiorLabel: "LET’S DISCUSS YOUR PROJECT",
     headline: ["HAVE", "SOMETHING", "IN MIND?"],
     intro: "Tell us what you are building. We will reply with the right questions and a practical next step.",
     location: ["KYIV / UKRAINE", "WORKING WORLDWIDE"],
   },
   ua: {
-    label: "09 / СТАРТ",
+    label: "10 / СТАРТ",
     interiorLabel: "ОБГОВОРІМО ПРОЄКТ",
     headline: ["МАЄТЕ", "ЩОСЬ", "НА ДУМЦІ?"],
     intro: "Розкажіть, що ви створюєте. Ми відповімо правильними питаннями та практичним наступним кроком.",
