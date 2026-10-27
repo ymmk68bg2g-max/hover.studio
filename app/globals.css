@@ -2018,6 +2018,11 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
   border-bottom: 1px solid var(--line);
 }
 
+.service-heading {
+  margin: 0;
+  font: inherit;
+}
+
 .service-row {
   display: grid;
   grid-template-columns: 4rem 1fr minmax(12rem, auto) 2rem;
@@ -2037,14 +2042,14 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
   color: var(--grey);
 }
 
-.service-row h3 {
+.service-row .service-title {
   margin: 0;
   font-size: clamp(2rem, 4.2vw, 4.6rem);
   font-weight: 500;
   letter-spacing: -0.055em;
 }
 
-.service-row p {
+.service-row .service-price {
   margin: 0;
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.68rem;
@@ -2250,7 +2255,7 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
   border-color: var(--active);
 }
 
-.contact-form label > span {
+.contact-form label > span:not([data-slot="native-select-wrapper"]) {
   margin-bottom: 1.2rem;
   color: #8f8f89;
   font-family: "IBM Plex Mono", monospace;
@@ -4511,11 +4516,11 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
     min-height: 7rem;
   }
 
-  .service-row h3 {
+  .service-row .service-title {
     font-size: clamp(1.8rem, 9vw, 3rem);
   }
 
-  .service-row p {
+  .service-row .service-price {
     grid-column: 2;
     margin-top: -1.2rem;
     padding-bottom: 1rem;
@@ -6738,7 +6743,7 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
 
 .project-actions a,
 .project-actions > span[aria-disabled="true"],
-.service-row > p,
+.service-row > .service-price,
 .service-detail a,
 .faq-link,
 .testimonial-role,
@@ -6985,12 +6990,12 @@ body:has(.featured-lightbox) [data-slot="dialog-overlay"] {
     grid-template-columns: 2.2rem minmax(0, 1fr) 1.2rem;
   }
 
-  .service-row h3 {
+  .service-row .service-title {
     min-width: 0;
     overflow-wrap: anywhere;
   }
 
-  #service-trigger-corporate-websites:lang(uk) h3 {
+  #service-trigger-corporate-websites:lang(uk) .service-title {
     /* Reserve the number, arrow, gaps and expanded-row padding. */
     font-size: min(clamp(1.8rem, 9vw, 3rem), calc((100cqi - 6.9rem) / 8.3));
   }

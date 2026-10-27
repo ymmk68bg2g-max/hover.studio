@@ -521,6 +521,7 @@ export function HoverSite({ locale }: { locale: Locale }) {
 
               return (
                 <div className="service-entry reveal" key={service.id} data-open={isOpen}>
+                  <h3 className="service-heading">
                   <button
                     className="service-row"
                     id={triggerId}
@@ -530,8 +531,9 @@ export function HoverSite({ locale }: { locale: Locale }) {
                     aria-controls={panelId}
                     onClick={() => setActiveService((current) => current === service.id ? null : service.id)}
                   >
-                    <span>{service.number}</span><h3>{service.id === "chatbots" ? service.name.toLocaleUpperCase(locale === "ua" ? "uk" : "en") : service.name}</h3><p><PriceText value={service.price} /></p><Arrow />
+                    <span>{service.number}</span><span className="service-title">{service.id === "chatbots" ? service.name.toLocaleUpperCase(locale === "ua" ? "uk" : "en") : service.name}</span><span className="service-price"><PriceText value={service.price} /></span><Arrow />
                   </button>
+                  </h3>
                   <div
                     className="service-detail"
                     id={panelId}
